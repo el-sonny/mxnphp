@@ -1,0 +1,31 @@
+<?php
+class security extends {:root_controler:}{
+	public function login(){
+		switch(parent::login('{:user:}')){
+			case "success":
+				header("Location: /");
+			break;
+			case "pass":
+				header("Location: /security/login/password");
+			break;
+			case "username":
+				header("Location: /security/login/username");
+			break;
+		}
+	}
+	//Check if were loged in
+	public function verify_login(){
+		if(isset($_GET['logout'])){
+			session_start();
+			session_destroy();
+			header("Location: /security/login/");
+		}
+		return parent::verify_login();
+	}
+	//Login Template
+	public function index(){
+		$file = $this->theme_folder."/security/index.mxnt";
+		$this->display_template($file);
+	}
+}
+?>

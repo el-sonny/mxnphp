@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 " />
+<link href="css/login.css" rel="stylesheet" type="text/css" />
+<title>{:site_name:} - Login</title>
+</head>
+<body>
+      <div id="pageContainer">
+        <div id="content">
+			<form class="login" action="/security/login/" method="post">
+				<p><label for="username">Username</label></p>
+				<p><input type="text" class="theInput" name="username" id="username" maxlength="20"/></p>
+				<p><label for="password">Password</label></p>
+				<p><input type="password" class="theInput" name="password" id="password" maxlength="20"/></p>
+				<p><input type="submit" class="submit" value="Login" /></p>
+			</form>
+		</div>
+      </div>
+</body>
+</html>
