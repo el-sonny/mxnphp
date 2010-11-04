@@ -1,6 +1,7 @@
 <?php
 function __autoload($class_name){
-	$config = new default_config();
+	global $config_name;
+	$config = new $config_name();
 	$folders = array(
 		$config->mxnphp_dir."/classes/",
 		$config->document_root."/models/model.",
@@ -13,7 +14,6 @@ function __autoload($class_name){
 	}while(!file_exists($file) && $i<$size);
 	if(file_exists($file)){
 		include_once $file;
-		//echo $file."<br>";
 	}else
 		echo "class $class_name not found";
 }

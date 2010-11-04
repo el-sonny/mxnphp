@@ -84,7 +84,8 @@ abstract class table{
 			if($this->debug)
 				echo $sql."<br/>";	
 			$result_sql = mysql_query($sql);
-			if($result_sql && mysql_num_rows($result_sql) >= 1 && isset($this->search_clause)){
+			$multiple_results = $result_sql && mysql_num_rows($result_sql) >= 1 && isset($this->search_clause);
+			if($multiple_results){
 				$j =0;
 				while($row = mysql_fetch_row($result_sql)){
 					$result_array[$j] = new $this(0);
@@ -143,30 +144,32 @@ abstract class table{
 		foreach ($fields as $field){
 			if(preg_match_all('/(\w+)\s*=>\s*(.+)/i', $field, $result, PREG_PATTERN_ORDER)){
 				if(isset($this->has_many[$result[1][0]])){
-					if(isset($has_many_fields[$result[1][0]]))
+					if(isset($has_many_fields[$result[1][0]])){
+						///echo $result[2][0];
 						$has_many_fields[$result[1][0]] = $has_many_fields[$result[1][0]].$result[2][0].",";
-					else
+					}else{
 						$has_many_fields[$result[1][0]] = $result[2][0].",";
+					}
 					$has_many = true;
 				};				
 			}
 			$i++;
 		};
-		
 		if($has_many){
 			foreach($this->has_many as $key => $value){
 				if(isset($has_many_fields[$key])){
-				//echo $fields;
-				$fields = substr($has_many_fields[$key],0,-1);
-				$object = new $value(0);
-				if($this->debug)
-					$object->debug = true;
-				if(isset($this->has_many_keys[$key]))
-					$llave = $this->has_many_keys[$key];
-				else
-					$llave = $this->key;
-				$object->search_clause = $object->table_name.".".$llave." = '".$this->{$this->key}."'";
-				$this->{$key} = $object->read($fields);
+					//echo $fields;
+					//echo $value;
+					$fields = substr($has_many_fields[$key],0,-1);
+					$object = new $value(0);
+					if($this->debug)
+						$object->debug = true;
+					$llave = isset($this->has_many_keys[$key]) ? $this->has_many_keys[$key]:$this->key;
+					$object->search_clause = $object->table_name.".".$llave." = '".$this->{$this->key}."'";
+					if(isset($this->has_many_limits[$key])){$object->limit = $this->has_many_limits[$key];}
+					if(isset($this->has_many_clauses[$key])){$object->search_clause = $this->has_many_limits[$key];}
+					if(isset($this->has_many_order_by[$key])){$object->order_by = $this->has_many_order_by[$key];}
+					$this->{$key} = $object->read($fields);
 				}
 			}
 		}
