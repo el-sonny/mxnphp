@@ -4,15 +4,28 @@ class pagination{
 	public $pages;
 	public $current_page;
 	public function pagination($class,$per_page,$clause = false,$page_variable = "p"){
-		$object = new $class();
-		$table = $object->table_name;
-		$key = $object->key;
+
+		$classes = explode(",",$class);
+		$tables ="";
+
+		foreach($classes as $class){
+			if ($class != ""){
+				$object = new $class();
+				$table = $object->table_name;
+				$tables = $tables.$table.",";
+			}			
+		}
+		$tables = substr($tables,0,-1);
+
 		$clause = $clause ? "WHERE $clause" : "";
-		$sql = "SELECT COUNT('$key') FROM $table $clause;";
+		$sql = "SELECT COUNT(*) FROM $tables $clause;";
+
+// 		echo $sql;
 		$result = mysql_fetch_array(mysql_query($sql));
 		$count = $result[0];
 		$start = (isset($_GET[$page_variable])) ? ($_GET[$page_variable]-1)*$per_page : 0;
-		$end = $start + $per_page;
+// 		$end = $start + $per_page;--This is a bug
+		$end = $per_page;
 		$this->document_pages = ceil(($count) / $per_page);	
 		$this->current_page = (isset($_GET[$page_variable])) ? $_GET[$page_variable] : 1;
 		$this->limit = ($count > $per_page) ? "$start, $end" : false;

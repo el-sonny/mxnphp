@@ -34,8 +34,8 @@ abstract class controler{
 			$user = $users[0];
 			//compare the password
 			if($user->$pass_field == $pass){
-				session_start();				
-				$_SESSION[$this->config->session_name] = $user->id;				
+				session_start();
+				$_SESSION[$this->config->session_name] = $user->id;
 				return "success";
 			}else{
 				//Wrong Password
@@ -58,7 +58,7 @@ abstract class controler{
 	public function verify_login($start_session = true){
  		if($start_session)
 			session_start();
-		if(isset($_SESSION[$this->config->session_name])){	
+		if(isset($_SESSION[$this->config->session_name])){
 			$this->session_id = $_SESSION[$this->config->session_name];
 			return true;
 		}else 
@@ -157,6 +157,8 @@ abstract class controler{
 		$this->include_template($action);
 	}
 	protected function include_template($template,$template_group=false){
+// 		echo "template: ".$template;
+// 		echo "Document Roo: ".$this->config->document_root;
 		$file = $this->config->document_root.$this->template_folder($template_group).$template.".php";
 		if(file_exists($file)){
 			include $file;

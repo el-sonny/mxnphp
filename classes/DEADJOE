@@ -1,0 +1,33 @@
+
+*** These modified files were found in JOE when it aborted on Tue Nov 23 21:09:41 2010
+*** JOE was aborted by UNIX signal 1
+
+*** File '(Unnamed)'
+verify_login
+L
+L_BI
+extension
+mysql.so
+mysql1
+mysqli
+php.ini
+Name
+NameVirtual
+controler_default
+default
+
+*** File '(Unnamed)'
+index.php2
+php.ini
+passwd
+passwd
+passwd
+/etc/httpd/extra/httpd-vhosts.conf
+httpd.conf
+httpd-vhosts.conf
+httpd-vhosts.conf
+passwd
+controler.php
+controler.php
+controler.php
+controler.php

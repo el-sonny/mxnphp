@@ -10,7 +10,7 @@ class {:root_controler:} extends controler{
 		$this->site_address = "{:http_address:}";
 		$this->document_root = "{:document_root:}";
 		$this->theme = "{:theme:}";
-		$this->theme_folder = "{:document_root:}templates/{:theme:}/";
+		$this->theme_folder = "{:document_root:}/templates/{:theme:}/";
 	}
 	public function index(){
 	
