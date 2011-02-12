@@ -10,7 +10,7 @@ class pagination{
 		$clause = $clause ? "WHERE $clause" : "";
 		$sql = "SELECT COUNT('$key') FROM $table $clause;";
 		$result = mysql_fetch_array(mysql_query($sql));
-		$count = $result[0];
+		$count = $result?$result[0]:0;
 		$start = (isset($_GET[$page_variable])) ? ($_GET[$page_variable]-1)*$per_page : 0;
 		$end = $start + $per_page;
 		$this->document_pages = ceil(($count) / $per_page);	

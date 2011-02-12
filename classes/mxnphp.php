@@ -27,8 +27,7 @@ class mxnphp{
 				echo $controler->default_action($action);
 			};
 		}else{
-			echo "<p>default controler $controler_name does not exist</p>";
-			echo "<p><a href='/system/generate/new.php'>generate new site</a></p>";
+			echo "<p>$controler_name does not exist</p>";
 		}
 	}
 }

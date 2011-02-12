@@ -172,10 +172,11 @@ abstract class controler{
 		$js = $this->config->http_address.$this->template_folder($folder).$file.".js";
 		echo "<script src='$js' type='text/javascript'></script>";
 	}
-	public function print_img_tag($file,$alt=false,$folder="img"){
+	public function print_img_tag($file,$alt=false,$folder="img",$class=false){
 		$img = $this->config->http_address.$this->template_folder($folder).$file;
 		$alt = $alt?$alt:$file;
-		echo "<img src='$img' alt='$alt' />";
+		$class = $class?"class='$class'":"";
+		echo "<img src='$img' alt='$alt' $class />";
 	}
 	
 	public function include_theme($theme="index",$template="index",$folder="themes"){

@@ -161,14 +161,15 @@ abstract class table{
 					//echo $fields;
 					//echo $value;
 					$fields = substr($has_many_fields[$key],0,-1);
-					$object = new $value(0);
+					$object = new $value();
 					if($this->debug)
 						$object->debug = true;
 					$llave = isset($this->has_many_keys[$key]) ? $this->has_many_keys[$key]:$this->key;
 					$object->search_clause = $object->table_name.".".$llave." = '".$this->{$this->key}."'";
 					if(isset($this->has_many_limits[$key])){$object->limit = $this->has_many_limits[$key];}
-					if(isset($this->has_many_clauses[$key])){$object->search_clause = $this->has_many_limits[$key];}
+					if(isset($this->has_many_clause[$key])){$object->search_clause = $object->search_clause." AND ".$this->has_many_clause[$key];}
 					if(isset($this->has_many_order_by[$key])){$object->order_by = $this->has_many_order_by[$key];}
+					
 					$this->{$key} = $object->read($fields);
 				}
 			}
