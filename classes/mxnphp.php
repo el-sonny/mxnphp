@@ -20,7 +20,6 @@ class mxnphp{
 		if(class_exists($controler_name)){						
 			$security = ($this->config->secured) ? new $this->config->security_controler($this->config):false;
 			$controler = new $controler_name($this->config,$security);
-		//	$controler->config = $this->config;
 			if(method_exists($controler,$action)){
 				$controler->$action();
 			}else{
