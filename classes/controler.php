@@ -15,6 +15,7 @@ abstract class controler{
 		$this->config = $config;
 		$this->security = $security;
 	}
+	//Ejecuta login
 	protected function do_login(
 			$user_class = 'user',
 			$user_field = 'email', 
