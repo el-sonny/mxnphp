@@ -1,19 +1,59 @@
 <?php 
+/**
+* Class mxnphp
+*
+* Selecciona la configuración, modelo y control 
+* que va a cargar el framework
+* @var $config configuración que se cargara
+* @var $security carga el controlador de seguridad
+* 
+*/
 class mxnphp{
 	public $config;
 	public $security;
+	/**
+	* Función mxnphp
+	*
+	* Carga la configuración de usuario 
+	* 
+	* @param string $config nombre de la 
+	* configuración a utilizar.
+	* Se tomara la configuración default en 
+	* caso de que la $config sea falso.
+	* 
+	*/
 	public function mxnphp($config = false){
 		if(!$config)
 			$this->config = new default_config();
 		else
 			$this->config = $config;
 	}
+	/**
+	* Función load_model
+	*
+	* Carga el modelo que se utilizara 
+	* 
+	* @param string $model_name  
+	* nombre de el modelo a utilizar.
+	* comprueba si el parametro existe 
+	* de lo contrario se toma el default
+	* que es general.
+	*
+	*/
 	public function load_model($model_name = "general"){
 		$file = $this->config->document_root."/models/model.$model_name.php";
 		if(file_exists($file)){
 			include_once $file;
 		}
 	}
+	/**
+	* Function load_controler
+	*
+	* Carga el controlador que se utilizara 
+	* al igual que el controlador de seguridad
+	* 
+	*
+	*/
 	public function load_controler(){
 		$controler_name = isset($_GET['controler']) ? $_GET['controler'] : $this->config->default_controler;
 		$action = isset($_GET['action']) ? $_GET['action'] : $this->config->default_action;
