@@ -3,9 +3,10 @@
 * Class mxnphp
 *
 * Selecciona la configuración, modelo y control 
-* que va a cargar el framework
-* @var $config configuración que se cargara
-* @var $security carga el controlador de seguridad
+* que va a cargar el framework.
+* @var $config configuración que se cargara.
+*
+* @var $security carga el controlador de seguridad.
 * 
 */
 class mxnphp{
