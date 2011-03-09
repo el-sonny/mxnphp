@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class PhpThumbFactory</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class PhpThumbFactory</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">PhpThumbFactory Object</p>
+<p class="description"><p>This class is responsible for making sure everything is set up and initialized properly,  and returning the appropriate thumbnail class instance.  It is the only recommended way  of using this library, and if you try and circumvent it, the sky will fall on your head :)</p><p>Basic use is easy enough.  First, make sure all the settings meet your needs and environment...  these are the static variables defined at the beginning of the class.</p><p>Once that's all set, usage is pretty easy.  You can simply do something like:  <div class="src-code"><ol><li><div class="src-line"><span class="src-var">$thumb&nbsp;</span>=&nbsp;<span class="src-id"><a href="../../PhpThumb/Core/PhpThumbFactory.html">PhpThumbFactory</a></span><span class="src-sym">::</span><a href="../../PhpThumb/Core/PhpThumbFactory.html#methodcreate">create</a><span class="src-sym">(</span><span class="src-str">'/path/to/file.png'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>Refer to the documentation for the create function for more information</p></p>
+		<p class="notes">
+			Located in <a class="field" href="_ThumbLib.inc.php.html">/ThumbLib.inc.php</a> (line <span class="field">66</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+												<div class="var-title">
+					static <span class="var-type">string</span>
+					<a href="#$defaultImplemenation" title="details" class="var-name">$defaultImplemenation</a>
+				</div>
+																<div class="var-title">
+					static <span class="var-type">string</span>
+					<a href="#$pluginPath" title="details" class="var-name">$pluginPath</a>
+				</div>
+																															</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+												<div class="method-definition">
+					static 						<span class="method-result"><a href="../../PhpThumb/Core/GdThumb.html">GdThumb</a></span>
+										<a href="#create" title="details" class="method-name">create</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$options</span> = <span class="var-default">array()</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$isDataStream</span> = <span class="var-default">false</span>])
+									</div>
+								
+												</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$defaultImplemenation" id="$defaultImplemenation"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			static <span class="var-type">string</span>
+			<span class="var-name">$defaultImplemenation</span>
+			 = <span class="var-default"> DEFAULT_THUMBLIB_IMPLEMENTATION</span>			(line <span class="line-number">79</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Which implemenation of the class should be used by default</p>
+<p class="description"><p>Currently, valid options are: <ul><li>imagick</li><li>gd</li></ul>  These are defined in the implementation map variable, inside the create function</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$pluginPath" id="$pluginPath"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			static <span class="var-type">string</span>
+			<span class="var-name">$pluginPath</span>
+			 = <span class="var-default"> THUMBLIB_PLUGIN_PATH</span>			(line <span class="line-number">88</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Where the plugins can be loaded from</p>
+<p class="description"><p>Note, it's important that this path is properly defined.  It is very likely that you'll  have to change this, as the assumption here is based on a relative path.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodcreate" id="create"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method create</span> (line <span class="line-number">106</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Factory Function</p>
+<p class="description"><p>This function returns the correct thumbnail object, augmented with any appropriate plugins.  It does so by doing the following: <ul><li>Getting an instance of PhpThumb</li><li>Loading plugins</li><li>Validating the default implemenation</li><li>Returning the desired default implementation if possible</li><li>Returning the GD implemenation if the default isn't available</li><li>Throwing an exception if no required libraries are present</li></ul></p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+				<li><span class="field">uses:</span> <a href="../../PhpThumb/Core/PhpThumb.html">PhpThumb</a></li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result"><a href="../../PhpThumb/Core/GdThumb.html">GdThumb</a></span>
+		<span class="method-name">
+			create
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$options</span> = <span class="var-default">array()</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$isDataStream</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$filename</span><span class="var-description">: The path and file to load [optional]</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$options</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$isDataStream</span>			</li>
+				</ul>
+		
+			
+	</div>
+
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Wed, 09 Mar 2011 21:58:27 +0000 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

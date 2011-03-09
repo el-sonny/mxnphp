@@ -1,0 +1,891 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class ThumbBase</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class ThumbBase</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-descendents">Descendents</a>
+			|											<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">ThumbBase Class Definition</p>
+<p class="description"><p>This is the base class that all implementations must extend.  It contains the  core variables and functionality common to all implementations, as well as the functions that  allow plugins to augment those classes.</p></p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_ThumbBase.inc.php.html">/ThumbBase.inc.php</a> (line <span class="field">35</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+	<a name="sec-descendents"></a>
+	<div class="info-box">
+		<div class="info-box-title">Direct descendents</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Descendents</span>
+			|												<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+								|															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../../PhpThumb/Core/GdThumb.html">GdThumb</a></td>
+					<td>
+											GdThumb Class Definition
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																																																																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$errorMessage" title="details" class="var-name">$errorMessage</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$fileName" title="details" class="var-name">$fileName</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$format" title="details" class="var-name">$format</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">bool</span>
+					<a href="#$hasError" title="details" class="var-name">$hasError</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">array</span>
+					<a href="#$imported" title="details" class="var-name">$imported</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">array</span>
+					<a href="#$importedFunctions" title="details" class="var-name">$importedFunctions</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">bool</span>
+					<a href="#$isDataStream" title="details" class="var-name">$isDataStream</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">bool</span>
+					<a href="#$remoteImage" title="details" class="var-name">$remoteImage</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																				
+												<div class="method-definition">
+											<span class="method-result"><a href="../../PhpThumb/Core/ThumbBase.html">ThumbBase</a></span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$fileName</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$isDataStream</span> = <span class="var-default">false</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#fileExistsAndReadable" title="details" class="method-name">fileExistsAndReadable</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getErrorMessage" title="details" class="method-name">getErrorMessage</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getFileName" title="details" class="method-name">getFileName</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getFormat" title="details" class="method-name">getFormat</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getHasError" title="details" class="method-name">getHasError</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getImported" title="details" class="method-name">getImported</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getImportedFunctions" title="details" class="method-name">getImportedFunctions</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#importPlugins" title="details" class="method-name">importPlugins</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$registry</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#imports" title="details" class="method-name">imports</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$object</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setErrorMessage" title="details" class="method-name">setErrorMessage</a>
+											(<span class="var-type">object</span>&nbsp;<span class="var-name">$errorMessage</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setFileName" title="details" class="method-name">setFileName</a>
+											(<span class="var-type">object</span>&nbsp;<span class="var-name">$fileName</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setFormat" title="details" class="method-name">setFormat</a>
+											(<span class="var-type">object</span>&nbsp;<span class="var-name">$format</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setHasError" title="details" class="method-name">setHasError</a>
+											(<span class="var-type">object</span>&nbsp;<span class="var-name">$hasError</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#triggerError" title="details" class="method-name">triggerError</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$errorMessage</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#__call" title="details" class="method-name">__call</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$method</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$args</span>)
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$errorMessage" id="$errorMessage"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$errorMessage</span>
+						(line <span class="line-number">58</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The last error message raised</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$fileName" id="$fileName"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$fileName</span>
+						(line <span class="line-number">72</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The name of the file we're manipulating</p>
+<p class="description"><p>This must include the path to the file (absolute paths recommended)</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$format" id="$format"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$format</span>
+						(line <span class="line-number">78</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">What the file format is (mime-type)</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$hasError" id="$hasError"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">bool</span>
+			<span class="var-name">$hasError</span>
+						(line <span class="line-number">64</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Whether or not the current instance has any errors</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$imported" id="$imported"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$imported</span>
+						(line <span class="line-number">44</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">All imported objects</p>
+<p class="description"><p>An array of imported plugin objects</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$importedFunctions" id="$importedFunctions"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$importedFunctions</span>
+						(line <span class="line-number">52</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">All imported object functions</p>
+<p class="description"><p>An array of all methods added to this class by imported plugin objects</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$isDataStream" id="$isDataStream"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">bool</span>
+			<span class="var-name">$isDataStream</span>
+						(line <span class="line-number">93</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Whether or not the current image is an actual file, or the raw file data</p>
+<p class="description"><p>By &quot;raw file data&quot; it's meant that we're actually passing the result of something  like file_get_contents() or perhaps from a database blob</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$remoteImage" id="$remoteImage"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">bool</span>
+			<span class="var-name">$remoteImage</span>
+						(line <span class="line-number">84</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Whether or not the image is hosted remotely</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">100</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Class constructor</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../PhpThumb/Core/ThumbBase.html">ThumbBase</a></span>
+		<span class="method-name">
+			__construct
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$fileName</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$isDataStream</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$fileName</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$isDataStream</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../PhpThumb/Core/GdThumb.html#method__construct">GdThumb::__construct()</a>
+								: Class Constructor
+							</li>
+				</ul>
+	</div>
+<a name="methodfileExistsAndReadable" id="fileExistsAndReadable"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">fileExistsAndReadable</span> (line <span class="line-number">157</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Checks to see if $this-&gt;fileName exists and is readable</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			fileExistsAndReadable
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetErrorMessage" id="getErrorMessage"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getErrorMessage</span> (line <span class="line-number">243</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns $errorMessage.</p>
+	<ul class="tags">
+				<li><span class="field">see:</span> <a href="../../PhpThumb/Core/ThumbBase.html#var$errorMessage">ThumbBase::$errorMessage</a></li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getErrorMessage
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetFileName" id="getFileName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getFileName</span> (line <span class="line-number">264</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns $fileName.</p>
+	<ul class="tags">
+				<li><span class="field">see:</span> <a href="../../PhpThumb/Core/ThumbBase.html#var$fileName">ThumbBase::$fileName</a></li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getFileName
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetFormat" id="getFormat"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getFormat</span> (line <span class="line-number">285</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns $format.</p>
+	<ul class="tags">
+				<li><span class="field">see:</span> <a href="../../PhpThumb/Core/ThumbBase.html#var$format">ThumbBase::$format</a></li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getFormat
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetHasError" id="getHasError"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getHasError</span> (line <span class="line-number">306</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns $hasError.</p>
+	<ul class="tags">
+				<li><span class="field">see:</span> <a href="../../PhpThumb/Core/ThumbBase.html#var$hasError">ThumbBase::$hasError</a></li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getHasError
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetImported" id="getImported"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getImported</span> (line <span class="line-number">223</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns $imported.</p>
+	<ul class="tags">
+				<li><span class="field">see:</span> <a href="../../PhpThumb/Core/ThumbBase.html#var$imported">ThumbBase::$imported</a></li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getImported
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetImportedFunctions" id="getImportedFunctions"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getImportedFunctions</span> (line <span class="line-number">233</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns $importedFunctions.</p>
+	<ul class="tags">
+				<li><span class="field">see:</span> <a href="../../PhpThumb/Core/ThumbBase.html#var$importedFunctions">ThumbBase::$importedFunctions</a></li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getImportedFunctions
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodimportPlugins" id="importPlugins"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">importPlugins</span> (line <span class="line-number">118</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Imports plugins in $registry to the class</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			importPlugins
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$registry</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$registry</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodimports" id="imports"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">imports</span> (line <span class="line-number">134</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Imports a plugin</p>
+<p class="description"><p>This is where all the plugins magic happens!  This function &quot;loads&quot; the plugin functions, making them available as  methods on the class.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			imports
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$object</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$object</span><span class="var-description">: The name of the object to import / &quot;load&quot;</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetErrorMessage" id="setErrorMessage"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setErrorMessage</span> (line <span class="line-number">254</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets $errorMessage.</p>
+	<ul class="tags">
+				<li><span class="field">see:</span> <a href="../../PhpThumb/Core/ThumbBase.html#var$errorMessage">ThumbBase::$errorMessage</a></li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setErrorMessage
+		</span>
+					(<span class="var-type">object</span>&nbsp;<span class="var-name">$errorMessage</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">object</span>
+				<span class="var-name">$errorMessage</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetFileName" id="setFileName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setFileName</span> (line <span class="line-number">275</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets $fileName.</p>
+	<ul class="tags">
+				<li><span class="field">see:</span> <a href="../../PhpThumb/Core/ThumbBase.html#var$fileName">ThumbBase::$fileName</a></li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setFileName
+		</span>
+					(<span class="var-type">object</span>&nbsp;<span class="var-name">$fileName</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">object</span>
+				<span class="var-name">$fileName</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetFormat" id="setFormat"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setFormat</span> (line <span class="line-number">296</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets $format.</p>
+	<ul class="tags">
+				<li><span class="field">see:</span> <a href="../../PhpThumb/Core/ThumbBase.html#var$format">ThumbBase::$format</a></li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setFormat
+		</span>
+					(<span class="var-type">object</span>&nbsp;<span class="var-name">$format</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">object</span>
+				<span class="var-name">$format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetHasError" id="setHasError"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setHasError</span> (line <span class="line-number">317</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets $hasError.</p>
+	<ul class="tags">
+				<li><span class="field">see:</span> <a href="../../PhpThumb/Core/ThumbBase.html#var$hasError">ThumbBase::$hasError</a></li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setHasError
+		</span>
+					(<span class="var-type">object</span>&nbsp;<span class="var-name">$hasError</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">object</span>
+				<span class="var-name">$hasError</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodtriggerError" id="triggerError"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">triggerError</span> (line <span class="line-number">188</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets $this-&gt;errorMessage to $errorMessage and throws an exception</p>
+<p class="description"><p>Also sets $this-&gt;hasError to true, so even if the exceptions are caught, we don't  attempt to proceed with any other functions</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			triggerError
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$errorMessage</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$errorMessage</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__call" id="__call"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">__call</span> (line <span class="line-number">207</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Calls plugin / imported functions</p>
+<p class="description"><p>This is also where a fair amount of plugins magaic happens.  This magic method is called whenever an &quot;undefined&quot; class  method is called in code, and we use that to call an imported function.</p><p>You should NEVER EVER EVER invoke this function manually.  The universe will implode if you do... seriously ;)</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			__call
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$method</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$args</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$method</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$args</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Wed, 09 Mar 2011 21:58:26 +0000 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>
