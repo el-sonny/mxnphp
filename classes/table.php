@@ -1,4 +1,26 @@
 <?php
+/**
+* Class abstract table
+*
+* Esta clase es el modelado de la base de datos 
+* que va a cargar el framework.
+* @var string $objects 
+* @var string $fields
+* @var string $table_name
+* @var string $date_formats
+* @var array $has_many
+* @var string $key
+* @var bool $debug
+* @var string $tables
+* @var string $clause
+* @var string $search_clause
+* @var bool $get_id
+* @var bool $insert_id
+* @var string $md5
+* @var string $limit
+* @var bool $distinct
+*
+*/
 abstract class table{
 	public $objects;
 	public $fields;
@@ -15,11 +37,38 @@ abstract class table{
 	public $md5;
 	public $limit;
 	public $distinct = false;
+	
+	/**
+	* Función table
+	* 
+	* Esta función es un constructor de  
+	* la variable fields en la posicion $key
+	* que es el parametro de esta función
+	* 
+	* @param string $key esta variable sera  
+	* un parametro para la posicion de fields
+	*
+	*/
+	
 	public function table($key = 0){
 		$this->info();
 		$this->fields[$this->key] = $key;
 		$this->{$this->key} = $key;
 	}
+	/**
+	* Función create
+	* 
+	* Inserta los datos en la BD
+	* 
+	* Esta función se encarga de llenar los
+	* campos de las tablas de la base de datos
+	*
+	*@param string $fields parametro de campos de la BD.
+	*
+	*@param bool $values si values es falso crea un vector 
+	* con los valores.
+	*/
+	
 	public function create($fields,$values = false){
 		$fields = explode(",",$fields);
 		//$values = explode(",",$values);
@@ -58,6 +107,18 @@ abstract class table{
 			$this->id = mysql_insert_id();
 		return $result;
 	}
+	/**
+	* Función read
+	* 
+	* Lee los datos en la BD
+	* 
+	* Esta función se encarga de leer los
+	* campos de las tablas de la base de datos
+	*
+	*@param string $fields parametro de campos de la BD.
+	*
+	*/
+	
 	public function read($fields){
 		$fields = explode(",",$fields);
 		$fields2 = $this->object_format($fields);
@@ -175,6 +236,20 @@ abstract class table{
 			}
 		}
 	}	
+	/**
+	* Función update
+	* 
+	* Actualiza los datos en la BD
+	* 
+	* Esta función se encarga de actualizar los
+	* campos de las tablas de la base de datos
+	*
+	*@param string $fields parametro de campos de la BD.
+	*
+	*@param bool $values si values es falso crea un vector 
+	* con los valores si es true limpia la variable.
+	*/
+	
 	public function update($fields,$values){
 		$fields = explode(",",$fields);
 		if(!$values){
@@ -198,6 +273,18 @@ abstract class table{
 			echo $sql."<br/>";
 		return $this->execute_sql($sql);
 	}
+	
+	/**
+	* Función destroy
+	* 
+	* Elimina datos de las tablas de la base de datos
+	* 
+	* Esta función se encarga de eliminar registros de 
+	* tablas en la base de datos
+	*
+	*
+	*/
+	
 	public function destroy(){
 		$sql = "DELETE FROM ".$this->table_name." WHERE ".$this->key." = '".$this->fields[$this->key]."' LIMIT 1;";
 		if($this->debug)
@@ -222,6 +309,7 @@ abstract class table{
 		}
 		return $fields;
 	}
+	
 	protected function object_format($fields){
 		$i = 0;
 		$j = 0;
