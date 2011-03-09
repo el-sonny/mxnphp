@@ -184,5 +184,13 @@ abstract class controler{
 		$this->template = $template;
 		$this->include_template($theme,$folder);
 	}
+	protected function curl_request($url){
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$feed = curl_exec($ch);
+		curl_close($ch);
+		return $feed;
+	}
 }
 ?>
