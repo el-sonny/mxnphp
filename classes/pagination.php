@@ -31,9 +31,10 @@ class pagination{
 		$this->limit = ($count > $per_page) ? "$start, $end" : false;
 	}
 	
-	public function echo_paginate($base_link,$variable="p",$show_pages = false){
+	public function echo_paginate($base_link,$variable="p",$show_pages = false,$class = false){
 		$start = 1;
 		$end = $this->document_pages;
+		$class_p = $class ? "class='$class'" : "";
 		if($show_pages && $show_pages < $this->document_pages){
 			$offset = floor($show_pages/2);
 			$start = $this->current_page - $offset;
@@ -45,8 +46,8 @@ class pagination{
 				$previous = $this->current_page - $show_pages;
 				if($previous <= 0)
 					$previous = 1;
-				echo "<a href='$base_link$variable=1'>&lt;&lt;</a> ";
-				echo "<a href='$base_link$variable=$previous'>&lt;</a> ";
+				echo "<a href='$base_link$variable=1' $class_p>&lt;&lt;</a> ";
+				echo "<a href='$base_link$variable=$previous' $class_p>&lt;</a> ";
 			}
 			if($end > $this->document_pages){
 				$start -= $end - $this->document_pages;
@@ -56,13 +57,14 @@ class pagination{
 				$next = $this->current_page + $show_pages;
 				if($next > $this->document_pages)
 					$next = $this->document_pages;
-				$end_print = "<a href='$base_link$variable=$next'>&gt;</a> <a href='$base_link$variable={$this->document_pages}'>&gt;&gt;</a> ";
+				$end_print = "<a href='$base_link$variable=$next' $class_p>&gt;</a> <a href='$base_link$variable={$this->document_pages}' $class_p>&gt;&gt;</a> ";
 			}
 		}
 		if($this->document_pages > 1){
 			for($i = $start;$i<=$end;$i++){
-				$on = $i == $this->current_page ? "class='on'" : "";
-				echo "<a href='$base_link$variable=$i' $on>$i</a> ";
+				$on = $i == $this->current_page ? " on" : "";
+				$classy = $class ? "class='$class$on'" : "class='$on'";
+				echo "<a href='$base_link$variable=$i' $classy >$i</a> ";
 			}
 		}
 		if($show_pages && $show_pages < $this->document_pages){
