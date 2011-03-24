@@ -4,12 +4,15 @@
 		<head>
 			<!-- template designed by Marco Von Ballmoos -->
 			<title>Docs For Class PhpThumb</title>
-			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<link rel="stylesheet" href="styles/phpdoc.css" />
 			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
 		</head>
 		<body>
-			<div class="page-body">			
-<h2 class="class-name">Class PhpThumb</h2>
+			<div class="page-body">			
+<h2 class="class-name"><img src="images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> PhpThumb</h2>
 
 <a name="sec-description"></a>
 <div class="info-box">
@@ -23,13 +26,13 @@
 	<div class="info-box-body">
         		<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">PhpThumb Object</p>
-<p class="description"><p>This singleton object is essentially a function library that helps with core validation  and loading of the core classes and plugins.  There isn't really any need to access it directly,  unless you're developing a plugin and need to take advantage of any of the functionality contained  within.</p><p>If you're not familiar with singleton patterns, here's how you get an instance of this class (since you  can't create one via the new keyword):  <div class="src-code"><ol><li><div class="src-line"><span class="src-var">$pt&nbsp;</span>=&nbsp;<span class="src-id"><a href="../../PhpThumb/Core/PhpThumb.html">PhpThumb</a></span><span class="src-sym">::</span><a href="../../PhpThumb/Core/PhpThumb.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<p class="description"><p>This singleton object is essentially a function library that helps with core validation  and loading of the core classes and plugins.  There isn't really any need to access it directly,  unless you're developing a plugin and need to take advantage of any of the functionality contained  within.</p><p>If you're not familiar with singleton patterns, here's how you get an instance of this class (since you  can't create one via the new keyword):  <div class="src-code"><ol><li><div class="src-line"><span class="src-var">$pt&nbsp;</span>=&nbsp;<span class="src-id"><a href="PhpThumb/Core/PhpThumb.html">PhpThumb</a></span><span class="src-sym">::</span><a href="PhpThumb/Core/PhpThumb.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
 </ol></div></p><p>It's that simple!  Outside of that, there's no need to modify anything within this class, unless you're doing  some crazy customization... then knock yourself out! :)</p></p>
 	<ul class="tags">
-				<li><span class="field">usedby:</span> <a href="../../PhpThumb/Core/PhpThumbFactory.html#methodcreate">PhpThumbFactory::create()</a></li>
+				<li><span class="field">usedby:</span> <a href="PhpThumb/Core/PhpThumbFactory.html#methodcreate">PhpThumbFactory::create()</a></li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_PhpThumb.inc.php.html">/PhpThumb.inc.php</a> (line <span class="field">45</span>)
+			Located in <a class="field" href="PhpThumb/_PhpThumb.inc.php.html">/PhpThumb.inc.php</a> (line <span class="field">45</span>)
 		</p>
 		
 				
@@ -53,14 +56,17 @@
 		<div class="info-box-body">
 			<div class="var-summary">
 																				<div class="var-title">
-					static <span class="var-type"><a href="../../PhpThumb/Core/PhpThumb.html">object PhpThumb</a></span>
+					<img src="images/StaticVariable.png" alt=" " />
+					static <span class="var-type"><a href="PhpThumb/Core/PhpThumb.html">object PhpThumb</a></span>
 					<a href="#$_instance" title="details" class="var-name">$_instance</a>
 				</div>
 																												<div class="var-title">
+					<img src="images/Variable.png" alt=" " />
 					<span class="var-type">array</span>
 					<a href="#$_implementations" title="details" class="var-name">$_implementations</a>
 				</div>
 																								<div class="var-title">
+					<img src="images/Variable.png" alt=" " />
 					<span class="var-type">array</span>
 					<a href="#$_registry" title="details" class="var-name">$_registry</a>
 				</div>
@@ -81,32 +87,37 @@
 		<div class="info-box-body">			
 			<div class="method-summary">
 												<div class="method-definition">
-					static 						<span class="method-result"><a href="../../PhpThumb/Core/PhpThumb.html">PhpThumb</a></span>
-										<a href="#getInstance" title="details" class="method-name">getInstance</a>
+					<img src="images/StaticMethod.png" alt=" "/>
+					static
+					<a href="#getInstance" title="details" class="method-name">getInstance</a>
 										()
+																<span class="method-result"><a href="PhpThumb/Core/PhpThumb.html">PhpThumb</a></span>
 									</div>
-																																								
-																				<div class="method-definition">
-											<span class="method-result">array</span>
-										<a href="#getPluginRegistry" title="details" class="method-name">getPluginRegistry</a>
+																																																												<div class="method-definition">
+					<img src="images/Method.png" alt=" "/>
+					<a href="#getPluginRegistry" title="details" class="method-name">getPluginRegistry</a>
 											(<span class="var-type">string</span>&nbsp;<span class="var-name">$implementation</span>)
+																<span class="method-result">array</span>
 									</div>
 																<div class="method-definition">
-											<span class="method-result">bool</span>
-										<a href="#isValidImplementation" title="details" class="method-name">isValidImplementation</a>
+					<img src="images/Method.png" alt=" "/>
+					<a href="#isValidImplementation" title="details" class="method-name">isValidImplementation</a>
 											(<span class="var-type">string</span>&nbsp;<span class="var-name">$implementation</span>)
+																<span class="method-result">bool</span>
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
-										<a href="#loadPlugins" title="details" class="method-name">loadPlugins</a>
+					<img src="images/Method.png" alt=" "/>
+					<a href="#loadPlugins" title="details" class="method-name">loadPlugins</a>
 											(<span class="var-type">string</span>&nbsp;<span class="var-name">$pluginPath</span>)
+																<span class="method-result">void</span>
 									</div>
 																<div class="method-definition">
-											<span class="method-result">bool</span>
-										<a href="#registerPlugin" title="details" class="method-name">registerPlugin</a>
+					<img src="images/Method.png" alt=" "/>
+					<a href="#registerPlugin" title="details" class="method-name">registerPlugin</a>
 											(<span class="var-type">string</span>&nbsp;<span class="var-name">$pluginName</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$implementation</span>)
+																<span class="method-result">bool</span>
 									</div>
-								</div>
+											</div>
 		</div>
 	</div>		
 
@@ -123,12 +134,13 @@
 							
 					</div>
 		<div class="info-box-body">
-			<a name="var$_instance" id="$_instance"><!-- --></A>
+			<a name="$_instance" id="$_instance"><!-- --></A>
 <div class="evenrow">
 
 	<div class="var-header">
+		<img src="images/Variable.png" />
 		<span class="var-title">
-			static <span class="var-type"><a href="../../PhpThumb/Core/PhpThumb.html">object PhpThumb</a></span>
+			static <span class="var-type"><a href="PhpThumb/Core/PhpThumb.html">object PhpThumb</a></span>
 			<span class="var-name">$_instance</span>
 						(line <span class="line-number">52</span>)
 		</span>
@@ -145,10 +157,12 @@
 		
 
 </div>
-<a name="var$_implementations" id="$_implementations"><!-- --></A>
+
+<a name="$_implementations" id="$_implementations"><!-- --></A>
 <div class="oddrow">
 
 	<div class="var-header">
+		<img src="images/Variable.png" />
 		<span class="var-title">
 			<span class="var-type">array</span>
 			<span class="var-name">$_implementations</span>
@@ -168,10 +182,11 @@
 		
 
 </div>
-<a name="var$_registry" id="$_registry"><!-- --></A>
+<a name="$_registry" id="$_registry"><!-- --></A>
 <div class="evenrow">
 
 	<div class="var-header">
+		<img src="images/Variable.png" />
 		<span class="var-title">
 			<span class="var-type">array</span>
 			<span class="var-name">$_registry</span>
@@ -191,7 +206,7 @@
 		
 
 </div>
-						
+						
 		</div>
 	</div>
 	
@@ -201,16 +216,17 @@
 		<div class="nav-bar">
 			<a href="#sec-description">Description</a> |
 															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
-																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+														<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
 						
 		</div>
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
-<a name="methodgetInstance" id="getInstance"><!-- --></a>
+<a name="getInstance" id="getInstance"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">static method getInstance</span> (line <span class="line-number">81</span>)
+		<img src="images/StaticMethod.png" />
+		<span class="method-title">static getInstance</span> (line <span class="line-number">81</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -221,8 +237,7 @@
 			</ul>
 	
 	<div class="method-signature">
-	    static
-		<span class="method-result"><a href="../../PhpThumb/Core/PhpThumb.html">PhpThumb</a></span>
+		<span class="method-result"><a href="PhpThumb/Core/PhpThumb.html">PhpThumb</a></span>
 		<span class="method-name">
 			getInstance
 		</span>
@@ -232,11 +247,11 @@
 		
 			
 	</div>
-
-<a name="methodgetPluginRegistry" id="getPluginRegistry"><!-- --></a>
+<a name="getPluginRegistry" id="getPluginRegistry"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
+		<img src="images/Method.png" />
 		<span class="method-title">getPluginRegistry</span> (line <span class="line-number">233</span>)
 	</div> 
 	
@@ -262,10 +277,11 @@
 		
 			
 	</div>
-<a name="methodisValidImplementation" id="isValidImplementation"><!-- --></a>
+<a name="isValidImplementation" id="isValidImplementation"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
+		<img src="images/Method.png" />
 		<span class="method-title">isValidImplementation</span> (line <span class="line-number">140</span>)
 	</div> 
 	
@@ -292,10 +308,11 @@
 		
 			
 	</div>
-<a name="methodloadPlugins" id="loadPlugins"><!-- --></a>
+<a name="loadPlugins" id="loadPlugins"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
+		<img src="images/Method.png" />
 		<span class="method-title">loadPlugins</span> (line <span class="line-number">205</span>)
 	</div> 
 	
@@ -322,10 +339,11 @@
 		
 			
 	</div>
-<a name="methodregisterPlugin" id="registerPlugin"><!-- --></a>
+<a name="registerPlugin" id="registerPlugin"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
+		<img src="images/Method.png" />
 		<span class="method-title">registerPlugin</span> (line <span class="line-number">186</span>)
 	</div> 
 	
@@ -359,9 +377,9 @@
 		</div>
 	</div>
 
-
+	
 	<p class="notes" id="credit">
-		Documentation generated on Wed, 09 Mar 2011 21:58:21 +0000 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Thu, 24 Mar 2011 22:25:57 +0000 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
-</html>
+</html>

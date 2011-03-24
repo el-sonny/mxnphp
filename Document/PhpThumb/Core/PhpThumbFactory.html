@@ -4,12 +4,15 @@
 		<head>
 			<!-- template designed by Marco Von Ballmoos -->
 			<title>Docs For Class PhpThumbFactory</title>
-			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<link rel="stylesheet" href="styles/phpdoc.css" />
 			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
 		</head>
 		<body>
-			<div class="page-body">			
-<h2 class="class-name">Class PhpThumbFactory</h2>
+			<div class="page-body">			
+<h2 class="class-name"><img src="images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> PhpThumbFactory</h2>
 
 <a name="sec-description"></a>
 <div class="info-box">
@@ -23,10 +26,10 @@
 	<div class="info-box-body">
         		<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">PhpThumbFactory Object</p>
-<p class="description"><p>This class is responsible for making sure everything is set up and initialized properly,  and returning the appropriate thumbnail class instance.  It is the only recommended way  of using this library, and if you try and circumvent it, the sky will fall on your head :)</p><p>Basic use is easy enough.  First, make sure all the settings meet your needs and environment...  these are the static variables defined at the beginning of the class.</p><p>Once that's all set, usage is pretty easy.  You can simply do something like:  <div class="src-code"><ol><li><div class="src-line"><span class="src-var">$thumb&nbsp;</span>=&nbsp;<span class="src-id"><a href="../../PhpThumb/Core/PhpThumbFactory.html">PhpThumbFactory</a></span><span class="src-sym">::</span><a href="../../PhpThumb/Core/PhpThumbFactory.html#methodcreate">create</a><span class="src-sym">(</span><span class="src-str">'/path/to/file.png'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<p class="description"><p>This class is responsible for making sure everything is set up and initialized properly,  and returning the appropriate thumbnail class instance.  It is the only recommended way  of using this library, and if you try and circumvent it, the sky will fall on your head :)</p><p>Basic use is easy enough.  First, make sure all the settings meet your needs and environment...  these are the static variables defined at the beginning of the class.</p><p>Once that's all set, usage is pretty easy.  You can simply do something like:  <div class="src-code"><ol><li><div class="src-line"><span class="src-var">$thumb&nbsp;</span>=&nbsp;<span class="src-id"><a href="PhpThumb/Core/PhpThumbFactory.html">PhpThumbFactory</a></span><span class="src-sym">::</span><a href="PhpThumb/Core/PhpThumbFactory.html#methodcreate">create</a><span class="src-sym">(</span><span class="src-str">'/path/to/file.png'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
 </ol></div></p><p>Refer to the documentation for the create function for more information</p></p>
 		<p class="notes">
-			Located in <a class="field" href="_ThumbLib.inc.php.html">/ThumbLib.inc.php</a> (line <span class="field">66</span>)
+			Located in <a class="field" href="PhpThumb/_ThumbLib.inc.php.html">/ThumbLib.inc.php</a> (line <span class="field">66</span>)
 		</p>
 		
 				
@@ -50,10 +53,12 @@
 		<div class="info-box-body">
 			<div class="var-summary">
 												<div class="var-title">
+					<img src="images/StaticVariable.png" alt=" " />
 					static <span class="var-type">string</span>
 					<a href="#$defaultImplemenation" title="details" class="var-name">$defaultImplemenation</a>
 				</div>
 																<div class="var-title">
+					<img src="images/StaticVariable.png" alt=" " />
 					static <span class="var-type">string</span>
 					<a href="#$pluginPath" title="details" class="var-name">$pluginPath</a>
 				</div>
@@ -74,12 +79,13 @@
 		<div class="info-box-body">			
 			<div class="method-summary">
 												<div class="method-definition">
-					static 						<span class="method-result"><a href="../../PhpThumb/Core/GdThumb.html">GdThumb</a></span>
-										<a href="#create" title="details" class="method-name">create</a>
+					<img src="images/StaticMethod.png" alt=" "/>
+					static
+					<a href="#create" title="details" class="method-name">create</a>
 											([<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$options</span> = <span class="var-default">array()</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$isDataStream</span> = <span class="var-default">false</span>])
+																<span class="method-result"><a href="PhpThumb/Core/GdThumb.html">GdThumb</a></span>
 									</div>
-								
-												</div>
+																							</div>
 		</div>
 	</div>		
 
@@ -96,10 +102,11 @@
 							
 					</div>
 		<div class="info-box-body">
-			<a name="var$defaultImplemenation" id="$defaultImplemenation"><!-- --></A>
+			<a name="$defaultImplemenation" id="$defaultImplemenation"><!-- --></A>
 <div class="evenrow">
 
 	<div class="var-header">
+		<img src="images/Variable.png" />
 		<span class="var-title">
 			static <span class="var-type">string</span>
 			<span class="var-name">$defaultImplemenation</span>
@@ -119,10 +126,11 @@
 		
 
 </div>
-<a name="var$pluginPath" id="$pluginPath"><!-- --></A>
+<a name="$pluginPath" id="$pluginPath"><!-- --></A>
 <div class="oddrow">
 
 	<div class="var-header">
+		<img src="images/Variable.png" />
 		<span class="var-title">
 			static <span class="var-type">string</span>
 			<span class="var-name">$pluginPath</span>
@@ -142,7 +150,8 @@
 		
 
 </div>
-						
+
+						
 		</div>
 	</div>
 	
@@ -152,16 +161,17 @@
 		<div class="nav-bar">
 			<a href="#sec-description">Description</a> |
 															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
-																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+														<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
 						
 		</div>
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
-<a name="methodcreate" id="create"><!-- --></a>
+<a name="create" id="create"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">static method create</span> (line <span class="line-number">106</span>)
+		<img src="images/StaticMethod.png" />
+		<span class="method-title">static create</span> (line <span class="line-number">106</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -169,12 +179,11 @@
 <p class="description"><p>This function returns the correct thumbnail object, augmented with any appropriate plugins.  It does so by doing the following: <ul><li>Getting an instance of PhpThumb</li><li>Loading plugins</li><li>Validating the default implemenation</li><li>Returning the desired default implementation if possible</li><li>Returning the GD implemenation if the default isn't available</li><li>Throwing an exception if no required libraries are present</li></ul></p></p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
-				<li><span class="field">uses:</span> <a href="../../PhpThumb/Core/PhpThumb.html">PhpThumb</a></li>
+				<li><span class="field">uses:</span> <a href="PhpThumb/Core/PhpThumb.html">PhpThumb</a></li>
 			</ul>
 	
 	<div class="method-signature">
-	    static
-		<span class="method-result"><a href="../../PhpThumb/Core/GdThumb.html">GdThumb</a></span>
+		<span class="method-result"><a href="PhpThumb/Core/GdThumb.html">GdThumb</a></span>
 		<span class="method-name">
 			create
 		</span>
@@ -195,14 +204,13 @@
 		
 			
 	</div>
-
 						
 		</div>
 	</div>
 
-
+	
 	<p class="notes" id="credit">
-		Documentation generated on Wed, 09 Mar 2011 21:58:27 +0000 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Thu, 24 Mar 2011 22:26:02 +0000 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
-</html>
+</html>

@@ -4,12 +4,12 @@
 		<head>
 			<!-- template designed by Marco Von Ballmoos -->
 			<title>File Source for ThumbLib.inc.php</title>
-			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<link rel="stylesheet" href="styles/phpdoc.css" />
 			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
 		</head>
 		<body>
-						<h1>Source for file ThumbLib.inc.php</h1>
-<p>Documentation is available at <a href="../PhpThumb/_ThumbLib.inc.php.html">ThumbLib.inc.php</a></p>
+						<h1>Source for file ThumbLib.inc.php</h1>
+<p>Documentation is available at <a href="PhpThumb/_ThumbLib.inc.php.html">ThumbLib.inc.php</a></p>
 <div class="src-code">
 <div class="src-code"><ol><li><div class="src-line"><a name="a1"></a><span class="src-php">&lt;?php</span></div></li>
 <li><div class="src-line"><a name="a2"></a><span class="src-doc">/**</span></div></li>
@@ -76,7 +76,7 @@
 <li><div class="src-line"><a name="a63"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;PhpThumb</span></div></li>
 <li><div class="src-line"><a name="a64"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@subpackage</span><span class="src-doc">&nbsp;Core</span></div></li>
 <li><div class="src-line"><a name="a65"></a><span class="src-doc">&nbsp;*/</span></div></li>
-<li><div class="src-line"><a name="a66"></a><span class="src-key">class&nbsp;</span><a href="../PhpThumb/Core/PhpThumbFactory.html">PhpThumbFactory</a></div></li>
+<li><div class="src-line"><a name="a66"></a><span class="src-key">class&nbsp;</span><a href="PhpThumb/Core/PhpThumbFactory.html">PhpThumbFactory</a></div></li>
 <li><div class="src-line"><a name="a67"></a><span class="src-sym">{</span></div></li>
 <li><div class="src-line"><a name="a68"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
 <li><div class="src-line"><a name="a69"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Which&nbsp;implemenation&nbsp;of&nbsp;the&nbsp;class&nbsp;should&nbsp;be&nbsp;used&nbsp;by&nbsp;default</span></div></li>
@@ -116,7 +116,7 @@
 <li><div class="src-line"><a name="a103"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@uses</span><span class="src-doc">&nbsp;PhpThumb</span></div></li>
 <li><div class="src-line"><a name="a104"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc-var">$filename&nbsp;</span><span class="src-doc">The&nbsp;path&nbsp;and&nbsp;file&nbsp;to&nbsp;load&nbsp;[optional]</span></div></li>
 <li><div class="src-line"><a name="a105"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span></div></li>
-<li><div class="src-line"><a name="a106"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">public&nbsp;</span><span class="src-key">static&nbsp;</span><span class="src-key">function&nbsp;</span><a href="../PhpThumb/Core/PhpThumbFactory.html#methodcreate">create</a>&nbsp;<span class="src-sym">(</span><span class="src-var">$filename&nbsp;</span>=&nbsp;<span class="src-id">null</span><span class="src-sym">,&nbsp;</span><span class="src-var">$options&nbsp;</span>=&nbsp;<span class="src-key">array</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-var">$isDataStream&nbsp;</span>=&nbsp;<span class="src-id">false</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a106"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">public&nbsp;</span><span class="src-key">static&nbsp;</span><span class="src-key">function&nbsp;</span><a href="PhpThumb/Core/PhpThumbFactory.html#methodcreate">create</a>&nbsp;<span class="src-sym">(</span><span class="src-var">$filename&nbsp;</span>=&nbsp;<span class="src-id">null</span><span class="src-sym">,&nbsp;</span><span class="src-var">$options&nbsp;</span>=&nbsp;<span class="src-key">array</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-var">$isDataStream&nbsp;</span>=&nbsp;<span class="src-id">false</span><span class="src-sym">)</span></div></li>
 <li><div class="src-line"><a name="a107"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">{</span></div></li>
 <li><div class="src-line"><a name="a108"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;map&nbsp;our&nbsp;implementation&nbsp;to&nbsp;their&nbsp;class&nbsp;names</span></div></li>
 <li><div class="src-line"><a name="a109"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$implementationMap&nbsp;</span>=&nbsp;<span class="src-key">array</span></div></li>
@@ -126,7 +126,7 @@
 <li><div class="src-line"><a name="a113"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">)</span><span class="src-sym">;</span></div></li>
 <li><div class="src-line"><a name="a114"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
 <li><div class="src-line"><a name="a115"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;grab&nbsp;an&nbsp;instance&nbsp;of&nbsp;PhpThumb</span></div></li>
-<li><div class="src-line"><a name="a116"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$pt&nbsp;</span>=&nbsp;<span class="src-id"><a href="../PhpThumb/Core/PhpThumb.html">PhpThumb</a></span><span class="src-sym">::</span><a href="../PhpThumb/Core/PhpThumb.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a116"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$pt&nbsp;</span>=&nbsp;<span class="src-id"><a href="PhpThumb/Core/PhpThumb.html">PhpThumb</a></span><span class="src-sym">::</span><a href="PhpThumb/Core/PhpThumb.html#methodgetInstance">getInstance</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
 <li><div class="src-line"><a name="a117"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;load&nbsp;the&nbsp;plugins</span></div></li>
 <li><div class="src-line"><a name="a118"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$pt</span><span class="src-sym">-&gt;</span><span class="src-id">loadPlugins</span><span class="src-sym">(</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-var">$pluginPath</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
 <li><div class="src-line"><a name="a119"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
@@ -160,7 +160,7 @@
 </ol></div>
 </div>
 	<p class="notes" id="credit">
-		Documentation generated on Wed, 09 Mar 2011 21:58:27 +0000 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Thu, 24 Mar 2011 22:26:02 +0000 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</body>
-</html>
+</html>

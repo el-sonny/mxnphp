@@ -4,22 +4,7 @@
 *
 * Esta clase es el modelado de la base de datos 
 * que va a cargar el framework.
-* @var string $objects 
-* @var string $fields
-* @var string $table_name
-* @var string $date_formats
-* @var array $has_many
-* @var string $key
-* @var bool $debug
-* @var string $tables
-* @var string $clause
-* @var string $search_clause
-* @var bool $get_id
-* @var bool $insert_id
-* @var string $md5
-* @var string $limit
-* @var bool $distinct
-*
+* 
 */
 abstract class table{
 	public $objects;
@@ -39,11 +24,11 @@ abstract class table{
 	public $distinct = false;
 	
 	/**
-	* Función table
+	* Funcion table
 	* 
-	* Esta función es un constructor de  
+	* Esta funcion es un constructor de  
 	* la variable fields en la posicion $key
-	* que es el parametro de esta función
+	* que es el parametro de esta funcion
 	* 
 	* @param string $key esta variable sera  
 	* un parametro para la posicion de fields
@@ -56,16 +41,16 @@ abstract class table{
 		$this->{$this->key} = $key;
 	}
 	/**
-	* Función create
+	* Funcion create
 	* 
 	* Inserta los datos en la BD
 	* 
-	* Esta función se encarga de llenar los
+	* Esta funcion se encarga de llenar los
 	* campos de las tablas de la base de datos
 	*
 	*@param string $fields parametro de campos de la BD.
 	*
-	*@param bool $values si values es falso crea un vector 
+	*@param boolean $values si values es falso crea un vector 
 	* con los valores.
 	*/
 	
@@ -108,11 +93,11 @@ abstract class table{
 		return $result;
 	}
 	/**
-	* Función read
+	* Funcion read
 	* 
 	* Lee los datos en la BD
 	* 
-	* Esta función se encarga de leer los
+	* Esta funcion se encarga de leer los
 	* campos de las tablas de la base de datos
 	*
 	*@param string $fields parametro de campos de la BD.
@@ -237,16 +222,16 @@ abstract class table{
 		}
 	}	
 	/**
-	* Función update
+	* Funcion update
 	* 
 	* Actualiza los datos en la BD
 	* 
-	* Esta función se encarga de actualizar los
+	* Esta funcion se encarga de actualizar los
 	* campos de las tablas de la base de datos
 	*
 	*@param string $fields parametro de campos de la BD.
 	*
-	*@param bool $values si values es falso crea un vector 
+	*@param boolean $values si values es falso crea un vector 
 	* con los valores si es true limpia la variable.
 	*/
 	
@@ -275,11 +260,11 @@ abstract class table{
 	}
 	
 	/**
-	* Función destroy
+	* Funcion destroy
 	* 
 	* Elimina datos de las tablas de la base de datos
 	* 
-	* Esta función se encarga de eliminar registros de 
+	* Esta funcion se encarga de eliminar registros de 
 	* tablas en la base de datos
 	*
 	*

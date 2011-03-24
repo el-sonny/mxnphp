@@ -4,12 +4,15 @@
 		<head>
 			<!-- template designed by Marco Von Ballmoos -->
 			<title>Docs For Class mxnphp</title>
-			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<link rel="stylesheet" href="styles/phpdoc.css" />
 			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
 		</head>
 		<body>
-			<div class="page-body">			
-<h2 class="class-name">Class mxnphp</h2>
+			<div class="page-body">			
+<h2 class="class-name"><img src="images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> mxnphp</h2>
 
 <a name="sec-description"></a>
 <div class="info-box">
@@ -24,11 +27,8 @@
         		<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Class mxnphp</p>
 <p class="description"><p>Selecciona la configuración, modelo y control  que va a cargar el framework.</p></p>
-	<ul class="tags">
-				<li><span class="field">var:</span> configuración que se cargara.</li>
-			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_mxnphp.php.html">/mxnphp.php</a> (line <span class="field">12</span>)
+			Located in <a class="field" href="default/_mxnphp.php.html">/mxnphp.php</a> (line <span class="field">9</span>)
 		</p>
 		
 				
@@ -52,11 +52,13 @@
 		<div class="info-box-body">
 			<div class="var-summary">
 																																<div class="var-title">
-					<span class="var-type">mixed</span>
+					<img src="images/Variable.png" alt=" " />
+					<span class="var-type">$config</span>
 					<a href="#$config" title="details" class="var-name">$config</a>
 				</div>
 																<div class="var-title">
-					<span class="var-type">mixed</span>
+					<img src="images/Variable.png" alt=" " />
+					<span class="var-type">$security</span>
 					<a href="#$security" title="details" class="var-name">$security</a>
 				</div>
 											</div>
@@ -75,23 +77,25 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																												
-												<div class="method-definition">
-											<span class="method-result">mxnphp</span>
-										<a href="#mxnphp" title="details" class="method-name">mxnphp</a>
+																																								<div class="method-definition">
+					<img src="images/Constructor.png" alt=" "/>
+					<a href="#mxnphp" title="details" class="method-name">mxnphp</a>
 											([<span class="var-type">string</span>&nbsp;<span class="var-name">$config</span> = <span class="var-default">false</span>])
+																<span class="method-result">mxnphp</span>
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
-										<a href="#load_controler" title="details" class="method-name">load_controler</a>
+					<img src="images/Method.png" alt=" "/>
+					<a href="#load_controler" title="details" class="method-name">load_controler</a>
 										()
+																<span class="method-result">void</span>
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
-										<a href="#load_model" title="details" class="method-name">load_model</a>
+					<img src="images/Method.png" alt=" "/>
+					<a href="#load_model" title="details" class="method-name">load_model</a>
 											([<span class="var-type">string</span>&nbsp;<span class="var-name">$model_name</span> = <span class="var-default">&quot;general&quot;</span>])
+																<span class="method-result">void</span>
 									</div>
-								</div>
+											</div>
 		</div>
 	</div>		
 
@@ -108,12 +112,14 @@
 							
 					</div>
 		<div class="info-box-body">
-			<a name="var$config" id="$config"><!-- --></A>
+			
+<a name="$config" id="$config"><!-- --></A>
 <div class="evenrow">
 
 	<div class="var-header">
+		<img src="images/Variable.png" />
 		<span class="var-title">
-			<span class="var-type">mixed</span>
+			<span class="var-type">$config</span>
 			<span class="var-name">$config</span>
 						(line <span class="line-number">13</span>)
 		</span>
@@ -121,6 +127,7 @@
 
 	<!-- ========== Info from phpDoc block ========= -->
 	<ul class="tags">
+				<li><span class="field">var:</span> configuración que se cargara.</li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
@@ -129,19 +136,21 @@
 		
 
 </div>
-<a name="var$security" id="$security"><!-- --></A>
+<a name="$security" id="$security"><!-- --></A>
 <div class="oddrow">
 
 	<div class="var-header">
+		<img src="images/Variable.png" />
 		<span class="var-title">
-			<span class="var-type">mixed</span>
+			<span class="var-type">$security</span>
 			<span class="var-name">$security</span>
-						(line <span class="line-number">14</span>)
+						(line <span class="line-number">17</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
 	<ul class="tags">
+				<li><span class="field">var:</span> carga el controlador de seguridad.</li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
@@ -150,7 +159,7 @@
 		
 
 </div>
-						
+						
 		</div>
 	</div>
 	
@@ -160,17 +169,17 @@
 		<div class="nav-bar">
 			<a href="#sec-description">Description</a> |
 															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
-																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+														<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
 						
 		</div>
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
-
-<a name="methodmxnphp" id="mxnphp"><!-- --></a>
+<a name="mxnphp" id="mxnphp"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor mxnphp</span> (line <span class="line-number">26</span>)
+		<img src="images/Constructor.png" />
+		<span class="method-title">Constructor mxnphp</span> (line <span class="line-number">29</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -196,11 +205,12 @@
 		
 			
 	</div>
-<a name="methodload_controler" id="load_controler"><!-- --></a>
+<a name="load_controler" id="load_controler"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">load_controler</span> (line <span class="line-number">58</span>)
+		<img src="images/Method.png" />
+		<span class="method-title">load_controler</span> (line <span class="line-number">61</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -221,11 +231,12 @@
 		
 			
 	</div>
-<a name="methodload_model" id="load_model"><!-- --></a>
+<a name="load_model" id="load_model"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">load_model</span> (line <span class="line-number">44</span>)
+		<img src="images/Method.png" />
+		<span class="method-title">load_model</span> (line <span class="line-number">47</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -255,9 +266,9 @@
 		</div>
 	</div>
 
-
+	
 	<p class="notes" id="credit">
-		Documentation generated on Wed, 09 Mar 2011 21:58:18 +0000 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Thu, 24 Mar 2011 22:25:54 +0000 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
-</html>
+</html>
