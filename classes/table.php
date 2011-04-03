@@ -277,6 +277,18 @@ abstract class table{
 		return $this->execute_sql($sql);
 	}
 
+	/**
+	* Funcion search_clause
+	* 
+	* Sets the search_clause variable
+	* 
+	*/
+	public function search_clause($field,$value,$comparator = '=',$wildcards = false){
+		$value = mysql_real_escape_string($value);
+		$w = $wildcards ? "%" : "";
+		return $this->search_clause = "$field $comparator '$w$value$w'";		
+	}
+	
 	protected function execute_sql($sql){
 		$result = mysql_query($sql);
 		if($this->get_id)

@@ -55,7 +55,7 @@ abstract class controler{
 			$hash_function = 'md5'
 		){
 		$this->dbConnect();
-		$user_name = $_POST[$post_user];
+		$user_name = $this->clean_input($_POST[$post_user]);
 		$pass = $hash_function($_POST[$post_pass]);
 		$user = new $user_class();	
 		$user->debug = $this->debug;
@@ -142,7 +142,6 @@ abstract class controler{
 		}	
 		return false;
 	}
-
 	protected function clean_input($input){
 		return mysql_real_escape_string(trim($input));
 	}
