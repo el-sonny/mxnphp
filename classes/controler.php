@@ -312,10 +312,20 @@ abstract class controler{
 		$this->template = $template;
 		$this->include_template($theme,$folder);
 	}
-	protected function curl_request($url){
+	protected function curl_request($url,$fields=array()){
+		$fields_string = "";
+
+		foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+		rtrim($fields_string,'&');
+
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+		if(count($fields)>0){
+			curl_setopt($ch, CURLOPT_POST,count($fields));
+			curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);
+		}
 		$feed = curl_exec($ch);
 		curl_close($ch);
 		return $feed;
