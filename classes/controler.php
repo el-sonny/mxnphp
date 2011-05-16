@@ -320,12 +320,13 @@ abstract class controler{
 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
 		if(count($fields)>0){
 			curl_setopt($ch, CURLOPT_POST,count($fields));
 			curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);
 		}
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
 		$feed = curl_exec($ch);
 		curl_close($ch);
 		return $feed;

@@ -103,7 +103,16 @@ abstract class table{
 	*@param string $fields parametro de campos de la BD.
 	*
 	*/
-	
+
+	public function get_tables($fields){
+		$fields = explode(",",$fields);
+		$this->object_format($fields);
+		$tables = $this->tables;
+		$n = count($tables);
+		$tables[$n] = $this->table_name;
+		return $tables;
+	}
+
 	public function read($fields){
 		$fields = explode(",",$fields);
 		$fields2 = $this->object_format($fields);
