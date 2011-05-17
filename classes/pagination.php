@@ -10,7 +10,6 @@ class pagination{
 	private $clause_table = "";
 
 	public function pagination($class,$per_page=10,$clause = false,$page_variable = "p"){
-
 		if (!is_object($class)){
 			$classes = explode(",",$class);
 			$tables ="";

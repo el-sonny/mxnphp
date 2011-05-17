@@ -331,7 +331,6 @@ abstract class controler{
 		curl_close($ch);
 		return $feed;
 	}
-
 	protected function load_languages($folder = "languages"){
 		$this->LanXML->content = simplexml_load_file($this->config->document_root."{$folder}/".$this->config->controler.".xml");
 		$this->LanXML->global = simplexml_load_file($this->config->document_root."{$folder}/global.xml");
