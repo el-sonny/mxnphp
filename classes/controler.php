@@ -60,7 +60,7 @@ abstract class controler{
 		$user = new $user_class();	
 		$user->debug = $this->debug;
 		$user->search_clause = "$user_field = '$user_name'";
-		$user->debug = $this->debug;
+		$user->debug = true;//$this->debug;
 		$users = $user->read("id,$pass_field");
 		if($users){
 			$user = $users[0];
