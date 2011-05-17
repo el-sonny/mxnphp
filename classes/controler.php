@@ -40,12 +40,10 @@ abstract class controler{
 * 
 *
 */	
-	
 	public function controler($config,$security=false){
 		$this->config = $config;
 		$this->security = $security;
 	}
-	
 	protected function do_login(
 			$user_class = 'user',
 			$user_field = 'email', 
@@ -131,7 +129,6 @@ abstract class controler{
 		chown($dir,999);
 		return unlink($dir.$file);
 	}
-
 	protected function create_record($fields,$object_name,$array = false){
 		if($this->dbConnect()){
 			$object = new $object_name(0);
@@ -145,7 +142,6 @@ abstract class controler{
 	protected function clean_input($input){
 		return mysql_real_escape_string(trim($input));
 	}
-	
 	protected function destroy_record($record_id,$object_name){
 		if($this->dbConnect()){
 			$object = new $object_name($record_id);
@@ -154,7 +150,6 @@ abstract class controler{
 		}
 		return false;
 	}
-
 	protected function update_record($object_name,$fields,$record_id,$array = false){
 		if($this->dbConnect()){
 			$object = new $object_name($record_id);
@@ -175,7 +170,6 @@ abstract class controler{
 		$location = $dir.$filename;
 		return move_uploaded_file($file['tmp_name'], $location) ? $filename : false;
 	}
-
 	protected function send_email($to,$subject,$message,$from,$from_name){
 		$subject = utf8_decode($subject);
 		$headers = "MIME-Version: 1.0" . "\r\n";
@@ -185,25 +179,21 @@ abstract class controler{
 		$mailit = mail($to,$subject,$message,$headers);
 		return $mailit;
 	}
-
 	protected function start_measure_time(){
 		$time = microtime();
 		$time = explode(' ', $time);
 		$this->measure_time_start = $time[1] + $time[0];
 		return $this->measure_time_start;
 	}
-
 	protected function stop_measure_time(){
 		$time = microtime();
 		$time = explode(' ', $time);
 		$this->measure_time_stop = $time[1] + $time[0];
 		return round($this->measure_time_stop - $this->measure_time_start,4);
 	}
-
 	protected function verify_email($email) {
 		return preg_match('/\A(?:(?:[a-z0-9!#$%&\'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]))\Z/i', $email); 
 	}
-	
 	protected function rand_str($length = 32, $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'){
 		$chars_length = (strlen($chars) - 1);
 		$string = $chars{rand(0, $chars_length)};
@@ -344,5 +334,18 @@ abstract class controler{
 		}
 		return $text;
 	}
+	protected function generate_salt($password){
+		$salt = md5('~'.$password.'~'.microtime(TRUE).'~');
+		$salt = substr($salt,rand(0,30),10);
+		return $salt;
+	}
+	protected function hash_password($p, $s, $iter=5) {
+		// ALWAYS return a multiple hashed pass salt combination
+		$hash = md5(md5($p.$s).md5(strrev($p).strrev($s)));
+		// Rehashing the hash will make cracking process much slower
+		for($i=0;$i<=$iter;++$i)
+			$hash = md5(md5($hash).md5(strrev($hash)));
+		return $hash;
+	} 
 }
 ?>
