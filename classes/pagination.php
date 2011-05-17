@@ -3,34 +3,59 @@ class pagination{
 	public $limit;
 	public $pages;
 	public $current_page;
-	public function pagination($class,$per_page,$clause = false,$page_variable = "p"){
+	private $object2;
+	private $per_page;
+	private $page_variable;
+	private $name_class  = false;
+	private $clause_table = "";
 
-		$classes = explode(",",$class);
-		$tables ="";
+	public function pagination($class,$per_page=10,$clause = false,$page_variable = "p"){
 
-		foreach($classes as $class){
-			if ($class != ""){
-				$object = new $class();
-				$table = $object->table_name;
-				$tables = $tables.$table.",";
-			}			
+		if (!is_object($class)){
+			$classes = explode(",",$class);
+			$tables ="";
+			$keys = "";
+			if(!$this->name_class){
+				foreach($classes as $class){
+					if ($class != ""){
+						$object = new $class();
+						$table = $object->table_name;
+						$tables = $tables.$table.",";
+					}
+				}
+			}else{
+				foreach($classes as $class){
+					if($class != "")
+						$tables = $tables.$class.",";
+				}
+			}
+			$tables = substr($tables,0,-1);
+			$clause = $clause ? "WHERE $clause" : "";
+			$sql = "SELECT COUNT(*) FROM $tables $clause {$this->clause_table};";
+			$result = mysql_fetch_array(mysql_query($sql));
+			$count = $result?$result[0]:0;
+			$start = (isset($_GET[$page_variable])) ? ($_GET[$page_variable]-1)*$per_page : 0;
+			$end = $per_page;
+			$this->document_pages = ceil(($count) / $per_page);	
+			$this->current_page = (isset($_GET[$page_variable])) ? $_GET[$page_variable] : 1;
+			$this->limit = ($count > $per_page) ? "$start, $end" : false;
+		}else{
+			$this->object2 = $class;
+			$this->per_page = $per_page;
+			$this->page_variable = $page_variable;
 		}
-		$tables = substr($tables,0,-1);
-
-		$clause = $clause ? "WHERE $clause" : "";
-		$sql = "SELECT COUNT(*) FROM $tables $clause;";
-
-// 		echo $sql;
-		$result = mysql_fetch_array(mysql_query($sql));
-		$count = $result?$result[0]:0;
-		$start = (isset($_GET[$page_variable])) ? ($_GET[$page_variable]-1)*$per_page : 0;
-// 		$end = $start + $per_page;--This is a bug
-		$end = $per_page;
-		$this->document_pages = ceil(($count) / $per_page);	
-		$this->current_page = (isset($_GET[$page_variable])) ? $_GET[$page_variable] : 1;
-		$this->limit = ($count > $per_page) ? "$start, $end" : false;
 	}
-	
+	public function read($fields){
+		$tables = $this->object2->get_tables($fields);
+		$tables = implode(",",$tables);
+		$this->name_class = true;
+		$this->clause_table = $this->object2->clause;
+		$this->pagination($tables,$this->per_page,$this->object2->search_clause,$this->page_variable);
+		$this->clause_table = "";
+		$this->name_class = false;
+		$this->object2->limit = $this->limit;
+		return $this->object2->read($fields);
+	}
 	public function echo_paginate($base_link,$variable="p",$show_pages = false,$class = false){
 		$start = 1;
 		$end = $this->document_pages;
