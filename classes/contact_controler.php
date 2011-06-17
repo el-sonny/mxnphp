@@ -1,8 +1,8 @@
 <?php
 abstract class contact_controler extends controler{
 
-	public function do_contact(){
-		$this->email_subject = 'Electronic Contact from '$this->config->http_address ;
+	protected function do_contact(){
+		$this->email_subject = 'Electronic Contact from '.$this->config->http_address ;
 		$this->referring_page = $this->config->http_address;
 		
 		$text = '';
