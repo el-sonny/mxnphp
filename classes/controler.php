@@ -126,7 +126,7 @@ abstract class controler{
 		}
 	}
 	protected function delete_file($file,$dir){
-		chown($dir,999);
+		//chown($dir,999);
 		return unlink($dir.$file);
 	}
 	protected function create_record($fields,$object_name,$array = false){
@@ -138,6 +138,9 @@ abstract class controler{
 			}
 		}	
 		return false;
+	}
+	protected function post_var($variable){
+		return $this->clean_input($_POST[$variable]);
 	}
 	protected function clean_input($input){
 		return mysql_real_escape_string(trim($input));
