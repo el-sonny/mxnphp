@@ -65,10 +65,10 @@ abstract class controler{
 			//compare the password
 			if($user->$pass_field == $pass){
 				if(isset($this->config->security_variable) && $this->config->security_variable == "cookie"){
-					setcookie($this->config->session_name,$user->id, time()+2592000, "/");
+					setcookie($this->config->session_name,$user->id, time() + 2592000, "/");
 				}else{
 					session_start();				
-					$_SESSION[$this->config->session_name] = $user->id;				
+					$_SESSION[$this->config->session_name] = $user->id;	
 				}
 				return "success";
 			}else{
