@@ -14,7 +14,7 @@ function __autoload($class_name){
 	}while(!file_exists($file) && $i<$size);
 	if(file_exists($file)){
 		include_once $file;
-	}else
-		echo "class $class_name not found";
+	}//else
+		//echo "class $class_name not found";
 }
 ?>

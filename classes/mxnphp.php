@@ -67,10 +67,12 @@ class mxnphp{
 			if(method_exists($controler,$action)){
 				$controler->$action();
 			}else{
-				echo $controler->default_action($action);
+				header("HTTP/1.0 404 Not Found");
+				//echo $controler->default_action($action);
 			};
 		}else{
-			echo "<p>$controler_name does not exist</p>";
+			header("HTTP/1.0 404 Not Found");
+			//echo "<p>$controler_name does not exist</p>";
 		}
 	}
 }

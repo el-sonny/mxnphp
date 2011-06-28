@@ -234,7 +234,8 @@ abstract class controler{
 		if(file_exists($file)){
 			include $file;
 		}else{
-			echo $file.' does not exist';
+			header("Status: 404 Not Found");
+			//echo $file.' does not exist';
 		}
 	}
 	/**
