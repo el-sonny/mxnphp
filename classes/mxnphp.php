@@ -67,8 +67,8 @@ class mxnphp{
 			if(method_exists($controler,$action)){
 				$controler->$action();
 			}else{
-				header("HTTP/1.0 404 Not Found");
-				//echo $controler->default_action($action);
+				//header("HTTP/1.0 404 Not Found");
+				$controler->default_action($action);
 			};
 		}else{
 			header("HTTP/1.0 404 Not Found");

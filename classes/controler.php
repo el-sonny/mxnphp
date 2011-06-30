@@ -235,7 +235,7 @@ abstract class controler{
 			include $file;
 		}else{
 			header("Status: 404 Not Found");
-			//echo $file.' does not exist';
+			echo $file.' does not exist';
 		}
 	}
 	/**
@@ -331,6 +331,7 @@ abstract class controler{
 	}
 	protected function translate($id,$mod=false){
 		$controler = $this->config->controler;
+		
 		if(!$mod){
 			$text = (string)$this->LanXML->content->$_GET['language']->$id;
 		}else{
