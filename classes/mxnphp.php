@@ -67,7 +67,7 @@ class mxnphp{
 			if(method_exists($controler,$action)){
 				$controler->$action();
 			}else{
-				echo "template not found";
+				//echo "template not found";
 				$controler->default_action($action);
 			};
 		}else{
