@@ -161,6 +161,32 @@ abstract class controler{
 		}
 		return false;
 	}
+	protected function create_rels($class,$fields,$parent,$children){
+		if($parent){
+			$children = explode(",",$children);
+			if($children){
+				$object = new $class();
+				foreach($children as $child){
+					$object->create($fields,array($parent,$child));
+				}
+			}
+		}
+	}
+	/*
+		Eliminate record and relations
+	*/
+	protected function delete_rels($parent_class,$parent,$children_class,$children){
+		if($parent){
+			$d =  new $parent_class($parent);
+			if($children){
+				$d->read("id,$children=>id");
+				foreach($d->$children as $c){
+					$this->destroy_record($c->id,$children_class);
+				}
+			}
+			$this->destroy_record($parent,$parent_class);
+		}
+	}
 	protected function make_thumb($image,$target,$width,$height){
 		require_once 'ThumbLib.inc.php';
 		$thumb = PhpThumbFactory::create($image);
