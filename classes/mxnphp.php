@@ -61,6 +61,8 @@ class mxnphp{
 	public function load_controler(){
 		$controler_name = isset($_GET['controler']) ? $_GET['controler'] : $this->config->default_controler;
 		$action = isset($_GET['action']) ? $_GET['action'] : $this->config->default_action;
+		$controler_name = str_replace("-","_",$controler_name);
+		$action = str_replace("-","_",$action);
 		if(class_exists($controler_name)){						
 			$security = ($this->config->secured) ? new $this->config->security_controler($this->config):false;
 			$controler = new $controler_name($this->config,$security);
@@ -71,8 +73,8 @@ class mxnphp{
 				$controler->default_action($action);
 			};
 		}else{
-			header("HTTP/1.0 404 Not Found");
-			//echo "<p>$controler_name does not exist</p>";
+			//header("HTTP/1.0 404 Not Found");
+			echo "<p>$controler_name does not exist</p>";
 		}
 	}
 }
