@@ -13,16 +13,14 @@ abstract class contact_controler extends controler{
 		}
 		if(isset($_POST['Email'])){
 			if($this->check_email_address($_POST['Email'])){
-				$to = $this->contact_email;
+				$to = $this->config->contact_email;				
 				$subject = $this->email_subject.': '.$_POST['Name'];
-				$subject = utf8_decode($subject);
-				
-				$message = $text;
+				$subject = utf8_decode($subject);				
 				$headers = "MIME-Version: 1.0" . "\r\n";
 				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 				$headers .= "From: ".utf8_decode($this->cleanPosUrl($_POST['Name']))." <".$_POST['Email'].">\r\n";
-				$headers .= 'To: '.$this->recipient_name.' <'.$this->contact_email.'>'."\r\n";
-				$mailit = mail($to,$subject,$message,$headers);
+				$headers .= 'To: '.$this->config->recipient_name.' <'.$this->config->contact_email.'>'."\r\n";
+				$mailit = mail($to,$subject,$text,$headers);
 				if ( @$mailit ) {
 					echo "success";
 				}
