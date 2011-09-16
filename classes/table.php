@@ -348,5 +348,8 @@ abstract class table{
 	protected function format_input($fields,$values){
 		return $values;
 	}
+	public function __toString(){
+        return $this->id;
+    }
 }
 ?>
