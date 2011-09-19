@@ -164,7 +164,7 @@ EOD;
 		foreach($inputs as $input){
 			$section .= $this->create_input($input,$this->table->inputs[$input]);
 		}
-		$hidden_id = $this->current_template == 'edit' ? "<input type='hidden' name='{$this->class_name}_{$this->table->key}' value='<?php echo \$this->edit_{$this->class_name}->{$this->table->key}; ?>'/>" : "";
+		$hidden_id = $this->current_template == 'edit' ? "<input type='hidden' name='{$this->class_name}_{$this->table->key}' id='{$this->class_name}_{$this->table->key}' value='<?php echo \$this->edit_{$this->class_name}->{$this->table->key}; ?>'/>" : "";
 		return $section."
 			<p>$hidden_id<input type='submit' class='save' value='' /></p>";		
 	}
@@ -196,10 +196,41 @@ EOD;
 			";		
 		}else if($type == 'multi'){
 			$multi_object = new $field();
+			$accumulator = $accumulated = $multi_val = "";
+			$accumulator_id = $field."_accumulator_new";
+			$multi_input_id = $name."_new";
+			$multi_class = "multi-select-new";
+			$js_parameters = "$accumulator_id,$multi_input_id";
+			if($this->current_template == 'edit'){
+				$results_array = "\$this->edit_{$this->class_name}->{$multi_object->table_name}";
+				$accumulator_id = $field."_accumulator_edit";
+				$multi_input_id = $name."_edit";
+				$create_url = "/{$this->table->table_name}/add_{$field}/";
+				$delete_url = "/{$this->table->table_name}/delete_{$field}/";
+				$parent_id = "{$this->class_name}_{$this->table->key}";
+				$multi_class = "multi-select-edit";
+				$js_parameters = "$accumulator_id,$multi_input_id,$create_url,$delete_url,$parent_id";
+				$accumulator = <<<EOD
+				
+			<?php
+			\$multi_val = "";
+			\$accumulated = "";
+			if($results_array){						
+				foreach($results_array as \${$field}){
+					\$accumulated .= "<span class='accumulated edit'>{\${$field}->{$field}->{$attrs[2]}}<a href='#{\${$field}->{$multi_object->key}}' ></a></span>";
+					if(\$multi_val != "") \$multi_val .= ",";
+						\$multi_val .= \${$field}->{$field}->id;
+				}
+			}
+			?>
+EOD;
+				$accumulated = "<?php echo \$accumulated; ?>";
+				$multi_val = "<?php echo \$multi_val; ?>";
+			}
 			$input = <<<EOD
 			
 			<p><label for='{$field}_select'>$label</label></p>
-			<p><select name='{$field}_select' title='{$field}_accumulator,$name' class='multi-select'>
+			<p><select name='{$field}_select' title='$js_parameters' class='$multi_class'>
 				<option value=''>{$this->texts->add} $label</option>
 			<?php
 			foreach(\$this->{$multi_object->table_name} as $$field){
@@ -207,8 +238,9 @@ EOD;
 			}
 			?>
 			</select></p>
-			<p id='{$field}_accumulator'></p>
-			<input type='hidden' id='$name' name='$name' value=''/>
+$accumulator
+			<p id='$accumulator_id'>$accumulated</p>
+			<input type='hidden' id='$multi_input_id' name='$name' value='$multi_val'/>
 			<div class='clear'></div>
 EOD;
 		}

@@ -23,8 +23,7 @@ $common_data
 $create
 $update
 $destroy
-$messages
-$multi_loads
+$messages{$multi_loads}
 }
 ?>
 EOD;
@@ -45,7 +44,7 @@ EOD;
 	public function edit(){
 		\$this->common_data();
 		\$this->edit_{$this->class_name} = new {$this->class_name}(\$_GET['id']);
-		\$this->edit_{$this->class_name}->read("{$this->inputs}");
+		\$this->edit_{$this->class_name}->read("{$this->inputs}{$this->rel_fields}");
 		\$this->include_theme("index","edit");
 	}	
 EOD;
@@ -76,13 +75,18 @@ EOD;
 		return $common_data;
 	}
 	private function create_create(){
+		$multi_creates = "";
+		if(isset($this->multi_load_creates)){
+			$multi_creates = <<<EOD
+if(\${$this->class_name}){{$this->multi_load_creates}
+		}			
+EOD;
+		}
 		$create = <<<EOD
 	public function create(){
-		${$this->class_name} = \$this->create_record("{$this->inputs}","{$this->class_name}");
-		if(${$this->class_name}){
-			
-		}
-		\$message = ${$this->class_name}?"m=cs":"e=ce";
+		\${$this->class_name} = \$this->create_record("{$this->inputs}","{$this->class_name}");
+		$multi_creates
+		\$message = \${$this->class_name}?"m=cs":"e=ce";
 		header("Location: /{$this->table->table_name}/\$message");
 	}
 EOD;
@@ -129,26 +133,45 @@ EOD;
 EOD;
 		return $messages;
 	}
-	private function create_multi_loads(){
+	private function create_multi_loads(){	
+		$this->rel_fields = "";
 		foreach($this->table->inputs as $field => $parameters){
 			$parameters = explode(",",$parameters);
 			if($parameters[1] == 'multi'){
-				$multi_object = new $field();
+				$multi_object = new $field();				
+				$rel_class = $this->table->has_many[$multi_object->table_name];
+				$rel_key = $this->table->has_many_keys[$multi_object->table_name] ? $this->table->has_many_keys[$multi_object->table_name] : $this->class_name;
+				$this->rel_fields .= ",{$multi_object->table_name}=>{$field}=>{$parameters[2]},{$multi_object->table_name}=>{$field}=>{$multi_object->key},{$multi_object->table_name}=>id"; 
 				$function_name = "load_{$multi_object->table_name}";
-				$this->multi_load_calls = "
+				$this->multi_load_calls .= "
 		\$this->$function_name();";
-				$this->multi_load_creates = "
-		\$this->create_rels('file_user','file,contact',${$this->class_name}->{$this->table->key},\$_POST['{$field}_input']);";
+				$this->multi_load_creates .= "
+			\$this->create_rels('$rel_class','{$rel_key},{$field}',\${$this->class_name}->{$this->table->key},\$_POST['{$field}_input']);";
+				$this->multi_ajax_create .= <<<EOD
+				
+	public function add_$field(){
+		\$record = new {$this->class_name}_$field();
+		\$record = \$this->create_record("$field,$rel_key","{$this->class_name}_$field",array(\$_POST['son'],\$_POST['parent']));
+		echo \$record->id;
+	}
+EOD;
+				$this->multi_ajax_deletes .= <<<EOD
+				
+	public function delete_$field(){
+		\$this->destroy_record(\$_POST['id'],"{$this->class_name}_$field");
+	}			
+EOD;
 				$multi_loads .= <<<EOD
-	public function $function_name(){
+				
+	protected function $function_name(){
 		\$query = new $field();
 		\$query->search_clause = "1";
 		\$this->{$multi_object->table_name} = \$query->read("{$multi_object->key},{$parameters[2]}");
-	}			
+	}		
 EOD;
 			}
 		}
-		return $multi_loads;
+		return $multi_loads.$this->multi_ajax_create.$this->multi_ajax_deletes;
 	}
 	private function filter_inputs(){
 		foreach($this->table->inputs as $input => $parameters){

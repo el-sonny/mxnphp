@@ -219,7 +219,7 @@ abstract class table{
 					$object = new $value();
 					if($this->debug)
 						$object->debug = true;
-					$llave = isset($this->has_many_keys[$key]) ? $this->has_many_keys[$key]:$this->key;
+					$llave = isset($this->has_many_keys[$key]) ? $this->has_many_keys[$key]:get_class($this);
 					$object->search_clause = $object->table_name.".".$llave." = '".$this->{$this->key}."'";
 					if(isset($this->has_many_limits[$key])){$object->limit = $this->has_many_limits[$key];}
 					if(isset($this->has_many_clause[$key])){$object->search_clause = $object->search_clause." AND ".$this->has_many_clause[$key];}
