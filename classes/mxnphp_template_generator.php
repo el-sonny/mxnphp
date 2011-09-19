@@ -5,7 +5,6 @@ class mxnphp_template_generator extends mxnphp_code_generator{
 		if(!file_exists($this->template_dir)){
 			mkdir($this->template_dir);
 		}
-		$this->class_name = get_class($this->table);
 		$this->create_index_template();
 		$this->create_edit_index_template();
 		$this->create_tabs_template();
@@ -130,12 +129,12 @@ EOD;
 			</form>
 		</div><div class='clear'></div></div>
 		<div class='container'><div class='internal'>
-			<form action='/{$this->table->table_name}/edit/{$i}' method='post' accept-charset='utf-8' id='create_form' />".$content->sections[$i];
+			<form action='/{$this->table->table_name}/update/{$i}' method='post' accept-charset='utf-8' id='create_form' />".$content->sections[$i];
 		}
 		$sections = "
 	<div id='edit_sections'>
 		<div class='container on'><div class='internal'>
-			<form action='/{$this->table->table_name}/edit/0' method='post' accept-charset='utf-8' id='create_form' />".$sections."
+			<form action='/{$this->table->table_name}/update/0' method='post' accept-charset='utf-8' id='create_form' />".$sections."
 			</form>
 		</div><div class='clear'></div></div>
 	</div>
@@ -165,8 +164,9 @@ EOD;
 		foreach($inputs as $input){
 			$section .= $this->create_input($input,$this->table->inputs[$input]);
 		}
+		$hidden_id = $this->current_template == 'edit' ? "<input type='hidden' name='{$this->class_name}_{$this->table->key}' value='<?php echo \$this->edit_{$this->class_name}->{$this->table->key}; ?>'/>" : "";
 		return $section."
-			<p><input type='submit' class='save' value='' /></p>";		
+			<p>$hidden_id<input type='submit' class='save' value='' /></p>";		
 	}
 	private function create_input($field,$attrs){
 		$attrs = explode(',',$attrs);
@@ -194,6 +194,23 @@ EOD;
 			<p><label for='{$name}_confirm'>{$this->texts->confirm} $label</label></p>
 			<p><input type='password' name='{$name}_confirm' class='$class confirm-pass' /></p>
 			";		
+		}else if($type == 'multi'){
+			$multi_object = new $field();
+			$input = <<<EOD
+			
+			<p><label for='{$field}_select'>$label</label></p>
+			<p><select name='{$field}_select' title='{$field}_accumulator,$name' class='multi-select'>
+				<option value=''>{$this->texts->add} $label</option>
+			<?php
+			foreach(\$this->{$multi_object->table_name} as $$field){
+				echo "<option value='".$$field->{$multi_object->key}."'>".$$field->$class."</option>";
+			}
+			?>
+			</select></p>
+			<p id='{$field}_accumulator'></p>
+			<input type='hidden' id='$name' name='$name' value=''/>
+			<div class='clear'></div>
+EOD;
 		}
 		return $input;
 	}

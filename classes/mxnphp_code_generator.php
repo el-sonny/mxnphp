@@ -1,7 +1,8 @@
 <?php
 abstract class mxnphp_code_generator{
-	public function mxnphp_code_generator($table,$config){
-		$this->table = new $table();
+	public function mxnphp_code_generator($class_name,$config){
+		$this->class_name = $class_name;
+		$this->table = new $class_name();
 		$this->config = $config;
 		$this->load_texts($config->lang);
 	}
