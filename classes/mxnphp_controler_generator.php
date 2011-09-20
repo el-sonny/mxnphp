@@ -5,9 +5,10 @@ class mxnphp_controler_generator extends mxnphp_code_generator{
 		if(!file_exists($this->controler_dir)){
 			mkdir($this->controler_dir);
 		}
-		$this->inputs = $this->filter_inputs();		
-		$index = $this->create_index();		
-		$multi_loads = $this->create_multi_loads();
+		$this->filter_inputs();		
+		$index = $this->create_index();	
+		$multi_ops = $this->create_multi_loads();
+		$multi_loads = implode("",$this->multi_loads);
 		$edit = $this->create_edit();
 		$common_data = $this->create_common_data();
 		$create = $this->create_create();
@@ -23,7 +24,7 @@ $common_data
 $create
 $update
 $destroy
-$messages{$multi_loads}
+$messages{$multi_ops}{$multi_loads}
 }
 ?>
 EOD;
@@ -44,7 +45,7 @@ EOD;
 	public function edit(){
 		\$this->common_data();
 		\$this->edit_{$this->class_name} = new {$this->class_name}(\$_GET['id']);
-		\$this->edit_{$this->class_name}->read("{$this->inputs}{$this->rel_fields}");
+		\$this->edit_{$this->class_name}->read("{$this->read_inputs}{$this->rel_fields}");
 		\$this->include_theme("index","edit");
 	}	
 EOD;
@@ -57,7 +58,7 @@ EOD;
 		$submenu = isset($this->table->submenu) ? "
 		\$this->submenu = '{$this->table->submenu}';" : "";		
 		$listing_search_field = isset($this->table->listing_search_field) ? $this->table->listing_search_field : key(array_slice($this->table->inputs,0,1));
-		$listing_cells = isset($this->table->list_cells) ? implode(",",$this->table->list_cells) : $this->inputs;
+		$listing_cells = isset($this->table->list_cells) ? implode(",",$this->table->list_cells) : $this->read_inputs;
 		$per_page = isset($this->per_page) ? $this->per_page : 10;
 		$common_data = <<<EOD
 	public function common_data(){{$menu}{$submenu}{$multi_load_calls}
@@ -84,7 +85,7 @@ EOD;
 		}
 		$create = <<<EOD
 	public function create(){
-		\${$this->class_name} = \$this->create_record("{$this->inputs}","{$this->class_name}");
+		\${$this->class_name} = \$this->create_record("{$this->create_inputs}","{$this->class_name}");
 		$multi_creates
 		\$message = \${$this->class_name}?"m=cs":"e=ce";
 		header("Location: /{$this->table->table_name}/\$message");
@@ -93,7 +94,8 @@ EOD;
 		return $create;
 	}
 	private function create_update(){
-		$inputs = '$inputs = array("'.implode('","',$this->table->sections).'");';
+		$sections = $this->clean_sections();
+		$inputs = '$inputs = array("'.implode('","',$sections).'");';
 		$update = <<<EOD
 	public function update(){
 		$inputs
@@ -143,8 +145,6 @@ EOD;
 				$rel_key = $this->table->has_many_keys[$multi_object->table_name] ? $this->table->has_many_keys[$multi_object->table_name] : $this->class_name;
 				$this->rel_fields .= ",{$multi_object->table_name}=>{$field}=>{$parameters[2]},{$multi_object->table_name}=>{$field}=>{$multi_object->key},{$multi_object->table_name}=>id"; 
 				$function_name = "load_{$multi_object->table_name}";
-				$this->multi_load_calls .= "
-		\$this->$function_name();";
 				$this->multi_load_creates .= "
 			\$this->create_rels('$rel_class','{$rel_key},{$field}',\${$this->class_name}->{$this->table->key},\$_POST['{$field}_input']);";
 				$this->multi_ajax_create .= <<<EOD
@@ -161,7 +161,11 @@ EOD;
 		\$this->destroy_record(\$_POST['id'],"{$this->class_name}_$field");
 	}			
 EOD;
-				$multi_loads .= <<<EOD
+				if(!in_array($field,array_keys($this->multi_loads))){
+					$this->multi_load_calls .= "
+		\$this->$function_name();";
+
+					$this->multi_loads[$field] = <<<EOD
 				
 	protected function $function_name(){
 		\$query = new $field();
@@ -169,19 +173,54 @@ EOD;
 		\$this->{$multi_object->table_name} = \$query->read("{$multi_object->key},{$parameters[2]}");
 	}		
 EOD;
+				}
 			}
 		}
-		return $multi_loads.$this->multi_ajax_create.$this->multi_ajax_deletes;
+		return $this->multi_ajax_create.$this->multi_ajax_deletes;
 	}
 	private function filter_inputs(){
 		foreach($this->table->inputs as $input => $parameters){
 			$parameters = explode(",",$parameters);
 			if($parameters[1] != "multi"){
-				$inputs[$i++] = $input;
+				if($parameters[1] == 'object'){
+					$object = new $input();
+					$this->read_inputs[$i++] = $input."=>".$parameters[2];
+					$this->read_inputs[$i++] = $input."=>".$object->key;
+					$this->create_inputs[$j++] =  $input;
+					$function_name = "load_{$object->table_name}";
+					$this->multi_load_calls .= "
+		\$this->$function_name();";
+					$this->multi_loads[$input] = <<<EOD
+				
+	protected function $function_name(){
+		\$query = new $input();
+		\$query->search_clause = "1";
+		\$this->{$object->table_name} = \$query->read("{$object->key},{$parameters[2]}");
+	}			
+EOD;
+				}else{
+					$this->read_inputs[$i++] = $input;
+					$this->create_inputs[$j++] = $input;
+				}
 			}
 		}
-		$inputs = implode(",",$inputs);
-		return $inputs;
+		$this->create_inputs = implode(",",$this->create_inputs);
+		$this->read_inputs = implode(',',$this->read_inputs);
+	}
+	private function clean_sections(){
+		foreach($this->table->sections as $section){
+			$fields = explode(",",$section);
+			foreach($fields as $field){
+				$parameters = explode(",",$this->table->inputs[$field]);
+				if($parameters[1] != "multi"){
+					$new_section[$i++] = $field;
+				}
+			}
+			$new_sections[$j++] = implode(",",$new_section);
+			$new_section = null;
+			$i = 0;
+		}
+		return $new_sections;
 	}
 }
 ?>

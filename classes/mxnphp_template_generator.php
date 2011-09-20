@@ -243,6 +243,26 @@ $accumulator
 			<input type='hidden' id='$multi_input_id' name='$name' value='$multi_val'/>
 			<div class='clear'></div>
 EOD;
+		}else if($type == 'object'){
+			$object = new $field();
+			$select_class = "";
+			if($this->current_template == 'edit'){
+				$select_class = "\$selected";
+				$selector = "
+					\$selected = $$field->{$object->key} == \$this->edit_{$this->class_name}->$field->{$object->key} ? \"selected='selected'\" : '' ;";
+			}
+			$input = <<<EOD
+			
+			<p><label for='$name'>$label</label></p>
+			<p><select name='$name'>
+				<option value=''>{$this->texts->select} $label</option>
+				<?php
+				foreach(\$this->{$object->table_name} as $$field){{$selector}
+					echo "<option value='".$$field->{$object->key}."' $select_class >".$$field->$class."</option>";
+				}
+				?>
+			</select></p>
+EOD;
 		}
 		return $input;
 	}
