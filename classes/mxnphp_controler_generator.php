@@ -8,7 +8,7 @@ class mxnphp_controler_generator extends mxnphp_code_generator{
 		$this->filter_inputs();		
 		$index = $this->create_index();	
 		$multi_ops = $this->create_multi_loads();
-		$multi_loads = implode("",$this->multi_loads);
+		$multi_loads = isset($this->multi_loads) ? implode("",$this->multi_loads) : "";
 		$edit = $this->create_edit();
 		$common_data = $this->create_common_data();
 		$create = $this->create_create();
@@ -161,7 +161,7 @@ EOD;
 		\$this->destroy_record(\$_POST['id'],"{$this->class_name}_$field");
 	}			
 EOD;
-				if(!in_array($field,array_keys($this->multi_loads))){
+				if(!isset($this->multi_loads) || !in_array($field,array_keys($this->multi_loads))){
 					$this->multi_load_calls .= "
 		\$this->$function_name();";
 

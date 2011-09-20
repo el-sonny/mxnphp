@@ -1,0 +1,16 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^([-_\w]+)/?$ ?controler=$1 [L]
+RewriteRule ^([-_\w]+)/p=(\d+)$ ?controler=$1&p=$2 [L]
+RewriteRule ^([-_\w]+)/q=([\w]+)$ ?controler=$1&q=$2 [L]
+RewriteRule ^([-_\w]+)/m=([\w]+)$ ?controler=$1&m=$2 [L]
+RewriteRule ^([-_\w]+)/e=([\w]+)$ ?controler=$1&e=$2 [L]
+RewriteRule ^([-_\w]+)/([-_\w]+)/?$ ?controler=$1&action=$2 [L]
+RewriteRule ^([-_\w]+)/([-_\w]+)/([-_\w]+)/?$ ?controler=$1&action=$2&id=$3 [L]
+RewriteRule ^([-_\w]+)/([-_\w]+)/([-_\w]+)/c=(\d+)$ ?controler=$1&action=$2&id=$3&c=$4 [L]
+RewriteRule ^([-_\w]+)/([-_\w]+)/([-_\w]+)/p=(\d+)$ ?controler=$1&action=$2&id=$3&p=$4 [L]
+RewriteRule ^([-_\w]+)/([-_\w]+)/([-_\w]+)/m=([\w]+)$ ?controler=$1&action=$2&id=$3&m=$4 [L]
+RewriteRule ^([-_\w]+)/([-_\w]+)/([-_\w]+)/e=([\w]+)$ ?controler=$1&action=$2&id=$3&e=$4 [L]
+RewriteRule ^([-_\w]+)/([-_\w]+)/p=(\d+)$ ?controler=$1&action=$2&p=$3 [L]
+RewriteRule ^([-_\w]+)/([-_\w]+)/m=([\w]+)$ ?controler=$1&action=$2&m=$3 [L]
+RewriteRule ^([-_\w]+)/([-_\w]+)/e=([\w]+)$ ?controler=$1&action=$2&e=$3 [L]

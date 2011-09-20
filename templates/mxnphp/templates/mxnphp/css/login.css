@@ -1,0 +1,18 @@
+﻿@import 'reset.css';
+
+html{width:100%;height:100%}
+body {background-color: #222;font:25px arial;color:#000000;width:100%;height:100%}
+#content{margin-top:1px;width:100%;height:100%;display:table;}
+#content .cell{display:table-cell;vertical-align:middle;}
+#content .login{background-color:#FFFFFF;padding:20px 15px;width:300px;margin:0px auto;border-radius:10px;-moz-border-radius:10px;}
+#content .error{margin-top:0px;background-color:#821;color:#fff}
+#content form{font-size:14px;}
+#content form p{margin:5px 0px;color:#222;line-height:30px}
+#content form .checkbox{width:17px;height:17px}
+#content form .small_label{display:block;float:left;width:210px;}
+#content form label{margin:10px 0px}
+#content form input{background-image:url(../img/input.jpg);width:248px;height:28px;padding:5px 10px;border:none;color:#555}
+#content form input.small{width:122px;background-image:url(../img/input-small.jpg)}
+#content form input.tiny{width:63px;background-image:url(../img/input-tiny.jpg);margin-right:15px}
+#content form textarea{background-image:url(../img/textarea.jpg);width:359px;height:198px;padding:10px 10px;;border:none;font-family:arial;color:#555;font-size:14px}
+#content form .submit{width:98px;background-image:url(../img/submit.jpg);height:39px;margin-top:10px;}
