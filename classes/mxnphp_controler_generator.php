@@ -62,6 +62,7 @@ EOD;
 		$per_page = isset($this->per_page) ? $this->per_page : 10;
 		$common_data = <<<EOD
 	public function common_data(){{$menu}{$submenu}{$multi_load_calls}
+		\$this->location = "{$this->table->table_name}";
 		\${$this->class_name}_query = new {$this->class_name}();
 		if(isset(\$_REQUEST['q'])){
 			\${$this->class_name}_query->search_clause("{$listing_search_field}",\$_REQUEST['q'],'LIKE',true);

@@ -38,8 +38,8 @@ EOD;
 		fwrite($template_file,$template);
 	}
 	private function create_tabs_template(){
-		$class = ucwords($this->class_name);
-		$name = ucwords($this->table->table_name);
+		$class = ucwords(str_replace("_"," ",$this->class_name));
+		$name = ucwords(str_replace("_"," ",$this->table->table_name));
 		$tabs = <<<EOD
 <h1 class='title'>{$name}</h1>
 <div class='tabs'>
@@ -63,8 +63,11 @@ EOD;
 		}else{
 			foreach($this->table->inputs as $cell => $array){
 				$array = explode(",",$array);
-				$listing_header .= "
+				if($array[1] != 'multi' && $array[1] != 'object'){
+					$listing_header .= "
 			<th>{$array[0]}</th>";
+					$cells .= $this->create_cell(array($cell));
+				}
 			}
 		}
 		$listing_header .= "
@@ -77,7 +80,7 @@ EOD;
 		<p>
 			<?php	
 			\$baselink = isset(\$_REQUEST['q']) ? "/{$this->table->table_name}/q=".urlencode(\$_REQUEST['q'])."/" : "/{$this->table->table_name}/";
-			\$this->user_pagination->echo_paginate(\$baselink,'p',8,"pagination"); 
+			\$this->{$this->class_name}_pagination->echo_paginate(\$baselink,'p',8,"pagination"); 
 			?>
 			<input type='text' name='q' value='Search' class='search_input' title='Search' />
 		</p>
@@ -180,11 +183,18 @@ EOD;
 			$class = $attrs[2];
 		}
 		$type = $attrs[1];
-		$value = $this->current_template == 'edit' ? "value='<?php echo \$this->edit_{$this->class_name}->$field; ?>'" : "";
+		
 		if($type == 'text'){
+			$value = $this->current_template == 'edit' ? "value='<?php echo \$this->edit_{$this->class_name}->$field; ?>'" : "";
 			$input = "
 			<p><label for='$name'>$label</label></p>
 			<p><input type='text' name='$name' class='$class' $value /></p>
+			";
+		}else if($type == 'textarea'){
+			$value = $this->current_template == 'edit' ? "<?php echo \$this->edit_{$this->class_name}->$field; ?>" : "";
+			$input = "
+			<p><label for='$name'>$label</label></p>
+			<p><textarea name='$name' class='$class' rows='8' cols='50'>$value</textarea></p>
 			";
 		}else if($type == 'password'){
 			$input = "
