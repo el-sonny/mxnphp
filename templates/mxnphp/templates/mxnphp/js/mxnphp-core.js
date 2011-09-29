@@ -30,8 +30,7 @@
 				});
 				
 			});
-        }
-		
+        }	
     });
 	//Multi-input for Edit
 	$.fn.extend({
@@ -86,7 +85,6 @@
 				
 			});
         }
-		
     });
 	//Menu Function
 	$.fn.extend({
@@ -167,6 +165,20 @@
 				$("#overlay .ans.no").click(function(e){
 					e.preventDefault();
 					$("#overlay").fadeOut(80,'swing');
+				});
+			});
+		}
+	});
+	//Datepicker Function
+	$.fn.extend({
+		mxnphpDatepicker: function(){
+			return this.each(function() {
+				var real_input_id = "#"+$(this).next().attr("id");
+				$(this).datepicker({
+					inline: false,
+					altField : real_input_id,
+					altFormat : 'yy-mm-dd',
+					dateFormat : 'dd/mm/yy'
 				});
 			});
 		}

@@ -71,6 +71,7 @@ EOD;
 		}
 		\${$this->class_name}_query->order_by = "name";		
 		\$this->{$this->class_name}_pagination = new pagination('{$this->class_name}',$per_page,\${$this->class_name}_query->search_clause);
+		\${$this->class_name}_query->limit = \$this->c{$this->class_name}_pagination->limit;
 		\$this->{$this->table->table_name} = \${$this->class_name}_query->read("{$this->table->key},{$listing_cells}");
 	}	
 EOD;
