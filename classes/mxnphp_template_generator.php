@@ -85,22 +85,26 @@ EOD;
 			<input type='text' name='q' value='Search' class='search_input' title='Search' />
 		</p>
 	</form>
+	<?php if(\$this->{$this->table->table_name}){?>
 	<table>
 	$listing_header
 		<?php
-			\$gray = ''; 
-			foreach(\$this->{$this->table->table_name} as \${$this->class_name}){
-				echo "<tr class='\$gray'>";
-				{$cells}echo '<td class="icon" ><a href="/{$this->table->table_name}/edit/'.\${$this->class_name}->{$this->table->key}.'" >';
-				\$this->print_img_tag("edit.png","edit");
-				echo '</a></td>';
-				echo '<td class="icon" ><a class="delete" href="/{$this->table->table_name}/destroy/'.\${$this->class_name}->{$this->table->key}.'" >';
-				\$this->print_img_tag("delete.png","delete");
-				echo '</a></td></tr>';
-				\$gray = (\$gray=="")?'gray':'';
-			}
+		\$gray = '';
+		foreach(\$this->{$this->table->table_name} as \${$this->class_name}){
+			echo "<tr class='\$gray'>";
+			{$cells}echo '<td class="icon" ><a href="/{$this->table->table_name}/edit/'.\${$this->class_name}->{$this->table->key}.'" >';
+			\$this->print_img_tag("edit.png","edit");
+			echo '</a></td>';
+			echo '<td class="icon" ><a class="delete" href="/{$this->table->table_name}/destroy/'.\${$this->class_name}->{$this->table->key}.'" >';
+			\$this->print_img_tag("delete.png","delete");
+			echo '</a></td></tr>';
+			\$gray = (\$gray=="")?'gray':'';
+		}
 		?>
 	</table>
+	<?php }else{ ?>
+	<h2>No {$this->table->table_name} found</h2>
+	<? } ?>
 </div>
 EOD;
 		$template_file = fopen($this->template_dir.$this->class_name."_listing.php",'w+');
@@ -114,7 +118,7 @@ EOD;
 		</div><div class='clear'></div></div>
 		<div class='container'><div class='internal'>",$content->sections);
 		$sections = "
-	<form action='/{$this->table->table_name}/create/' method='post' accept-charset='utf-8' id='create_form' />
+	<form action='/{$this->table->table_name}/create/' method='post' accept-charset='utf-8' id='create_form' class='validate'/>
 		<div class='container on'><div class='internal'>".$sections."
 		</div><div class='clear'></div></div>
 	</form>
@@ -132,7 +136,7 @@ EOD;
 			</form>
 		</div><div class='clear'></div></div>
 		<div class='container'><div class='internal'>
-			<form action='/{$this->table->table_name}/update/{$i}' method='post' accept-charset='utf-8' id='create_form' />".$content->sections[$i];
+			<form action='/{$this->table->table_name}/update/{$i}' method='post' accept-charset='utf-8' id='create_form' class='validate' />".$content->sections[$i];
 		}
 		$sections = "
 	<div id='edit_sections'>
@@ -169,6 +173,7 @@ EOD;
 		}
 		$hidden_id = $this->current_template == 'edit' ? "<input type='hidden' name='{$this->class_name}_{$this->table->key}' id='{$this->class_name}_{$this->table->key}' value='<?php echo \$this->edit_{$this->class_name}->{$this->table->key}; ?>'/>" : "";
 		return $section."
+		
 			<p>$hidden_id<input type='submit' class='save' value='' /></p>";		
 	}
 	private function create_input($field,$attrs){
@@ -211,6 +216,9 @@ EOD;
 			$multi_input_id = $name."_new";
 			$multi_class = "multi-select-new";
 			$js_parameters = "$accumulator_id,$multi_input_id";
+			$reads_temp = explode(";",$class);
+			$field_writes = "$$field->$field->".implode(".' '.$$field->$field->",$reads_temp);
+			
 			if($this->current_template == 'edit'){
 				$results_array = "\$this->edit_{$this->class_name}->{$multi_object->table_name}";
 				$accumulator_id = $field."_accumulator_edit";
@@ -227,7 +235,7 @@ EOD;
 			\$accumulated = "";
 			if($results_array){						
 				foreach($results_array as \${$field}){
-					\$accumulated .= "<span class='accumulated edit'>{\${$field}->{$field}->{$attrs[2]}}<a href='#{\${$field}->{$multi_object->key}}' ></a></span>";
+					\$accumulated .= "<span class='accumulated edit'>".$field_writes."<a href='#{\${$field}->{$multi_object->key}}' ></a></span>";
 					if(\$multi_val != "") \$multi_val .= ",";
 						\$multi_val .= \${$field}->{$field}->id;
 				}
@@ -237,6 +245,7 @@ EOD;
 				$accumulated = "<?php echo \$accumulated; ?>";
 				$multi_val = "<?php echo \$multi_val; ?>";
 			}
+			$field_writes = "$$field->".implode(".' '.$$field->",$reads_temp);
 			$input = <<<EOD
 			
 			<p><label for='{$field}_select'>$label</label></p>
@@ -244,7 +253,7 @@ EOD;
 				<option value=''>{$this->texts->add} $label</option>
 			<?php
 			foreach(\$this->{$multi_object->table_name} as $$field){
-				echo "<option value='".$$field->{$multi_object->key}."'>".$$field->$class."</option>";
+				echo "<option value='".$$field->{$multi_object->key}."'>".$field_writes."</option>";
 			}
 			?>
 			</select></p>
@@ -273,6 +282,33 @@ EOD;
 				?>
 			</select></p>
 EOD;
+		}else if($type == "image"){			
+			if($this->current_template == 'edit'){
+				$css_class = 'single-image edit';
+				$action = "update_{$field}";
+				$input = <<<EOD
+				
+			<p><h2>$label</h2></p>
+			<p>
+				<input type="hidden" value="" id="$name" name="$name" />
+				<input type="file" name="{$name}_file" id="{$name}_file_edit" class='$css_class' title='/{$this->table->table_name}/$action/,<?php echo \$this->edit_{$this->class_name}->{$this->table->key}; ?>'/>
+			</p>
+			<div class='clear'></div>
+EOD;
+			}else{
+				$css_class = 'single-image new';
+				$action = "new_{$field}";
+				$input = <<<EOD
+				
+			<p><h2>$label</h2></p>
+			<p>
+				<input type="hidden" value="" id="$name" name="$name" />
+				<input type="file" name="{$name}_file" id="{$name}_file_new" class='$css_class' title='/{$this->table->table_name}/$action/' />
+			</p>
+			<p class='uploaded_photos'></p>				
+			<div class='clear'></div>
+EOD;
+			}
 		}
 		return $input;
 	}

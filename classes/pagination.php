@@ -30,13 +30,22 @@ class pagination{
 			$tables = substr($tables,0,-1);
 			$clause = $clause ? "WHERE $clause" : "";
 			$sql = "SELECT COUNT(*) FROM $tables $clause {$this->clause_table};";
-			$result = mysql_fetch_array(mysql_query($sql));
-			$count = $result?$result[0]:0;
-			$start = (isset($_GET[$page_variable])) ? ($_GET[$page_variable]-1)*$per_page : 0;
-			$end = $per_page;
-			$this->document_pages = ceil(($count) / $per_page);	
-			$this->current_page = (isset($_GET[$page_variable])) ? $_GET[$page_variable] : 1;
-			$this->limit = ($count > $per_page) ? "$start, $end" : false;
+			$result = mysql_query($sql);
+			if($result){
+				$result = mysql_fetch_array($result);
+				$count = $result?$result[0]:0;
+				$start = (isset($_GET[$page_variable])) ? ($_GET[$page_variable]-1)*$per_page : 0;
+				$end = $per_page;
+				$this->document_pages = ceil(($count) / $per_page);	
+				$this->current_page = (isset($_GET[$page_variable])) ? $_GET[$page_variable] : 1;
+				$this->limit = ($count > $per_page) ? "$start, $end" : false;
+			}else{
+				$start = 0;
+				$end = 1;
+				$this->document_pages = 1;	
+				$this->current_page = 1;
+				$this->limit = false;
+			}
 		}else{
 			$this->object2 = $class;
 			$this->per_page = $per_page;

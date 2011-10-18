@@ -351,5 +351,21 @@ abstract class table{
 	public function __toString(){
         return $this->id;
     }
+	public function max_id(){
+		$sql = "SELECT MAX({$this->key}) FROM ".$this->table_name.";";		
+		$result = mysql_query($sql);
+		if($this->debug){
+			echo $sql."<br/>";
+		}
+		if($result){
+			$row = mysql_fetch_row($result);
+			$max_id = $row[0];
+		}else{
+			$max_id = 0;
+			if($this->debug)
+				echo "Mysql Error :".mysql_error()."<br/>";
+		}		
+		return $this->{$this->key} = $max_id;
+	}
 }
 ?>
