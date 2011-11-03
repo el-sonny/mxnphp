@@ -141,6 +141,8 @@ EOD;
 	private function create_multi_loads(){	
 		$this->rel_fields = "";
 		$this->image_fields = "";
+		$this->multi_ajax_create = "";
+		$this->multi_ajax_deletes = "";
 		foreach($this->table->inputs as $field => $parameters){
 			$parameters = explode(",",$parameters);
 			if($parameters[1] == 'multi'){
@@ -152,6 +154,7 @@ EOD;
 		return $this->multi_ajax_create.$this->multi_ajax_deletes;
 	}
 	private function filter_inputs(){
+		$i = $j = 0;
 		foreach($this->table->inputs as $input => $parameters){
 			$parameters = explode(",",$parameters);
 			if($parameters[1] != "multi"){
@@ -182,6 +185,7 @@ EOD;
 		$this->read_inputs = implode(',',$this->read_inputs);
 	}
 	private function clean_sections(){
+		$j = $i = 0;
 		foreach($this->table->sections as $section){
 			$fields = explode(",",$section);
 			foreach($fields as $field){

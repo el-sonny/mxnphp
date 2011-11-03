@@ -54,6 +54,7 @@ EOD;
 	}
 	private function create_listing_template(){
 		$listing_header = "<tr class='header'>";
+		$cells = "";
 		if(isset($this->table->list_cells)){
 			foreach($this->table->list_cells as $title => $contents){
 				$listing_header .= "
@@ -168,6 +169,7 @@ EOD;
 	}
 	private function create_section($title,$inputs){
 		$inputs = explode(',',$inputs);
+		$section = "";
 		foreach($inputs as $input){
 			$section .= $this->create_input($input,$this->table->inputs[$input]);
 		}
