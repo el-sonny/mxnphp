@@ -105,7 +105,7 @@ EOD;
 	</table>
 	<?php }else{ ?>
 	<h2>No {$this->table->table_name} found</h2>
-	<? } ?>
+	<?php } ?>
 </div>
 EOD;
 		$template_file = fopen($this->template_dir.$this->class_name."_listing.php",'w+');
