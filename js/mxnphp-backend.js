@@ -95,7 +95,7 @@
 					e.preventDefault();
 					var parent = $(this);
 					var child = parent.parent().children("ul");
-					if(child.length){
+					if(child.length > 0){
 						parent.toggleClass('on');
 						child.slideToggle("fast","swing");
 						child.toggleClass('on');
@@ -166,6 +166,12 @@
 					e.preventDefault();
 					$("#overlay").fadeOut(80,'swing');
 				});
+				$("#overlay .clickarea").click(function(e){
+					$("#overlay").fadeOut(80,'swing',function(){
+						if(box != false)
+							$("#overlay .box").html(box);
+					});
+				});
 			});
 		}
 	});
@@ -183,6 +189,57 @@
 			});
 		}
 	});
+	//Single Image Function
+	$.fn.extend({
+		mxnphpSingleImage: function(){
+			return this.each(function(){
+				var params = $(this).attr("title").split(",");
+				if($(this).hasClass("new")){
+					$(this).uploadify({
+						'uploader'       : '/scripts/uploadify.swf',
+						'cancelImg'      : '/scripts/cancel.png',
+						'script'         : params[0],
+						'auto'           : true,
+						'multi'          : false,
+						'onComplete'     : mxnphp_new_image,
+						'scriptData' 	 : {'swf':'true'}
+					});
+				}else if($(this).hasClass("edit")){
+					$(this).uploadify({
+						'uploader'       : '/scripts/uploadify.swf',
+						'cancelImg'      : '/scripts/cancel.png',
+						'script'         : params[0],
+						'auto'           : true,
+						'multi'          : false,
+						'scriptData' 	 : {id:params[1],'swf':'true'}
+					});
+				};				
+			});
+		}
+	});
+	function mxnphp_new_image(event, queueID, fileObj, response, data){		
+		var image = $.parseJSON(response)
+		var input = $(event.target).prev();		
+		var image_p = input.parent().next();
+		var div = mxnphp_make_image(image);
+		image_p.html("");
+		image_p.append(div);
+		input.val(image.filename);
+	}
+	function mxnphp_make_image(image){
+		var img = $(document.createElement('img')).attr("src",image.thumb+"?r="+Math.floor(Math.random()*100001));
+		var img_link = $(document.createElement('a')).attr("href",image.full).append(img);
+		var delete_link = $(document.createElement('a')).attr("href",image.delete_url).addClass("option_erase").html("erase").click(mxnphp_image_erase);
+		var main_container = $(document.createElement('div')).addClass("photo").append(img_link,delete_link);
+		return main_container;
+	}
+	function mxnphp_image_erase(e){
+		e.preventDefault();
+		var url = $(this).attr("href");
+		var container = $(this).parent();
+		container.remove();
+		$.post(url);
+	}
 	function in_array(input_string,valor){
 		var values = input_string.split(",");
 		for(key in values){
