@@ -91,7 +91,7 @@ EOD;
 	$listing_header
 		<?php
 		\$gray = '';
-		foreach(\$this->{$this->table->table_name} as \${$this->class_name}){
+		foreach(\$this->{$this->table->table_name}_listing as \${$this->class_name}){
 			echo "<tr class='\$gray'>";
 			{$cells}echo '<td class="icon" ><a href="/{$this->table->table_name}/edit/'.\${$this->class_name}->{$this->table->key}.'" >';
 			\$this->print_img_tag("edit.png","edit");
@@ -152,7 +152,7 @@ EOD;
 	}
 	private function create_sections(){
 		$menu = "	
-	<ul class='menu'>";
+	<ul class='menu mxnphp'>";
 		$on = "class='on'";
 		$i = 0;
 		foreach($this->table->sections as $title => $inputs){
@@ -171,7 +171,10 @@ EOD;
 		$inputs = explode(',',$inputs);
 		$section = "";
 		foreach($inputs as $input){
-			$section .= $this->create_input($input,$this->table->inputs[$input]);
+			if(isset($this->table->inputs[$input]))
+				$section .= $this->create_input($input,$this->table->inputs[$input]);
+			else
+				$this->add_error("input '$input' not defined on {$this->class_name} model and listed in $title subsection");
 		}
 		$hidden_id = $this->current_template == 'edit' ? "<input type='hidden' name='{$this->class_name}_{$this->table->key}' id='{$this->class_name}_{$this->table->key}' value='<?php echo \$this->edit_{$this->class_name}->{$this->table->key}; ?>'/>" : "";
 		return $section."
@@ -212,9 +215,12 @@ EOD;
 			<p><input type='password' name='{$name}_confirm' class='$class confirm-pass' /></p>
 			";		
 		}else if($type == 'multi'){
+			$group_name = $field;
+			$field = $attrs[3];
+			$multi_rel_key = isset($attrs[4]) ? $attrs[4] : $attrs[3];
 			$multi_object = new $field();
 			$accumulator = $accumulated = $multi_val = "";
-			$accumulator_id = $field."_accumulator_new";
+			$accumulator_id = $group_name."_accumulator_new";
 			$multi_input_id = $name."_new";
 			$multi_class = "multi-select-new";
 			$js_parameters = "$accumulator_id,$multi_input_id";
@@ -222,11 +228,11 @@ EOD;
 			$field_writes = "$$field->$field->".implode(".' '.$$field->$field->",$reads_temp);
 			
 			if($this->current_template == 'edit'){
-				$results_array = "\$this->edit_{$this->class_name}->{$multi_object->table_name}";
-				$accumulator_id = $field."_accumulator_edit";
+				$results_array = "\$this->edit_{$this->class_name}->{$group_name}";
+				$accumulator_id = $group_name."_accumulator_edit";
 				$multi_input_id = $name."_edit";
-				$create_url = "/{$this->table->table_name}/add_{$field}/";
-				$delete_url = "/{$this->table->table_name}/delete_{$field}/";
+				$create_url = "/{$this->table->table_name}/add_{$multi_rel_key}/";
+				$delete_url = "/{$this->table->table_name}/delete_{$multi_rel_key}/";
 				$parent_id = "{$this->class_name}_{$this->table->key}";
 				$multi_class = "multi-select-edit";
 				$js_parameters = "$accumulator_id,$multi_input_id,$create_url,$delete_url,$parent_id";

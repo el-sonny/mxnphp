@@ -73,7 +73,7 @@ EOD;
 		//\${$this->class_name}_query->order_by = "name";		
 		\$this->{$this->class_name}_pagination = new pagination('{$this->class_name}',$per_page,\${$this->class_name}_query->search_clause);
 		\${$this->class_name}_query->limit = \$this->{$this->class_name}_pagination->limit;
-		\$this->{$this->table->table_name} = \${$this->class_name}_query->read("{$this->table->key},{$listing_cells}");
+		\$this->{$this->table->table_name}_listing = \${$this->class_name}_query->read("{$this->table->key},{$listing_cells}");
 	}	
 EOD;
 		return $common_data;
@@ -201,41 +201,47 @@ EOD;
 		return $new_sections;
 	}
 	private function generate_multi_functions($field,$parameters){
-		$multi_object = new $field();			
+		$multi_class = $parameters[3];
+		$multi_object = new $multi_class();
+		$multi_rel_key = isset($parameters[4]) ? $parameters[4] : $multi_class;
 		$rel_temp = explode(";",$parameters[2]);
-		$rel_loads = "{$multi_object->table_name}=>{$field}=>".implode(",{$multi_object->table_name}=>{$field}=>",$rel_temp);
-		$rel_class = $this->table->has_many[$multi_object->table_name];
-		$rel_key = $this->table->has_many_keys[$multi_object->table_name] ? $this->table->has_many_keys[$multi_object->table_name] : $this->class_name;
-		$this->rel_fields .= ",$rel_loads,{$multi_object->table_name}=>{$field}=>{$multi_object->key},{$multi_object->table_name}=>id"; 
-		$function_name = "load_{$multi_object->table_name}";
-		$this->multi_load_creates .= "
-			\$this->create_rels('$rel_class','{$rel_key},{$field}',\${$this->class_name}->{$this->table->key},\$_POST['{$field}_input']);";
-		$this->multi_ajax_create .= <<<EOD
+		$rel_loads = "{$field}=>{$multi_rel_key}=>".implode(",{$field}=>{$multi_rel_key}=>",$rel_temp);
+		if(isset($this->table->has_many[$field])){
+			$rel_class = $this->table->has_many[$field];
+			$rel_key = isset($this->table->has_many_keys[$field]) ? $this->table->has_many_keys[$field] : $this->class_name;
+			$this->rel_fields .= ",$rel_loads,{$field}=>{$multi_rel_key}=>{$multi_object->key},{$field}=>id"; 
+			$function_name = "load_{$multi_object->table_name}";
+			$this->multi_load_creates .= "
+				\$this->create_rels('$rel_class','{$rel_key},{$multi_rel_key}',\${$this->class_name}->{$this->table->key},\$_POST['{$field}_input']);";
+			$this->multi_ajax_create .= <<<EOD
 				
-	public function add_$field(){
+	public function add_$multi_rel_key(){
 		\$record = new {$rel_class}();
-		\$record = \$this->create_record("$field,$rel_key","{$rel_class}",array(\$_POST['son'],\$_POST['parent']));
+		\$record = \$this->create_record("$multi_rel_key,$rel_key","{$rel_class}",array(\$_POST['son'],\$_POST['parent']));
 		echo \$record->id;
 	}
 EOD;
-		$this->multi_ajax_deletes .= <<<EOD
+			$this->multi_ajax_deletes .= <<<EOD
 				
-	public function delete_$field(){
-		\$this->destroy_record(\$_POST['id'],"{$this->class_name}_$field");
+	public function delete_$multi_rel_key(){
+		\$this->destroy_record(\$_POST['id'],"{$rel_class}");
 	}			
 EOD;
-		if(!isset($this->multi_loads) || !in_array($field,array_keys($this->multi_loads))){
-			$this->multi_load_calls .= "
+			if(!isset($this->multi_loads) || !in_array($multi_class,array_keys($this->multi_loads))){
+				$this->multi_load_calls .= "
 		\$this->$function_name();";
-			$field_reads = str_replace(";",',',$parameters[2]);
-			$this->multi_loads[$field] = <<<EOD
+				$field_reads = str_replace(";",',',$parameters[2]);
+				$this->multi_loads[$multi_class] = <<<EOD
 				
 	protected function $function_name(){
-		\$query = new $field();
+		\$query = new $multi_class();
 		\$query->search_clause = "1";
 		\$this->{$multi_object->table_name} = \$query->read("{$multi_object->key},{$field_reads}");
 	}		
 EOD;
+			}
+		}else{
+			$this->add_error("Class '{$this->class_name}' does not have a {$multi_object->table_name} entry in its has_many array");
 		}
 	}
 	private function generate_image_functions($field,$parameters){

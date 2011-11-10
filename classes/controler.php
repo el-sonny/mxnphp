@@ -166,7 +166,8 @@ abstract class controler{
 			$children = explode(",",$children);
 			if($children){
 				$object = new $class();
-				foreach($children as $child){
+				$object->debug = $this->debug;
+				foreach($children as $child){					
 					$object->create($fields,array($parent,$child));
 				}
 			}
