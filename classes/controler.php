@@ -358,11 +358,11 @@ abstract class controler{
 	}
 	protected function translate($id,$mod=false){
 		$controler = $this->config->controler;
-		
+		$lang = $this->config->lang;
 		if(!$mod){
-			$text = (string)$this->LanXML->content->$_GET['language']->$id;
+			$text = (string)$this->LanXML->content->$lang->$id;
 		}else{
-			$text = (string)$this->LanXML->$mod->$_GET['language']->$id;
+			$text = (string)$this->LanXML->$mod->$lang->$id;
 		}
 		return $text;
 	}
