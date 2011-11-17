@@ -1,7 +1,7 @@
 <?php
 class mxnphp_min{
 	//Check scripts and compress if cached file is older
-	public function mxnphp_min($config,$scripts = false, $ext = 'js', $name_base = "min_cached",  $folder = false){
+	public function mxnphp_min($config,$scripts = false, $ext = 'js', $name_base = "min-cached",  $folder = false){
 		//Assign variables directly
 		$this->config = $config;
 		$folder = $folder ? $folder : $ext;		
@@ -54,7 +54,7 @@ class mxnphp_min{
 	private function combine_and_compress(){
 		$contents = "";		
 		foreach($this->scripts as $script){
-			$contents .= file_get_contents($this->file_root.$script);
+			$contents .= file_exists($this->file_root.$script) ? file_get_contents($this->file_root.$script) : "";
 		}
 		$output = gzencode($contents,9);
 		$type = $this->ext == "js" ? "application/javascript" : "text/css";
