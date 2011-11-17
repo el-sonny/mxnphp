@@ -10,7 +10,7 @@ class mxnphp_min{
 		//Concatenated Variables
 		$this->file_root = $this->config->document_root."/templates/".$this->config->theme."/".$folder."/";
 		$this->base_url = "/templates/".$this->config->theme."/".$folder."/";
-		$this->cache_file = $this->name_base.".".$this->ext.".php";
+		$this->cache_file = $this->name_base.".".$this->ext.".gz";
 		//Variables obtained through functions
 		$this->scripts = $scripts ? $scripts : $this->get_all_scripts();
 		
@@ -59,11 +59,7 @@ class mxnphp_min{
 		}
 		$output = gzencode($contents,9);
 		$type = $this->ext == "js" ? "application/javascript" : "text/css";
-		$output = "<?php 
-header('Content-type: $type; charset: UTF-8'); 
-header('Vary: Accept-Encoding');
-header('Content-Encoding: gzip');
-?>".$output;		
+	
 		
 		file_put_contents($this->file_root.$this->cache_file,$output);
 	}
