@@ -13,6 +13,7 @@ class mxnphp_min{
 		$this->cache_file = $this->name_base.".".$this->ext.".php";
 		//Variables obtained through functions
 		$this->scripts = $scripts ? $scripts : $this->get_all_scripts();
+		
 		//Check if cache file exists
 		if(!file_exists($this->file_root.$this->cache_file)){
 			$this->combine_and_compress($scripts);			
@@ -23,7 +24,7 @@ class mxnphp_min{
 			//No updates so no compression is necesary
 		}
 	}
-	//Print the cached files corresponding tag, if dev mode is enabled in config print the tags for all of the scripts instead
+	//Print the cached files corresponding HTML tag, if dev_mode is enabled in config file print the tags for each of the scripts instead
 	public function tag($type = "js"){
 		$scripts = $this->config->dev_mode ? $this->scripts : array($this->cache_file);		
 		foreach($scripts as $script){
@@ -40,15 +41,15 @@ class mxnphp_min{
 	private function check_for_updates(){
 		$dir = opendir($this->file_root);
 		$i = 0;
-		while (false !== ($file = readdir($dir))){
-			if(!is_dir($this->file_root.$file && $file != "." && $file != "..")){
-				$scripts[$i] = $file;
-				$scripts_date[$i++] =  filemtime($this->file_root.$file);
+		foreach($this->scripts as $script){
+			if(file_exists($this->file_root.$script)){
+				$scripts[$i] = $script;
+				$scripts_date[$i++] =  filemtime($this->file_root.$script);
 			}
 		}
-		closedir($dir);
-		$max = array_keys($scripts_date, max($scripts_date));
-		return $scripts[$max[0]] != $this->cache_file;
+		$cache_date = filemtime($this->file_root.$this->cache_file);
+		$max_date = max($scripts_date);
+		return $cache_date < $max_date;
 	}
 	//Concatenate and compress scripts
 	private function combine_and_compress(){
