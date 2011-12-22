@@ -38,7 +38,7 @@ class pagination{
 				$end = $per_page;
 				$this->document_pages = ceil(($count) / $per_page);	
 				$this->current_page = (isset($_REQUEST[$page_variable])) ? $_REQUEST[$page_variable] : 1;
-				$this->limit = ($count > $per_page) ? "$start, $end" : false;
+				$this->limit = ($count > $per_page) ? "$start, $end" : false; 
 			}else{
 				$start = 0;
 				$end = 1;
