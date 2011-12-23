@@ -153,6 +153,16 @@ abstract class controler{
 		return isset($_POST[$variable]) ? $this->clean_input($_POST[$variable]) : false;
 		
 	}
+	protected function request($variable){
+		if($this->get($variable)){
+			$val = $this->get($variable);
+		}else if($this->post($variable)){
+			$val = $this->post($variable);
+		}else{
+			$val = false;
+		}
+		return $val;
+	}
 	protected function destroy_record($record_id,$object_name){
 		if($this->dbConnect()){
 			$object = new $object_name($record_id);
