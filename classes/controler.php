@@ -145,6 +145,14 @@ abstract class controler{
 	protected function clean_input($input){
 		return mysql_real_escape_string(trim($input));
 	}
+	protected function get($variable){
+		return isset($_GET[$variable]) ? $this->clean_input($_GET[$variable]) : false;
+		
+	}
+	protected function post($variable){
+		return isset($_POST[$variable]) ? $this->clean_input($_POST[$variable]) : false;
+		
+	}
 	protected function destroy_record($record_id,$object_name){
 		if($this->dbConnect()){
 			$object = new $object_name($record_id);
