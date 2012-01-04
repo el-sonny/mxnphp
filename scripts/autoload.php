@@ -4,8 +4,9 @@ function __autoload($class_name){
 	$config = new $config_name();
 	$folders = array(
 		$config->document_root."/controlers/controler.",
+		$config->mxnphp_dir."/classes/components/",
 		$config->mxnphp_dir."/classes/",
-		$config->document_root."/models/model."
+		$config->document_root."/models/model.",
 	);
 	$i = 0;
 	$size = count($folders);

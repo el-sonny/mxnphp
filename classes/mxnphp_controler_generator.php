@@ -241,7 +241,7 @@ EOD;
 EOD;
 			}
 		}else{
-			$this->add_error("Class '{$this->class_name}' does not have a {$multi_object->table_name} entry in its has_many array");
+			$this->add_error("Class '{$this->class_name}' does not have a {$field} entry in its has_many array");
 		}
 	}
 	private function generate_image_functions($field,$parameters){

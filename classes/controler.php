@@ -206,10 +206,18 @@ abstract class controler{
 			$this->destroy_record($parent,$parent_class);
 		}
 	}
-	protected function make_thumb($image,$target,$width,$height){
+	protected function make_thumb($image,$target,$width,$height,$type='adaptive'){
 		require_once 'ThumbLib.inc.php';
-		$thumb = PhpThumbFactory::create($image);
-		$thumb->adaptiveResize($width, $height);
+		try{$thumb = PhpThumbFactory::create($image);}
+		catch(Exception $e){echo $image." does not exist";}
+		switch($type){
+			case "best fit":
+				$thumb->resize($width,$height);
+			break;
+			case "adaptive":
+				$thumb->adaptiveResize($width, $height);
+			break;
+		}		
 		return $thumb->save($target);
 	}
 	protected function save_post_file($file,$dir,$filename = false){
