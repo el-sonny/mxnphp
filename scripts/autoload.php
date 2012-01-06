@@ -4,6 +4,7 @@ function __autoload($class_name){
 	$config = new $config_name();
 	$folders = array(
 		$config->document_root."/controlers/controler.",
+		$config->document_root."/components/",
 		$config->mxnphp_dir."/classes/components/",
 		$config->mxnphp_dir."/classes/",
 		$config->document_root."/models/model.",
@@ -15,6 +16,7 @@ function __autoload($class_name){
 		//echo $file."<br/>";
 	}while(!file_exists($file) && $i<$size);
 	if(file_exists($file)){
+		//echo $file."<br/>";
 		include_once $file;
 	}
 }

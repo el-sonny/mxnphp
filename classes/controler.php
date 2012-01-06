@@ -17,7 +17,7 @@
 *
 */
 	
-abstract class controler{
+abstract class controler extends event_dispatcher{
 	public $config;
 	public $security;
 	public $debug = false;
@@ -28,6 +28,7 @@ abstract class controler{
 	//Time measuring Variables
 	protected $measure_time_start;
 	protected $measure_time_stop;
+	protected $components = array();
 /**
 * Funcion controler
 * 
@@ -405,5 +406,10 @@ abstract class controler{
 			$hash = md5(md5($hash).md5(strrev($hash)));
 		return $hash;
 	} 
+	
+	//Component Related Functions
+	public function add_component($component){
+		$this->components[$component] = new $component($this);		
+	}
 }
 ?>

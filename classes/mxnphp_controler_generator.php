@@ -157,7 +157,7 @@ EOD;
 		$i = $j = 0;
 		foreach($this->table->inputs as $input => $parameters){
 			$parameters = explode(",",$parameters);
-			if($parameters[1] != "multi"){
+			if($parameters[1] != "multi" && $parameters[1] != "multi-full"){
 				if($parameters[1] == 'object'){
 					$object = new $input();
 					$this->read_inputs[$i++] = $input."=>".$parameters[2];
@@ -190,7 +190,7 @@ EOD;
 			$fields = explode(",",$section);
 			foreach($fields as $field){
 				$parameters = explode(",",$this->table->inputs[$field]);
-				if($parameters[1] != "multi"){
+				if($parameters[1] != "multi" && $parameters[1] != 'multi-full'){
 					$new_section[$i++] = $field;
 				}
 			}

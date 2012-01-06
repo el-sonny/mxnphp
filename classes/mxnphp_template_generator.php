@@ -337,8 +337,13 @@ EOD;
 			$options_array = '';
 			foreach($options as $option){
 				$options_values = explode("|",$option);
-				$options_array .= "\$options['{$options_values[0]}'] = '{$options_values[1]}';
+				if(isset($options_values[1])){
+					$options_array .= "\$options['{$options_values[0]}'] = '{$options_values[1]}';
 				";
+				}else{
+					$options_array .= "\$options['{$options_values[0]}'] = '{$options_values[0]}';
+				";
+				}				
 			}			
 				$input = <<<EOD
 				
