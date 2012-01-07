@@ -14,4 +14,4 @@ class qr_component extends component{
 	'&chl='.$url.'" alt="QR code" />';
 	 }
 }
-?>	
+?>
