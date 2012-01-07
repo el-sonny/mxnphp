@@ -7,7 +7,7 @@ class qr_component extends component{
 	public function generate($url){
 		$this->generateQRwithGoogle($url);
 	}
-	function generateQRwithGoogle($url,$widhtHeight ='150',$EC_level='L',$margin='0') {
+	function generateQRwithGoogle($url,$widhtHeight ='350',$EC_level='L',$margin='0') {
 		 $url = urlencode($url); 
 		 echo '<img src="http://chart.apis.google.com/chart?chs='.$widhtHeight.
 	'x'.$widhtHeight.'&cht=qr&chld='.$EC_level.'|'.$margin.
