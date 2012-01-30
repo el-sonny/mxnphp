@@ -66,7 +66,7 @@ class mxnphp{
 		if(class_exists($controler_name)){						
 			$security = ($this->config->secured) ? new $this->config->security_controler($this->config):false;
 			$controler = new $controler_name($this->config,$security);
-			$event = new event($controler_name,$action);
+			$event = new event(array("controler" => $controler_name, "action" => $action));
 			$controler->dispatch_event("pre_method",$event);
 			if(method_exists($controler,$action)){
 				$controler->$action();

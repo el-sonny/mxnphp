@@ -1,8 +1,9 @@
 <?php
 class event{
-	function event($controler,$action){
-		$this->controler = $controler;
-		$this->action = $action;
+	function event($values = array()){
+		foreach($values as $key => $value){
+			$this->$key = $value;
+		}
 	}
 }
 

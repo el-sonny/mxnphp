@@ -286,6 +286,8 @@ abstract class controler extends event_dispatcher{
 	protected function include_template($template,$template_group=false){
 		$file = $this->config->document_root.$this->template_folder($template_group).$template.".php";
 		if(file_exists($file)){
+			$event = new event(array('template' => $template, 'template_group' => $template_group, "file" => $file));
+			$this->dispatch_event("pre_template",$event);
 			include $file;
 		}else{
 			header("Status: 404 Not Found");
