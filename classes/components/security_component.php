@@ -11,7 +11,7 @@ class security_component extends component{
 	protected function do_login(){
 		$this->controler->dbConnect();
 		$user_name = $this->clean_input($_POST[$this->post_user]);
-		$pass = $this->hash_function($_POST[$this->post_pass]);
+		$pass = $this->{$this->hash_function}($_POST[$this->post_pass]);
 		$user = new $this->user_class();	
 		$user->debug = $this->debug;
 		$user->search_clause = "{$this->user_field} = '$user_name'";
@@ -64,6 +64,9 @@ class security_component extends component{
 			//$this->user->read();
 		}else
 			return false;
+	}
+	protected function md5($string){
+		return md5($string);
 	}
 }
 
