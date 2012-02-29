@@ -34,14 +34,13 @@
 						var html_id = $(this).attr("id");
 						var response = "";
 						var submit = $("#"+html_id+" input:submit");
-						var loader = $("<div></div>").addClass(settings.loaderClass).html("<img src='"+settings.loaderURL+"' alt='loader' />").appendTo(submit.parent());
+						var loader = $("<div></div>").addClass(settings.loaderClass).appendTo(submit.parent());
 						var form = this;
 						var next = $(form).next();
 						var last = $(form).children().last();
 						if(next.hasClass('mxnphp-frontend-response-item')) next.hide();
 						if(settings.hideSubmit)	submit.hide();
 						$(form).ajaxSubmit(function(responseText,statusText){
-							submit.addClass('circle-loader');
 							loader.detach();	
 							var responses = new Array();
 							responses["es"] = ["Gracias por su mensaje!","Error intente otra vez","Por favor insterte un email valido"];
@@ -63,6 +62,10 @@
 								break;
 								case "null email":
 									responseItem.html(responses[settings.lang][2]).addClass("error");
+									submit.show();
+								break;
+								default:
+									responseItem.html(responses[settings.lang][1]).addClass("error");
 									submit.show();
 								break;
 							}

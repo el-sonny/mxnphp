@@ -86,7 +86,7 @@ EOD;
 			<input type='text' name='q' value='Search' class='search_input' title='Search' />
 		</p>
 	</form>
-	<?php if(\$this->{$this->table->table_name}){?>
+	<?php if(\$this->{$this->table->table_name}_listing){?>
 	<table>
 	$listing_header
 		<?php
@@ -216,27 +216,30 @@ EOD;
 			";		
 		}else if($type == 'multi'){
 			$group_name = $field;
-			$field = $attrs[3];
-			$multi_rel_key = isset($attrs[4]) ? $attrs[4] : $attrs[3];
-			$multi_object = new $field();
-			$accumulator = $accumulated = $multi_val = "";
-			$accumulator_id = $group_name."_accumulator_new";
-			$multi_input_id = $name."_new";
-			$multi_class = "multi-select-new";
-			$js_parameters = "$accumulator_id,$multi_input_id";
-			$reads_temp = explode(";",$class);
-			$field_writes = "$$field->$field->".implode(".' '.$$field->$field->",$reads_temp);
-			
-			if($this->current_template == 'edit'){
-				$results_array = "\$this->edit_{$this->class_name}->{$group_name}";
-				$accumulator_id = $group_name."_accumulator_edit";
-				$multi_input_id = $name."_edit";
-				$create_url = "/{$this->table->table_name}/add_{$multi_rel_key}/";
-				$delete_url = "/{$this->table->table_name}/delete_{$multi_rel_key}/";
-				$parent_id = "{$this->class_name}_{$this->table->key}";
-				$multi_class = "multi-select-edit";
-				$js_parameters = "$accumulator_id,$multi_input_id,$create_url,$delete_url,$parent_id";
-				$accumulator = <<<EOD
+			if(!isset($attrs[3])){
+				$this->add_error("Fourth Attribute not set for $field");	
+			}else{
+				$field = $attrs[3];
+				$multi_rel_key = isset($attrs[4]) ? $attrs[4] : $attrs[3];
+				$multi_object = new $field();
+				$accumulator = $accumulated = $multi_val = "";
+				$accumulator_id = $group_name."_accumulator_new";
+				$multi_input_id = $name."_new";
+				$multi_class = "multi-select-new";
+				$js_parameters = "$accumulator_id,$multi_input_id";
+				$reads_temp = explode(";",$class);
+				$field_writes = "$$field->$field->".implode(".' '.$$field->$field->",$reads_temp);
+				
+				if($this->current_template == 'edit'){
+					$results_array = "\$this->edit_{$this->class_name}->{$group_name}";
+					$accumulator_id = $group_name."_accumulator_edit";
+					$multi_input_id = $name."_edit";
+					$create_url = "/{$this->table->table_name}/add_{$multi_rel_key}/";
+					$delete_url = "/{$this->table->table_name}/delete_{$multi_rel_key}/";
+					$parent_id = "{$this->class_name}_{$this->table->key}";
+					$multi_class = "multi-select-edit";
+					$js_parameters = "$accumulator_id,$multi_input_id,$create_url,$delete_url,$parent_id";
+					$accumulator = <<<EOD
 				
 			<?php
 			\$multi_val = "";
@@ -250,18 +253,20 @@ EOD;
 			}
 			?>
 EOD;
-				$accumulated = "<?php echo \$accumulated; ?>";
-				$multi_val = "<?php echo \$multi_val; ?>";
-			}
-			$field_writes = "$$field->".implode(".' '.$$field->",$reads_temp);
-			$input = <<<EOD
+					$accumulated = "<?php echo \$accumulated; ?>";
+					$multi_val = "<?php echo \$multi_val; ?>";
+				}
+				$field_writes = "$$field->".implode(".' '.$$field->",$reads_temp);
+				$input = <<<EOD
 			
 			<p><label for='{$field}_select'>$label</label></p>
 			<p><select name='{$field}_select' title='$js_parameters' class='$multi_class'>
 				<option value=''>{$this->texts->add} $label</option>
 			<?php
-			foreach(\$this->{$multi_object->table_name} as $$field){
-				echo "<option value='".$$field->{$multi_object->key}."'>".$field_writes."</option>";
+			if(\$this->{$multi_object->table_name}){
+				foreach(\$this->{$multi_object->table_name} as $$field){
+					echo "<option value='".$$field->{$multi_object->key}."'>".$field_writes."</option>";
+				}
 			}
 			?>
 			</select></p>
@@ -270,6 +275,7 @@ $accumulator
 			<input type='hidden' id='$multi_input_id' name='$name' value='$multi_val'/>
 			<div class='clear'></div>
 EOD;
+			}
 		}else if($type == 'object'){
 			$object = new $field();
 			$select_class = "";
@@ -277,6 +283,8 @@ EOD;
 				$select_class = "\$selected";
 				$selector = "
 					\$selected = $$field->{$object->key} == \$this->edit_{$this->class_name}->$field->{$object->key} ? \"selected='selected'\" : '' ;";
+			}else{
+				$selector = "";
 			}
 			$input = <<<EOD
 			
@@ -317,8 +325,43 @@ EOD;
 			<div class='clear'></div>
 EOD;
 			}
+		}else if($type == "enum"){
+			if($this->current_template == 'edit'){
+				$selected = "\$selected = \$this->edit_{$this->class_name}->$field == \$key ? 'selected=\"selected\"' : '';";
+				$selector = "\$selected";
+			}else{
+				$selected = "";
+				$selector = "";
+			}
+			$options = explode(";",$attrs[3]);
+			$options_array = '';
+			foreach($options as $option){
+				$options_values = explode("|",$option);
+				if(isset($options_values[1])){
+					$options_array .= "\$options['{$options_values[0]}'] = '{$options_values[1]}';
+				";
+				}else{
+					$options_array .= "\$options['{$options_values[0]}'] = '{$options_values[0]}';
+				";
+				}				
+			}			
+				$input = <<<EOD
+				
+				
+			<p><label>$label</label></p>
+			<p><select name='$name'>
+			<?php
+				$options_array
+				foreach(\$options as \$key => \$value){
+					$selected
+					echo "<option value='\$key' $selector>\$value</options>";
+				}
+			?>
+			</select></p>
+EOD;
 		}
-		return $input;
+		
+		return isset($input) ? $input : false;
 	}
 	private function create_cell($properties){
 		$separator = ".' '.$".$this->class_name.'->';

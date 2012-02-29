@@ -17,7 +17,7 @@
 *
 */
 	
-abstract class controler{
+abstract class controler extends event_dispatcher{
 	public $config;
 	public $security;
 	public $debug = false;
@@ -28,6 +28,7 @@ abstract class controler{
 	//Time measuring Variables
 	protected $measure_time_start;
 	protected $measure_time_stop;
+	protected $components = array();
 /**
 * Funcion controler
 * 
@@ -145,6 +146,24 @@ abstract class controler{
 	protected function clean_input($input){
 		return mysql_real_escape_string(trim($input));
 	}
+	protected function get($variable){
+		return isset($_GET[$variable]) ? $this->clean_input($_GET[$variable]) : false;
+		
+	}
+	protected function post($variable){
+		return isset($_POST[$variable]) ? $this->clean_input($_POST[$variable]) : false;
+		
+	}
+	protected function request($variable){
+		if($this->get($variable)){
+			$val = $this->get($variable);
+		}else if($this->post($variable)){
+			$val = $this->post($variable);
+		}else{
+			$val = false;
+		}
+		return $val;
+	}
 	protected function destroy_record($record_id,$object_name){
 		if($this->dbConnect()){
 			$object = new $object_name($record_id);
@@ -188,10 +207,18 @@ abstract class controler{
 			$this->destroy_record($parent,$parent_class);
 		}
 	}
-	protected function make_thumb($image,$target,$width,$height){
+	protected function make_thumb($image,$target,$width,$height,$type='adaptive'){
 		require_once 'ThumbLib.inc.php';
-		$thumb = PhpThumbFactory::create($image);
-		$thumb->adaptiveResize($width, $height);
+		try{$thumb = PhpThumbFactory::create($image);}
+		catch(Exception $e){echo $image." does not exist";}
+		switch($type){
+			case "best fit":
+				$thumb->resize($width,$height);
+			break;
+			case "adaptive":
+				$thumb->adaptiveResize($width, $height);
+			break;
+		}		
 		return $thumb->save($target);
 	}
 	protected function save_post_file($file,$dir,$filename = false){
@@ -259,6 +286,8 @@ abstract class controler{
 	protected function include_template($template,$template_group=false){
 		$file = $this->config->document_root.$this->template_folder($template_group).$template.".php";
 		if(file_exists($file)){
+			$event = new event(array('template' => $template, 'template_group' => $template_group, "file" => $file));
+			$this->dispatch_event("pre_template",$event);
 			include $file;
 		}else{
 			header("Status: 404 Not Found");
@@ -379,5 +408,10 @@ abstract class controler{
 			$hash = md5(md5($hash).md5(strrev($hash)));
 		return $hash;
 	} 
+	
+	//Component Related Functions
+	public function add_component($component){
+		$this->components[$component] = new $component($this);		
+	}
 }
 ?>

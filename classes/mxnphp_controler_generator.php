@@ -157,7 +157,7 @@ EOD;
 		$i = $j = 0;
 		foreach($this->table->inputs as $input => $parameters){
 			$parameters = explode(",",$parameters);
-			if($parameters[1] != "multi"){
+			if($parameters[1] != "multi" && $parameters[1] != "multi-full"){
 				if($parameters[1] == 'object'){
 					$object = new $input();
 					$this->read_inputs[$i++] = $input."=>".$parameters[2];
@@ -190,7 +190,7 @@ EOD;
 			$fields = explode(",",$section);
 			foreach($fields as $field){
 				$parameters = explode(",",$this->table->inputs[$field]);
-				if($parameters[1] != "multi"){
+				if($parameters[1] != "multi" && $parameters[1] != 'multi-full'){
 					$new_section[$i++] = $field;
 				}
 			}
@@ -241,7 +241,7 @@ EOD;
 EOD;
 			}
 		}else{
-			$this->add_error("Class '{$this->class_name}' does not have a {$multi_object->table_name} entry in its has_many array");
+			$this->add_error("Class '{$this->class_name}' does not have a {$field} entry in its has_many array");
 		}
 	}
 	private function generate_image_functions($field,$parameters){
