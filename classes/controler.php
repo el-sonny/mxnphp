@@ -360,7 +360,9 @@ abstract class controler extends event_dispatcher{
 	 */	
 	public function include_theme($theme="index",$template="index",$folder="themes"){
 		$this->template = $template;
-		$this->include_template($theme,$folder);
+		$event = new event(array('template' => &$template, 'theme' => &$theme, "file" => &$folder));
+		$this->dispatch_event("pre_theme",$event);
+		$this->include_template($theme,$folder);		
 	}
 	protected function curl_request($url,$fields=array()){
 		$fields_string = "";
@@ -410,8 +412,8 @@ abstract class controler extends event_dispatcher{
 	} 
 	
 	//Component Related Functions
-	public function add_component($component){
-		$this->components[$component] = new $component($this);		
+	public function add_component($component,$params=false){
+		$this->components[$component] = new $component($this,$params);		
 	}
 }
 ?>

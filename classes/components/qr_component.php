@@ -1,7 +1,6 @@
 <?php
-
 class qr_component extends component{
-	public function init(){
+	public function init($params){
 		//include($this->config->mxnphp_dir."/plugins/qrcodeservice/qrcode.class.php");
 	}
 	public function generate($url){
