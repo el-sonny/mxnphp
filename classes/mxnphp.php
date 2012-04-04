@@ -2,13 +2,13 @@
 /**
 * Class mxnphp
 *
-* Selecciona la configuración, modelo y control 
+* Selecciona la configuracion, modelo y control 
 * que va a cargar el framework.
 * 
 */
 class mxnphp{
 	/** 
-	* @var $config configuración que se cargara.
+	* @var $config configuracion que se cargara.
 	*/
 	public $config;
 	/**	
@@ -18,11 +18,11 @@ class mxnphp{
 	/**
 	* Función mxnphp
 	*
-	* Carga la configuración de usuario 
+	* Carga la configuracion de usuario 
 	* 
 	* @param string $config nombre de la 
 	* configuración a utilizar.
-	* Se tomara la configuración default en 
+	* Se tomara la configuracion default en 
 	* caso de que la $config sea falso.
 	* 
 	*/
@@ -59,21 +59,27 @@ class mxnphp{
 	*
 	*/
 	public function load_controler(){
+		global $__mxnphp_classes_loaded__;
 		$controler_name = isset($_GET['controler']) ? $_GET['controler'] : $this->config->default_controler;
 		$action = isset($_GET['action']) ? $_GET['action'] : $this->config->default_action;
 		$controler_name = str_replace("-","_",$controler_name);
 		$action = str_replace("-","_",$action);
 		if(class_exists($controler_name)){						
-			$security = ($this->config->secured) ? new $this->config->security_controler($this->config):false;
+			$security = ($this->config->secured)?new $this->config->security_controler($this->config):false;
 			$controler = new $controler_name($this->config,$security);
-			$event = new event(array("controler" => $controler_name, "action" => $action));
-			$controler->dispatch_event("pre_method",$event);
-			if(method_exists($controler,$action)){
-				$controler->$action();
+			$controller_loaded = isset($__mxnphp_classes_loaded__[$controler_name]) && $__mxnphp_classes_loaded__[$controler_name]=="controller"?true:false;
+			if($controller_loaded){
+				$event = new event(array("controler" => $controler_name, "action" => $action));
+				$controler->dispatch_event("pre_method",$event);
+				if(method_exists($controler,$action)){
+					$controler->$action();
+				}else{
+					//echo "template not found";
+					$controler->default_action($action);
+				}
 			}else{
-				//echo "template not found";
-				$controler->default_action($action);
-			};
+				echo "<p>$controler_name does not exist</p>";	
+			}
 		}else{
 			//header("HTTP/1.0 404 Not Found");
 			echo "<p>$controler_name does not exist</p>";
