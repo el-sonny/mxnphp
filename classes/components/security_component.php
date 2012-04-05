@@ -27,6 +27,7 @@ class security_component extends component{
 					session_start();				
 					$_SESSION[$this->config->session_name] = $user->id;	
 				}
+				$this->session_id = $user->id;
 				return "success";
 			}else{
 				//Wrong Password

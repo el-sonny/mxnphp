@@ -152,7 +152,9 @@ abstract class controler extends event_dispatcher{
 	}
 	protected function post($variable){
 		return isset($_POST[$variable]) ? $this->clean_input($_POST[$variable]) : false;
-		
+	}
+	protected function cookie($variable){
+		return isset($_COOKIE[$variable]) ? $this->clean_input($_COOKIE[$variable]) : false;
 	}
 	protected function request($variable){
 		if($this->get($variable)){
@@ -410,6 +412,11 @@ abstract class controler extends event_dispatcher{
 			$hash = md5(md5($hash).md5(strrev($hash)));
 		return $hash;
 	} 
+	
+	//Cookie Functions
+	protected function set_cookie($key,$value){
+		setcookie($key,$value,time() + 2592000, "/");
+	}
 	
 	//Component Related Functions
 	public function add_component($component,$params=false){

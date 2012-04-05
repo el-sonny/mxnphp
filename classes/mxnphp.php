@@ -69,7 +69,7 @@ class mxnphp{
 			$controler = new $controler_name($this->config,$security);
 			$controller_loaded = isset($__mxnphp_classes_loaded__[$controler_name]) && $__mxnphp_classes_loaded__[$controler_name]=="controller"?true:false;
 			if($controller_loaded){
-				$event = new event(array("controler" => $controler_name, "action" => $action));
+				$event = new event(array("controler" => &$controler_name, "action" => &$action));
 				$controler->dispatch_event("pre_method",$event);
 				if(method_exists($controler,$action)){
 					$controler->$action();
