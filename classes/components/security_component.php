@@ -1,7 +1,7 @@
 <?php
 class security_component extends component{
 	public function init($params){
-		$user_class = 'user';$user_field = 'email';$pass_field = 'password';$post_user = 'username';$post_pass = 'password';$hash_function = 'md5';
+		$user_class = 'account';$user_field = 'email';$pass_field = 'password';$post_user = 'username';$post_pass = 'password';$hash_function = 'md5';
 		$this->user_class = $user_class;
 		$this->user_field = $user_field;
 		$this->pass_field = $pass_field;
