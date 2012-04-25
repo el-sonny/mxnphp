@@ -89,7 +89,7 @@ abstract class table{
 		
 		$sql ="INSERT INTO ".$this->table_name." (";
 		for($i=0;$i<count($fields);$i++){
-			$sql = $sql.$fields[$i].", ";
+			$sql = $sql."`".$fields[$i]."`, ";
 		}
 		$sql = substr($sql,0,-2).") VALUES (";
 		for($i=0;$i<count($values);$i++){
@@ -265,7 +265,7 @@ abstract class table{
 	* con los valores si es true limpia la variable.
 	*/
 	
-	public function update($fields,$values){
+	public function update($fields,$values=false){
 		$fields = explode(",",$fields);
 		if(!$values){
 			$i = 0;
@@ -391,6 +391,21 @@ abstract class table{
 	public function select(){
 		$select = new mxnphp_Db_select();
 		return $select->select();
+	}
+	public function next_id(){
+		$next_id = false;
+		$sql = "SHOW TABLE STATUS LIKE '{$this->table_name}'";
+		$result = mysql_query($sql);		
+		if($this->debug){
+			echo $sql."<br/>";
+		}
+		if($result){
+			$row = mysql_fetch_array($result);
+			$next_id = $row['Auto_increment'];
+		}else{
+			if($this->debug) echo "Mysql Error :".mysql_error()."<br/>";
+		}		
+		return $next_id;
 	}
 }
 ?>

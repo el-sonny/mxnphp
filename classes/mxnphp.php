@@ -68,8 +68,8 @@ class mxnphp{
 			$security = ($this->config->secured)?new $this->config->security_controler($this->config):false;
 			$controler = new $controler_name($this->config,$security);
 			$controller_loaded = isset($__mxnphp_classes_loaded__[$controler_name]) && $__mxnphp_classes_loaded__[$controler_name]=="controller"?true:false;
-			if($controller_loaded){//We check if the class loaded is a controller else we throw an errorl
-				$event = new event(array("controler" => $controler_name, "action" => $action));
+			if($controller_loaded){
+				$event = new event(array("controler" => &$controler_name, "action" => &$action));
 				$controler->dispatch_event("pre_method",$event);
 				if(method_exists($controler,$action)){
 					$controler->$action();

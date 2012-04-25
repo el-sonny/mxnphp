@@ -152,7 +152,9 @@ abstract class controler extends event_dispatcher{
 	}
 	protected function post($variable){
 		return isset($_POST[$variable]) ? $this->clean_input($_POST[$variable]) : false;
-		
+	}
+	protected function cookie($variable){
+		return isset($_COOKIE[$variable]) ? $this->clean_input($_COOKIE[$variable]) : false;
 	}
 	protected function request($variable){
 		if($this->get($variable)){
@@ -360,7 +362,9 @@ abstract class controler extends event_dispatcher{
 	 */	
 	public function include_theme($theme="index",$template="index",$folder="themes"){
 		$this->template = $template;
-		$this->include_template($theme,$folder);
+		$event = new event(array('template' => &$template, 'theme' => &$theme, "file" => &$folder));
+		$this->dispatch_event("pre_theme",$event);
+		$this->include_template($theme,$folder);		
 	}
 	protected function curl_request($url,$fields=array()){
 		$fields_string = "";
@@ -409,9 +413,14 @@ abstract class controler extends event_dispatcher{
 		return $hash;
 	} 
 	
+	//Cookie Functions
+	protected function set_cookie($key,$value){
+		setcookie($key,$value,time() + 2592000, "/");
+	}
+	
 	//Component Related Functions
-	public function add_component($component){
-		$this->components[$component] = new $component($this);		
+	public function add_component($component,$params=false){
+		$this->components[$component] = new $component($this,$params);		
 	}
 }
 ?>
