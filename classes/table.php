@@ -35,6 +35,27 @@ abstract class table{
 	*
 	*/
 	
+	
+	/*
+	 
+	 Table Class
+	
+	public function insert();
+	public function update();
+		
+	//Other functions
+	
+	public function fetchAll();
+	public function query();
+	public function exec_query();
+	public function fetchObjects();
+	public function getchArrays();
+	
+	
+	public function query();
+	*/
+	
+	
 	public function table($key = 0){
 		$this->info();
 		$this->fields[$this->key] = $key;
@@ -349,8 +370,8 @@ abstract class table{
 		return $values;
 	}
 	public function __toString(){
-        return $this->id;
-    }
+		return $this->id;
+	}
 	public function max_id(){
 		$sql = "SELECT MAX({$this->key}) FROM ".$this->table_name.";";		
 		$result = mysql_query($sql);
@@ -366,6 +387,10 @@ abstract class table{
 				echo "Mysql Error :".mysql_error()."<br/>";
 		}		
 		return $this->{$this->key} = $max_id;
+	}
+	public function select(){
+		$select = new mxnphp_Db_select();
+		return $select->select();
 	}
 }
 ?>

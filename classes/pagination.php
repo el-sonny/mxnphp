@@ -4,11 +4,13 @@ class pagination{
 	public $pages;
 	public $current_page;
 	private $object2;
-	private $per_page;
-	private $page_variable;
+	protected $per_page;
+	protected $page_variable;
 	private $name_class  = false;
 	private $clause_table = "";
 	public function pagination($class,$per_page=10,$clause = false,$page_variable = "p"){
+		$this->page_variable = $page_variable;
+		$this->per_page = $per_page;
 		if (!is_object($class)){
 			$classes = explode(",",$class);
 			$tables ="";
@@ -29,28 +31,28 @@ class pagination{
 			}
 			$tables = substr($tables,0,-1);
 			$clause = $clause ? "WHERE $clause" : "";
-			$sql = "SELECT COUNT(*) FROM $tables $clause {$this->clause_table};";
-			$result = mysql_query($sql);
-			if($result){
-				$result = mysql_fetch_array($result);
-				$count = $result?$result[0]:0;
-				$start = (isset($_REQUEST[$page_variable])) ? ($_REQUEST[$page_variable]-1)*$per_page : 0;
-				$end = $per_page;
-				$this->document_pages = ceil(($count) / $per_page);	
-				$this->current_page = (isset($_REQUEST[$page_variable])) ? $_REQUEST[$page_variable] : 1;
-				$this->limit = ($count > $per_page) ? "$start, $end" : false; 
-			}else{
-				$start = 0;
-				$end = 1;
-				$this->document_pages = 1;	
-				$this->current_page = 1;
-				$this->limit = false;
-			}
+			$sql = "SELECT COUNT(1) as total FROM $tables $clause {$this->clause_table};";
+			$result  = $this->exec_query($sql);
+			$this->calc_pages($result);
 		}else{
 			$this->object2 = $class;
-			$this->per_page = $per_page;
-			$this->page_variable = $page_variable;
 		}
+	}
+	protected function calc_pages($result){
+		if($result){
+			$count = $result?$result[0]->total:0;
+			$start = (isset($_REQUEST[$this->page_variable])) ? ($_REQUEST[$this->page_variable]-1)*$this->per_page : 0;
+			$end = $this->per_page;
+			$this->document_pages = ceil(($count) / $this->per_page);	
+			$this->current_page = (isset($_REQUEST[$this->page_variable])) ? $_REQUEST[$this->page_variable] : 1;
+			$this->limit = ($count > $this->per_page) ? "$start, $end" : false; 
+		}else{
+			$start = 0;
+			$end = 1;
+			$this->document_pages = 1;	
+			$this->current_page = 1;
+			$this->limit = false;
+		}		
 	}
 	public function read($fields){
 		$tables = $this->object2->get_tables($fields);
@@ -102,6 +104,20 @@ class pagination{
 		if($show_pages && $show_pages < $this->document_pages){
 			echo $end_print;
 		}
+	}
+        protected function exec_query($query){
+		$result = mysql_query($query);
+                $i = 0;
+                $records = array();
+		if($result && mysql_num_rows($result) >= 1){
+			while ($row = mysql_fetch_assoc($result)) {
+				foreach($row as $key=>$value){
+					$records[$i]->$key = $value;
+				}
+				$i++;
+			}
+		}
+		return $records;
 	}
 }
 ?>
