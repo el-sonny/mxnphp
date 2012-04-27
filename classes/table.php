@@ -189,9 +189,13 @@ abstract class table{
 						}
 						$this->fields[$fields[$i]] = $row[$i];
 					};
-				}elseif($this->debug){
-					echo "Mysql Error :".mysql_error();
+					return $row;
+				}else{
+					if($this->debug)
+						echo "Mysql Error :".mysql_error();
+					return false;
 				}
+				
 			}
 		}
 		$i = 0;
