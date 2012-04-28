@@ -43,7 +43,8 @@ class security_component extends component{
 		if(isset($this->config->security_variable) && $this->config->security_variable == "cookie"){
 			if(isset($_COOKIE[$this->config->session_name])){	
 				$this->session_id = $_COOKIE[$this->config->session_name];
-				return $this->load_user_info();;
+				$this->load_user_info();
+				return true;
 			}else {
 				return false;
 			}				

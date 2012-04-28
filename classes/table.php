@@ -210,7 +210,7 @@ abstract class table{
 						}
 						$this->fields[$fields[$i]] = $row[$i];
 					};
-					return $row;
+					//return $row;
 				}else{
 					if($this->debug)
 						echo "Mysql Error :".mysql_error();
@@ -238,7 +238,7 @@ abstract class table{
 		if($has_many){
 			foreach($this->has_many as $key => $value){
 				if(isset($has_many_fields[$key])){
-					//echo $fields;
+					//var_dump( $fields);
 					//echo $value;
 					$fields = substr($has_many_fields[$key],0,-1);
 					$object = new $value();
