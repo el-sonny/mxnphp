@@ -15,13 +15,15 @@ class mxnphp_Db_select{
 	private $_where;
 	private $_join;
 	private $_limit;
+	private $_adapter;
 	
 	const FIELDS = "_fields";
 	const LIMIT = "_limit";
 	
-	public function __construct(){
+	public function __construct($adapter){
 		$this->_query = "";
 		$this->_limit = "";
+		$this->_adapter = $adapter;
 	}
 	public function getTable($table){
 		$t  = new $table();
@@ -86,7 +88,7 @@ class mxnphp_Db_select{
 	}
 	public function where($where = "",$param = ""){
 		if($param != "") {
-			$param = mysql_escape_string($param);
+			$param = $this->_adapter->quote($param);
 			$where = str_replace('?',"'$param'",$where);
 		}
 		$this->_where[] = array("where" => $where,"operator" => "AND");
