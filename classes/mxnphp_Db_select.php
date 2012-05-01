@@ -84,9 +84,11 @@ class mxnphp_Db_select{
 	public function distinct(){
 		return $this;
 	}
-	public function where($where = "",$param){
-		$param = mysql_escape_string($param);
-		$where = str_replace('?',"'$param'",$where);
+	public function where($where = "",$param = ""){
+		if($param != "") {
+			$param = mysql_escape_string($param);
+			$where = str_replace('?',"'$param'",$where);
+		}
 		$this->_where[] = array("where" => $where,"operator" => "AND");
 		return $this;
 	}
