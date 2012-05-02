@@ -51,7 +51,7 @@ class mxnphp_Db_select{
 		if(!$fields || count($fields) == 0){
 			$this->_fields[] = "$table.*";
 		}elseif(is_array($fields) || count($fields) > 1){
-			foreach($fields as $f){
+			foreach($fields as $key=>$f){
 				$this->_fields[] = "$table.$f";
 			}
 		}
@@ -66,8 +66,12 @@ class mxnphp_Db_select{
 		if(!$fields || count($fields) == 0){
 			$this->_fields[] = "$table.*";
 		}elseif(is_array($fields) || count($fields) > 1){
-			foreach($fields as $f){
-				$this->_fields[] = "$table.$f";
+			foreach($fields as $key => $f){
+				if(is_int($key)){
+					$this->_fields[] = "$table.$f";
+				}else{
+					$this->_fields[] = "$table.$f AS $key";
+				}
 			}
 		}		
 	}

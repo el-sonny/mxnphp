@@ -407,7 +407,7 @@ abstract class table{
 		return $this->{$this->key} = $max_id;
 	}
 	public function select(){
-		$select = new mxnphp_Db_select();
+		$select = new mxnphp_Db_select($this);
 		return $select->select();
 	}
 	public function next_id(){
