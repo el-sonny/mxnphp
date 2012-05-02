@@ -15,6 +15,7 @@ class mxnphp_Db_select{
 	private $_where;
 	private $_join;
 	private $_limit;
+	private $_order;
 	
 	const FIELDS = "_fields";
 	const LIMIT = "_limit";
@@ -22,6 +23,8 @@ class mxnphp_Db_select{
 	public function __construct(){
 		$this->_query = "";
 		$this->_limit = "";
+		$this->_select = "SELECT ";
+		$this->_order = array();
 	}
 	public function getTable($table){
 		$t  = new $table();
@@ -34,7 +37,6 @@ class mxnphp_Db_select{
 		}else{
 			$field = null;
 		}
-		$this->_select = "SELECT ";
 		if(is_string($field)){
 			$this->_fields[] = $field; 
 		}
@@ -46,7 +48,7 @@ class mxnphp_Db_select{
 			$table =  $this->getTable($_table)->table_name;
 			$this->_from[] = $table;
 		}
-		if(!$fields || count($fields) == 0){
+		if((!$fields || count($fields) == 0) && $fields != null){
 			$this->_fields[] = "$table.*";
 		}elseif(is_array($fields) || count($fields) > 1){
 			foreach($fields as $f){
@@ -61,7 +63,7 @@ class mxnphp_Db_select{
 			$table = $this->getTable($_table)->table_name;
 			$this->_join[] = array($table,$type,$condition);
 		}
-		if(!$fields || count($fields) == 0){
+		if(is_array($fields) && (count($fields) == 0)){
 			$this->_fields[] = "$table.*";
 		}elseif(is_array($fields) || count($fields) > 1){
 			foreach($fields as $f){
@@ -69,34 +71,39 @@ class mxnphp_Db_select{
 			}
 		}		
 	}
-	public function join($_table,$condition,$fields = false){
+	public function join($_table,$condition,$fields = array()){
 		$this->innetJoin($_table,$condition,$fields,"INNER JOIN");
 		return $this;
 	}
-	public function leftJoin($_table,$condition,$fields = false){
+	public function leftJoin($_table,$condition,$fields = array()){
 		$this->innetJoin($_table,$condition,$fields,"LEFT JOIN");
 		return $this;
 	}
-	public function rightJoin($_table,$condition,$fields = false){
+	public function rightJoin($_table,$condition,$fields = array()){
 		$this->innetJoin($_table,$condition,$fields,"RIGHT JOIN");
 		return $this;
 	}
 	public function distinct(){
 		return $this;
 	}
-	public function where($where = "",$param){
-		$param = mysql_escape_string($param);
-		$where = str_replace('?',"'$param'",$where);
+	public function where($where = "",$param = ""){
+		if(trim($param) != ""){
+			$param = mysql_escape_string($param);
+			$where = str_replace('?',"'$param'",$where);
+		}
 		$this->_where[] = array("where" => $where,"operator" => "AND");
 		return $this;
 	}
-	public function orWhere($where = "",$param){
-		$param = mysql_escape_string($param);
-		$where = str_replace('?',"'$param'",$where);
+	public function orWhere($where = "",$param = ""){
+		if(trim($param) != ""){
+			$param = mysql_escape_string($param);
+			$where = str_replace('?',"'$param'",$where);
+		}
 		$this->_where[] = array("where" => $where,"operator" => "OR");
 		return $this;
 	}
-	public function order(){
+	public function order($order){
+		$this->_order[] = $order;
 		return $this;
 	}
 	public function limit($begin,$num = ""){
@@ -162,7 +169,7 @@ class mxnphp_Db_select{
 				}else{
 					$operator = $w["operator"];	
 				}
-				$where .= " $operator {$w['where']}";
+				$where .= " $operator ( {$w['where']} )";
 			}
 		}else{
 			$where .= " 1";	
@@ -172,12 +179,25 @@ class mxnphp_Db_select{
 	private function makeLimit(){
 		$this->_query[] = $this->_limit;	
 	}
+	private function makeOrder(){
+		if(count($this->_order) > 0){
+			$this->_query[] = "ORDER BY ";
+			$order = "";
+			$coma = "";
+			foreach($this->_order as $o){
+				$order .= "$coma $o";
+				$coma = ", ";
+			}
+			$this->_query[] = $order;
+		}
+	}
 	private function makeSql(){
 		$this->makeSelect();
 		$this->makeFields();
 		$this->makeFrom();
 		$this->makeJoin();
 		$this->makeWhere();
+		$this->makeOrder();
 		$this->makeLimit();
 	}
 	private function makeQuery(){

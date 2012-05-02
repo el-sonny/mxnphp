@@ -16,12 +16,15 @@ class mxnphp_pagination extends pagination{
 	}
 	public function setItemsPerPage($perPage){
 		$this->_itemsPerPage = $perPage;
+		$this->per_page = $this->_itemsPerPage;
 		return $this;
 	}
+	public function printSql(){
+		echo $this->_query;
+	}
 	public function getItems(){
-		$begin = $this->_currentPage;
-		$num = $this->_itemsPerPage;
-		$this->_query->limit($begin,$num);
+		$begin = $this->calc_beginLimit();
+		$this->_query->limit($begin,$this->_itemsPerPage);
 		return $this->exec_query($this->_query);
 	}
 	private function _getTotal(){
@@ -36,7 +39,7 @@ class mxnphp_pagination extends pagination{
 		$result =  $this->_getTotal();
 		return $result[0]->total;
 	}
-	public function echo_paginate($base_link,$show_pages = false,$class = "pagination"){
+	public function echo_paginate($base_link,$variable="p",$show_pages = false,$class = "pagination"){
 		$result = $this->_getTotal();
 		$this->per_page = $this->_itemsPerPage;
 		$this->calc_pages($result);
