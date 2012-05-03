@@ -48,8 +48,7 @@ class security_component extends component{
 			}else {
 				return false;
 			}				
-		}else{
-			
+		}else{			
 			if($start_session)
 				session_start();
 			if(isset($_SESSION[$this->config->session_name])){	

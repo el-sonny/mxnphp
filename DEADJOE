@@ -1,0 +1,199 @@
+
+*** These modified files were found in JOE when it aborted on Wed Apr  4 23:41:00 2012
+*** JOE was aborted by UNIX signal 15
+
+*** File '/etc/httpd/extra/httpd-vhosts.conf'
+#
+# Virtual Hosts
+#
+# If you want to maintain multiple domains/hostnames on your
+# machine you can setup VirtualHost containers for them. Most configurations
+# use only name-based virtual hosts so the server doesn't need to worry about
+# IP addresses. This is indicated by the asterisks in the directives below.
+#
+# Please see the documentation at 
+# <URL:http://httpd.apache.org/docs/2.2/vhosts/>
+# for further details before you try to setup virtual hosts.
+#
+# You may use the command line option '-S' to verify your virtual host
+# configuration.
+
+#
+# Use name-based virtual hosting.
+#
+NameVirtualHost *:80
+
+#
+# VirtualHost example:
+# Almost any Apache directive may go into a VirtualHost container.
+# The first VirtualHost section is used for all requests that do not
+# match a ServerName or ServerAlias in any <VirtualHost> block.
+#
+<VirtualHost *:80>
+        DocumentRoot "/var/www/htdocs/phpMyAdmin-3.3.8-all-languages"
+        ServerName phpmyadmin.com
+        ServerAlias www.phpmyadmin.com
+        ServerAdmin irving_sci@hotmail.com
+
+        <Directory "/var/www/htdocs/phpMyAdmin-3.3.8-all-languages">
+                Allow from all
+                AllowOverride All
+                Order allow,deny 
+        </Directory>
+
+        DirectoryIndex index.html index.php
+
+</VirtualHost>
+
+<VirtualHost *:80>
+        ServerName inyourhands.no-ip.info
+        ServerAlias www.inyourhands.no-ip.info
+        DocumentRoot "/var/www/htdocs/inyourhands"
+        <Directory "/var/www/htdocs/inyourhands"> 
+                DirectoryIndex index.php
+                AllowOverride All
+                Order allow,deny 
+                Allow from all   
+        </Directory>
+</VirtualHost>
+
+<VirtualHost *:80>
+        ServerName inyourhands2.no-ip.info
+        ServerAlias www.inyourhands2.no-ip.info   
+        DocumentRoot "/var/www/htdocs/inyourhands_01"
+        <Directory "/var/www/htdocs/inyourhands_01">
+                DirectoryIndex index.php
+                AllowOverride All
+                Order allow,deny
+                Allow from all
+        </Directory>
+</VirtualHost>
+
+
+
+<VirtualHost *:80>
+        ServerName aldea.no-ip.info
+        ServerAlias www.aldea.no-ip.info
+        DocumentRoot "/var/www/htdocs/aldea"
+        <Directory "/var/www/htdocs/aldea">
+                DirectoryIndex index.php
+                AllowOverride All
+                Order allow,deny
+                Allow from all
+        </Directory>
+	SetEnv APPLICATION_ENV "irving_config"
+</VirtualHost>
+
+<VirtualHost *:80>
+        ServerName inyourhands.com.mx
+        ServerAlias www.inyourhands.com.mx
+        DocumentRoot "/var/www/htdocs/inyourhands"
+        <Directory "/var/www/htdocs/inyourhands">
+                DirectoryIndex index.php
+                AllowOverride All
+                Order allow,deny
+                Allow from all
+        </Directory>
+</VirtualHost>
+
+
+<VirtualHost *:80>
+        ServerName umasystem.no-ip.info
+        ServerAlias www.umasystem.no-ip.info
+        DocumentRoot "/var/www/htdocs/umasystem"
+        <Directory "/var/www/htdocs/umasystem "> 
+                DirectoryIndex index.php
+                AllowOverride All
+                Order allow,deny 
+                Allow from all   
+        </Directory>
+</VirtualHost>
+
+<VirtualHost *:80>
+        ServerName umasystem2.no-ip.info
+        ServerAlias www.umasystem2.no-ip.info
+        DocumentRoot "/var/www/htdocs/umasystem2"
+        <Directory "/var/www/htdocs/umasystem2">
+                DirectoryIndex index.php
+                AllowOverride All
+                Order allow,deny 
+                Allow from all   
+        </Directory>
+</VirtualHost>
+
+<VirtualHost *:80>
+        ServerName umasystem3.no-ip.info
+        ServerAlias www.umasystem3.no-ip.info
+        DocumentRoot "/var/www/htdocs/umasystem3"
+        <Directory "/var/www/htdocs/umasystem3"> 
+                DirectoryIndex index.php
+                AllowOverride All
+                Order allow,deny 
+                Allow from all   
+        </Directory>
+</VirtualHost>
+
+
+<VirtualHost *:80>
+        ServerName admin.luxuryrentals.no-ip.info
+        ServerAlias www.admin.luxuryrentals.no-ip.info
+        DocumentRoot "/var/www/htdocs/luxuryrentals"
+        <Directory "/var/www/htdocs/luxuryrentals">
+                AllowOverride All
+#                Order allow,deny 
+#                Allow from all   
+        </Directory>
+	SetEnv APPLICATION_ENV "irving_config"
+	DirectoryIndex index.html index.php
+</VirtualHost>
+
+<VirtualHost *:80>
+        ServerName spartacus.no-ip.info
+        ServerAlias www.spartacus.no-ip.info
+        DocumentRoot "/var/www/htdocs/spartacus/public"
+        <Directory "/var/www/htdocs/spartacus/public">
+                DirectoryIndex index.php
+                AllowOverride All
+                Order allow,deny
+                Allow from all
+        </Directory>
+	SetEnv APPLICATION_ENV "development"
+</VirtualHost>
+
+<VirtualHost *:80>
+        ServerName coming.no-ip.info
+        ServerAlias www.comin.no-ip.info
+        DocumentRoot "/var/www/htdocs/coming"
+        <Directory "/var/www/htdocs/coming">
+                DirectoryIndex index.php
+                AllowOverride All
+                Order allow,deny
+                Allow from all
+        </Directory>
+        SetEnv APPLICATION_ENV "development"
+</VirtualHost>
+
+*** File '(Unnamed)'
+upload
+max
+max
+display_error
+error_reporting
+ctemplate
+ctemplate
+aldea
+zend
+include_path
+
+*** File '(Unnamed)'
+/etc/httpd/php.ini
+/etc/httpd/extra/httpd-vhosts.conf
+/etc/httpd/extra/httpd-vhosts.conf
+/etc/hosts
+/etc/httpd/extra/httpd-vhosts.conf
+/etc/httpd/extra/httpd-vhosts.conf
+/etc/httpd/extra/httpd-vhosts.conf
+/etc/httpd/extra/httpd-vhosts.conf
+/etc/httpd/extra/httpd-vhosts.conf
+/etc/httpd/extra/httpd-vhosts.conf
+/etc/httpd/extra/httpd-vhosts.conf

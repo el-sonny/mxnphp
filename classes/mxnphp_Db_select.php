@@ -16,15 +16,18 @@ class mxnphp_Db_select{
 	private $_join;
 	private $_limit;
 	private $_order;
+	private $_adapter;
+
 	
 	const FIELDS = "_fields";
 	const LIMIT = "_limit";
 	
-	public function __construct(){
+	public function __construct($adapter){
 		$this->_query = "";
 		$this->_limit = "";
 		$this->_select = "SELECT ";
 		$this->_order = array();
+		$this->_adapter = $adapter;
 	}
 	public function getTable($table){
 		$t  = new $table();
@@ -51,8 +54,12 @@ class mxnphp_Db_select{
 		if((!$fields || count($fields) == 0) && $fields != null){
 			$this->_fields[] = "$table.*";
 		}elseif(is_array($fields) || count($fields) > 1){
-			foreach($fields as $f){
-				$this->_fields[] = "$table.$f";
+			foreach($fields as $key => $f){
+				if(is_int($key)){
+					$this->_fields[] = "$table.$f";
+				}else{
+					$this->_fields[] = "$table.$f AS $key";
+				}
 			}
 		}
 		return $this;	
@@ -66,8 +73,12 @@ class mxnphp_Db_select{
 		if(is_array($fields) && (count($fields) == 0)){
 			$this->_fields[] = "$table.*";
 		}elseif(is_array($fields) || count($fields) > 1){
-			foreach($fields as $f){
-				$this->_fields[] = "$table.$f";
+			foreach($fields as $key => $f){
+				if(is_int($key)){
+					$this->_fields[] = "$table.$f";
+				}else{
+					$this->_fields[] = "$table.$f AS $key";
+				}
 			}
 		}		
 	}
@@ -87,8 +98,8 @@ class mxnphp_Db_select{
 		return $this;
 	}
 	public function where($where = "",$param = ""){
-		if(trim($param) != ""){
-			$param = mysql_escape_string($param);
+		if($param != "") {
+			$param = $this->_adapter->quote($param);
 			$where = str_replace('?',"'$param'",$where);
 		}
 		$this->_where[] = array("where" => $where,"operator" => "AND");

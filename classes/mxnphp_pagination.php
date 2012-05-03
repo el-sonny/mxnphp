@@ -39,7 +39,8 @@ class mxnphp_pagination extends pagination{
 		$result =  $this->_getTotal();
 		return $result[0]->total;
 	}
-	public function echo_paginate($base_link,$variable="p",$show_pages = false,$class = "pagination"){
+	public function echo_paginate($base_link,$variable="p",$show_pages = false,$class = false){
+
 		$result = $this->_getTotal();
 		$this->per_page = $this->_itemsPerPage;
 		$this->calc_pages($result);

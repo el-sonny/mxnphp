@@ -29,6 +29,8 @@ abstract class controler extends event_dispatcher{
 	protected $measure_time_start;
 	protected $measure_time_stop;
 	protected $components = array();
+	protected $_escape = "htmlspecialchars";
+	protected $_encoding = "UTF-8";
 /**
 * Funcion controler
 * 
@@ -422,5 +424,17 @@ abstract class controler extends event_dispatcher{
 	public function add_component($component,$params=false){
 		$this->components[$component] = new $component($this,$params);		
 	}
+	public function escape($var){
+		//Zend Code
+		if (in_array($this->_escape, array('htmlspecialchars', 'htmlentities'))) {
+			return call_user_func($this->_escape, $var, ENT_COMPAT, $this->_encoding);
+		}
+
+		if (1 == func_num_args()) {
+			return call_user_func($this->_escape, $var);
+		}
+		$args = func_get_args();
+		return call_user_func_array($this->_escape, $args);
+    }
 }
 ?>
