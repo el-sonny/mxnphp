@@ -431,16 +431,12 @@ abstract class table{
 				$attr = str_replace("\\","\\\\",$attr);
 				$attr = str_replace("'","\\'",$attr);
 				return $attr;
+			}elseif(is_int($attr)){
+				return $attr;
 			}elseif(is_array($attr)){
 				$result = array();
 				foreach($attr as $key => $a){
-					if(is_string($a)){
-						$a = str_replace("\\","\\\\",$a);
-						$a = str_replace("'","\\'",$a);
-					}elseif(is_array($a)){
-						$result[$key] = $this->quote($a);
-					}
-					$result[$key] = $a;
+					$result[$key] = $this->quote($a);
 				}
 				return $result;
 			}
