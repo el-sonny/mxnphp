@@ -436,5 +436,23 @@ abstract class controler extends event_dispatcher{
 		$args = func_get_args();
 		return call_user_func_array($this->_escape, $args);
     }
+	public function clean_special_characters($s){
+		$s = utf8_decode($s);
+		$s = str_replace(array('‡','ˆ','‰','‹','»'),"a",$s);
+		$s = str_replace(array('ç','Ë','å','Ì'),"A",$s);
+		$s = str_replace(array('ê','í','ë'),"I",$s);
+		$s = str_replace(array('’','“','”'),"i",$s);
+		$s = str_replace(array('Ž','',''),"e",$s);
+		$s = str_replace(array('ƒ','é','æ'),"E",$s);
+		$s = str_replace(array('—','˜','™','›','¼'),"o",$s);
+		$s = str_replace(array('î','ñ','ï','Í'),"O",$s);
+		$s = str_replace(array('œ','','ž'),"u",$s);
+		$s = str_replace(array('ò','ô','ó'),"U",$s);
+		$s = str_replace("","c",$s);
+		$s = str_replace("‚","C",$s);
+		$s = str_replace("[–]","n",$s);
+		$s = str_replace("[„]","N",$s);
+		return $s;
+	} 
 }
 ?>
