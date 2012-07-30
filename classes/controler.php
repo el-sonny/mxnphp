@@ -153,6 +153,9 @@ abstract class controler extends event_dispatcher{
 	protected function post($variable){
 		return isset($_POST[$variable]) ? $this->clean_input($_POST[$variable]) : false;
 	}
+	protected function session($variable){
+		return isset($_SESSION[$variable]) ? $_SESSION[$variable] : false;
+	}
 	protected function cookie($variable){
 		return isset($_COOKIE[$variable]) ? $this->clean_input($_COOKIE[$variable]) : false;
 	}
@@ -414,8 +417,9 @@ abstract class controler extends event_dispatcher{
 	} 
 	
 	//Cookie Functions
-	protected function set_cookie($key,$value){
-		setcookie($key,$value,time() + 2592000, "/");
+	protected function set_cookie($key,$value,$time = "1 month"){
+		if(is_string($time)) $time = strtotime($time);
+		setcookie($key,$value,time() + $time, "/");
 	}
 	
 	//Component Related Functions
