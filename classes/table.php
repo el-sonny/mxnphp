@@ -329,6 +329,20 @@ abstract class table{
 			$this->{$this->key} = mysql_insert_id();
 		return $result;
 	}
+        public function ExecuteReturnObject($query){
+		$result = $this->execute_sql($query);
+                $i = 0;
+                $records = array();
+		if($result && mysql_num_rows($result) >= 1){
+			while ($row = mysql_fetch_assoc($result)) {
+				foreach($row as $key=>$value){
+					$records[$i]->$key = $value;
+				}
+				$i++;
+			}
+		}
+		return $records;
+	}
 	protected function clean($fields){
 		for($i=0;$i<count($fields);$i++){
 			$fields[$i] = str_replace("(;)",",",mysql_real_escape_string(trim($fields[$i])));
@@ -393,7 +407,7 @@ abstract class table{
 		return $this->{$this->key} = $max_id;
 	}
 	public function select(){
-		$select = new mxnphp_Db_select();
+		$select = new mxnphp_Db_select($this);
 		return $select->select();
 	}
 	public function next_id(){
@@ -410,6 +424,25 @@ abstract class table{
 			if($this->debug) echo "Mysql Error :".mysql_error()."<br/>";
 		}		
 		return $next_id;
+	}
+	public function quote($attr = false){
+		if($attr){
+			if(is_string($attr)){
+				$attr = str_replace("\\","\\\\",$attr);
+				$attr = str_replace("'","\\'",$attr);
+				return $attr;
+			}elseif(is_int($attr)){
+				return $attr;
+			}elseif(is_array($attr)){
+				$result = array();
+				foreach($attr as $key => $a){
+					$result[$key] = $this->quote($a);
+				}
+				return $result;
+			}
+		}else{
+			return false;
+		}
 	}
 }
 ?>

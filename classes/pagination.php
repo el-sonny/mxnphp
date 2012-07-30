@@ -38,10 +38,13 @@ class pagination{
 			$this->object2 = $class;
 		}
 	}
+	protected function calc_beginLimit(){
+		return (isset($_REQUEST[$this->page_variable])) ? ($_REQUEST[$this->page_variable]-1)*$this->per_page : 0;
+	}
 	protected function calc_pages($result){
 		if($result){
 			$count = $result?$result[0]->total:0;
-			$start = (isset($_REQUEST[$this->page_variable])) ? ($_REQUEST[$this->page_variable]-1)*$this->per_page : 0;
+			$start = $this->calc_beginLimit();
 			$end = $this->per_page;
 			$this->document_pages = ceil(($count) / $this->per_page);	
 			$this->current_page = (isset($_REQUEST[$this->page_variable])) ? $_REQUEST[$this->page_variable] : 1;

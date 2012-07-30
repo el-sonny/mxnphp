@@ -16,16 +16,19 @@ class mxnphp{
 	*/ 
 	public $security;
 	/**
-	* Función mxnphp
+	* FunciÃ³n mxnphp
 	*
 	* Carga la configuracion de usuario 
 	* 
 	* @param string $config nombre de la 
-	* configuración a utilizar.
+	* configuraciÃ³n a utilizar.
 	* Se tomara la configuracion default en 
 	* caso de que la $config sea falso.
 	* 
 	*/
+
+	protected $__mxnphp_classes_loaded__;
+
 	public function mxnphp($config = false){
 		if(!$config)
 			$this->config = new default_config();
@@ -33,7 +36,7 @@ class mxnphp{
 			$this->config = $config;
 	}
 	/**
-	* Función load_model
+	* Funcin load_model
 	*
 	* Carga el modelo que se utilizara 
 	* 
@@ -59,7 +62,7 @@ class mxnphp{
 	*
 	*/
 	public function load_controler(){
-		global $__mxnphp_classes_loaded__;
+		global $__mxnphp_classes_loaded__ ;
 		$controler_name = isset($_GET['controler']) ? $_GET['controler'] : $this->config->default_controler;
 		$action = isset($_GET['action']) ? $_GET['action'] : $this->config->default_action;
 		$controler_name = str_replace("-","_",$controler_name);

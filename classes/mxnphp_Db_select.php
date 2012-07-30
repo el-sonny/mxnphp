@@ -15,13 +15,19 @@ class mxnphp_Db_select{
 	private $_where;
 	private $_join;
 	private $_limit;
+	private $_order;
+	private $_adapter;
+
 	
 	const FIELDS = "_fields";
 	const LIMIT = "_limit";
 	
-	public function __construct(){
+	public function __construct($adapter){
 		$this->_query = "";
 		$this->_limit = "";
+		$this->_select = "SELECT ";
+		$this->_order = array();
+		$this->_adapter = $adapter;
 	}
 	public function getTable($table){
 		$t  = new $table();
@@ -34,7 +40,6 @@ class mxnphp_Db_select{
 		}else{
 			$field = null;
 		}
-		$this->_select = "SELECT ";
 		if(is_string($field)){
 			$this->_fields[] = $field; 
 		}
@@ -45,58 +50,97 @@ class mxnphp_Db_select{
 		if(is_string($_table)){
 			$table =  $this->getTable($_table)->table_name;
 			$this->_from[] = $table;
+		}elseif(is_array($_table)){
+			foreach($_table as $key=>$value){
+				$table = $this->getTable($value)->table_name." AS $key" ;
+				$this->_from[] = $table;				
+				break;
+			}
 		}
-		if(!$fields || count($fields) == 0){
+		if((!$fields || count($fields) == 0) && $fields != null){
 			$this->_fields[] = "$table.*";
 		}elseif(is_array($fields) || count($fields) > 1){
-			foreach($fields as $f){
-				$this->_fields[] = "$table.$f";
+			foreach($fields as $key => $f){
+				if(is_int($key)){
+					$this->_fields[] = "$table.$f";
+				}else{
+					$this->_fields[] = "$table.$f AS $key";
+				}
 			}
 		}
 		return $this;	
 	}
 	private function innetJoin($_table,$condition,$fields,$type){
 		$table = "";
+		$asTable = "";
 		if(is_string($_table)){
 			$table = $this->getTable($_table)->table_name;
-			$this->_join[] = array($table,$type,$condition);
+			$this->_join[] = array($table,$type,$condition,$asTable);
+		}elseif(is_array($_table)){
+			foreach($_table as $asTable=>$value){
+				$asTable = trim($asTable);
+				$table = $this->getTable($value)->table_name;
+				$this->_join[] = array($table,$type,$condition,$asTable);				
+				break;
+			}
 		}
-		if(!$fields || count($fields) == 0){
-			$this->_fields[] = "$table.*";
+		if(is_array($fields) && (count($fields) == 0)){
+			if($asTable == ""){
+				$this->_fields[] = "$table.*";	
+			}else{
+				$this->_fields[] = "$asTable.*";
+			}
 		}elseif(is_array($fields) || count($fields) > 1){
-			foreach($fields as $f){
-				$this->_fields[] = "$table.$f";
+			foreach($fields as $key => $f){
+				if(is_int($key)){
+					if($asTable == ""){
+						$this->_fields[] = "$table.$f";
+					}else{
+						$this->_fields[] = "$asTable.$f";
+					}
+				}else{
+					if($asTable == ""){
+						$this->_fields[] = "$table.$f AS $key";
+					}else{
+						$this->_fields[] = "$asTable.$f AS $key";
+					}
+				}
 			}
 		}		
 	}
-	public function join($_table,$condition,$fields = false){
+	public function join($_table,$condition,$fields = array()){
 		$this->innetJoin($_table,$condition,$fields,"INNER JOIN");
 		return $this;
 	}
-	public function leftJoin($_table,$condition,$fields = false){
+	public function leftJoin($_table,$condition,$fields = array()){
 		$this->innetJoin($_table,$condition,$fields,"LEFT JOIN");
 		return $this;
 	}
-	public function rightJoin($_table,$condition,$fields = false){
+	public function rightJoin($_table,$condition,$fields = array()){
 		$this->innetJoin($_table,$condition,$fields,"RIGHT JOIN");
 		return $this;
 	}
 	public function distinct(){
 		return $this;
 	}
-	public function where($where = "",$param){
-		$param = mysql_escape_string($param);
-		$where = str_replace('?',"'$param'",$where);
+	public function where($where = "",$param = ""){
+		if($param != "") {
+			$param = $this->_adapter->quote($param);
+			$where = str_replace('?',"'$param'",$where);
+		}
 		$this->_where[] = array("where" => $where,"operator" => "AND");
 		return $this;
 	}
-	public function orWhere($where = "",$param){
-		$param = mysql_escape_string($param);
-		$where = str_replace('?',"'$param'",$where);
+	public function orWhere($where = "",$param = ""){
+		if(trim($param) != ""){
+			$param = $this->_adapter->quote($param);
+			$where = str_replace('?',"'$param'",$where);
+		}
 		$this->_where[] = array("where" => $where,"operator" => "OR");
 		return $this;
 	}
-	public function order(){
+	public function order($order){
+		$this->_order[] = $order;
 		return $this;
 	}
 	public function limit($begin,$num = ""){
@@ -146,7 +190,11 @@ class mxnphp_Db_select{
 		$join = "";
 		if(count($this->_join) > 0){
 			foreach($this->_join as $j){
-				$join .= " ".$j[1]." ".$j[0]." ON ".$j[2];
+				if($j[3] ==""){
+					$join .= " ".$j[1]." ".$j[0]." ON ".$j[2];
+				}else{
+					$join .= " ".$j[1]." ".$j[0]." AS {$j[3]}"." ON ".$j[2];
+				}
 			}
 		}
 		$this->_query[] = $join;		
@@ -162,7 +210,7 @@ class mxnphp_Db_select{
 				}else{
 					$operator = $w["operator"];	
 				}
-				$where .= " $operator {$w['where']}";
+				$where .= " $operator ( {$w['where']} )";
 			}
 		}else{
 			$where .= " 1";	
@@ -172,12 +220,25 @@ class mxnphp_Db_select{
 	private function makeLimit(){
 		$this->_query[] = $this->_limit;	
 	}
+	private function makeOrder(){
+		if(count($this->_order) > 0){
+			$this->_query[] = "ORDER BY ";
+			$order = "";
+			$coma = "";
+			foreach($this->_order as $o){
+				$order .= "$coma $o";
+				$coma = ", ";
+			}
+			$this->_query[] = $order;
+		}
+	}
 	private function makeSql(){
 		$this->makeSelect();
 		$this->makeFields();
 		$this->makeFrom();
 		$this->makeJoin();
 		$this->makeWhere();
+		$this->makeOrder();
 		$this->makeLimit();
 	}
 	private function makeQuery(){

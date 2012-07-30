@@ -13,7 +13,6 @@ class mxnphp_min{
 		$this->cache_file = $this->name_base.".".$this->ext.".gz";
 		//Variables obtained through functions
 		$this->scripts = $scripts ? $scripts : $this->get_all_scripts();
-		
 		//Check if cache file exists
 		if(!file_exists($this->file_root.$this->cache_file)){
 			$this->combine_and_compress($scripts);			
