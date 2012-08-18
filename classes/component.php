@@ -5,6 +5,13 @@ abstract class component extends controler{
 		$this->config = $this->controler->config;
 		$this->init($params);
 	}
-	abstract function init($params);
+	
+	protected function init($params){
+		if($params){
+			foreach($params as $key => $value){
+				$this->params->$key = $value;
+			}
+		}
+	}
 }
 ?>
