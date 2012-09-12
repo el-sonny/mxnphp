@@ -281,13 +281,13 @@ abstract class table{
 		$sql = "UPDATE ".$this->table_name." SET ";
 		for($i=0;$i<count($fields);$i++){
 			if(isset($this->md5[$fields[$i]])){
-				$sql = $sql.$fields[$i]." = MD5( ".$values[$i]." ), ";
+				$sql .= "`".$fields[$i]."` = MD5( ".$values[$i]." ), ";
 			}else{
-				$sql = $sql.$fields[$i]." = ".$values[$i].", ";
+				$sql .= "`".$fields[$i]."` = ".$values[$i].", ";
 			}
 		}
 		$sql = substr($sql,0,-2);
-		$sql = $sql." WHERE ".$this->key." = '".$this->fields[$this->key]."' LIMIT 1;";
+		$sql = $sql." WHERE `".$this->key."` = '".$this->fields[$this->key]."' LIMIT 1;";
 		if($this->debug)
 			echo $sql."<br/>";
 		return $this->execute_sql($sql);
