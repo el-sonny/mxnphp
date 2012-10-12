@@ -7,7 +7,7 @@ abstract class component extends controler{
 	}
 	
 	protected function init($params){
-		if($params){
+		if(isset($params) && $params){
 			foreach($params as $key => $value){
 				$this->params->$key = $value;
 			}
