@@ -221,6 +221,7 @@ EOD;
 			}else{
 				$field = $attrs[3];
 				$multi_rel_key = isset($attrs[4]) ? $attrs[4] : $attrs[3];
+				//var_dump($field);
 				$multi_object = new $field();
 				$accumulator = $accumulated = $multi_val = "";
 				$accumulator_id = $group_name."_accumulator_new";

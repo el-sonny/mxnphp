@@ -1,6 +1,6 @@
 <?php
 class security_component extends component{
-	public function init($params){
+	public function init($params=false){
 		$user_class = 'account';$user_field = 'email';$pass_field = 'password';$post_user = 'username';$post_pass = 'password';$hash_function = 'md5';
 		$this->user_class = $user_class;
 		$this->user_field = $user_field;
@@ -8,6 +8,7 @@ class security_component extends component{
 		$this->post_user = $post_user;
 		$this->post_pass = $post_pass;
 		$this->hash_function = $hash_function;		
+		parent::init($params);
 	}
 	protected function do_login(){
 		$this->controler->dbConnect();
@@ -43,7 +44,7 @@ class security_component extends component{
 		if(isset($this->config->security_variable) && $this->config->security_variable == "cookie"){
 			if(isset($_COOKIE[$this->config->session_name])){	
 				$this->session_id = $_COOKIE[$this->config->session_name];
-				$this->load_user_info();
+				//$this->load_user_info();
 				return true;
 			}else {
 				return false;
