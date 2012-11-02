@@ -68,7 +68,7 @@ class mxnphp{
 		$controler_name = str_replace("-","_",$controler_name);
 		$action = str_replace("-","_",$action);
 		if(class_exists($controler_name)){						
-			$security = ($this->config->secured)?new $this->config->security_controler($this->config):false;
+			$security = isset($this->config->secured) && $this->config->secured ? new $this->config->security_controler($this->config):false;
 			$controler = new $controler_name($this->config,$security);
 			$controller_loaded = isset($__mxnphp_classes_loaded__[$controler_name]) && $__mxnphp_classes_loaded__[$controler_name]=="controller"?true:false;
 			if($controller_loaded){

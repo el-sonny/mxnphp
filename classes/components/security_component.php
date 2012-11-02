@@ -2,13 +2,14 @@
 class security_component extends component{
 	public function init($params=false){
 		$user_class = 'account';$user_field = 'email';$pass_field = 'password';$post_user = 'username';$post_pass = 'password';$hash_function = 'md5';
+		if(!is_array($params)) $user_class = $params;
 		$this->user_class = $user_class;
 		$this->user_field = $user_field;
 		$this->pass_field = $pass_field;
 		$this->post_user = $post_user;
 		$this->post_pass = $post_pass;
-		$this->hash_function = $hash_function;		
-		parent::init($params);
+		$this->hash_function = $hash_function;
+		if(is_array($params)) parent::init($params);
 	}
 	protected function do_login(){
 		$this->controler->dbConnect();
@@ -50,13 +51,13 @@ class security_component extends component{
 				return false;
 			}				
 		}else{			
-			if($start_session)
-				session_start();
+			if($start_session) session_start();
 			if(isset($_SESSION[$this->config->session_name])){	
 				$this->session_id = $_SESSION[$this->config->session_name];
 				return true;
 			}else 
 				return false;
+			
 		}
 	}
 	protected function load_user_info(){
