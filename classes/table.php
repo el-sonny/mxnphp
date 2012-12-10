@@ -320,7 +320,7 @@ abstract class table{
 	public function search_clause($field,$value,$comparator = '=',$wildcards = false){
 		$value = mysql_real_escape_string($value);
 		$w = $wildcards ? "%" : "";
-		return $this->search_clause = "$field $comparator '$w$value$w'";		
+		return $this->search_clause .= "$field $comparator '$w$value$w'";		
 	}
 	
 	protected function execute_sql($sql){
