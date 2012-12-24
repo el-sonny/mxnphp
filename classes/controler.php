@@ -369,6 +369,7 @@ abstract class controler extends event_dispatcher{
 		$this->template = $template;
 		$event = new event(array('template' => &$template, 'theme' => &$theme, "file" => &$folder));
 		$this->dispatch_event("pre_theme",$event);
+		
 		$this->include_template($theme,$folder);		
 	}
 	protected function curl_request($url,$fields=array()){
