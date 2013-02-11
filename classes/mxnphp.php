@@ -66,7 +66,7 @@ class mxnphp{
 		$controler_name = isset($_GET['controler']) ? $_GET['controler'] : $this->config->default_controler;
 		$action = isset($_GET['action']) ? $_GET['action'] : $this->config->default_action;
 		$controler_name = str_replace("-","_",$controler_name);
-		$action = str_replace("-","_",$action);
+		$action = str_replace("-","_",$action);		
 		if(class_exists($controler_name)){						
 			$security = isset($this->config->secured) && $this->config->secured ? new $this->config->security_controler($this->config):false;
 			$controler = new $controler_name($this->config,$security);
@@ -81,11 +81,16 @@ class mxnphp{
 					$controler->default_action($action);
 				}
 			}else{
-				echo "<p>$controler_name does not exist</p>";	
+				if(isset($this->config->redirect) && $this->config->redirect){
+					header('location: '.$this->config->redirect);
+				}else echo "<p>$controler_name does not exist</p>";	
 			}
 		}else{
-			//header("HTTP/1.0 404 Not Found");
-			echo "<p>$controler_name does not exist</p>";
+			if(isset($this->config->redirect) && $this->config->redirect){
+					header('location: '.$this->config->redirect);							
+					//header("HTTP/1.0 404 Not Found");
+			}else
+				echo "<p>$controler_name does not exist</p>";
 		}
 	}
 }

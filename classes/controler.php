@@ -449,20 +449,20 @@ abstract class controler extends event_dispatcher{
     }
 	public function clean_special_characters($s){
 		$s = utf8_decode($s);
-		$s = str_replace(array('‡','ˆ','‰','‹','»'),"a",$s);
-		$s = str_replace(array('ç','Ë','å','Ì'),"A",$s);
-		$s = str_replace(array('ê','í','ë'),"I",$s);
-		$s = str_replace(array('’','“','”'),"i",$s);
-		$s = str_replace(array('','',''),"e",$s);
-		$s = str_replace(array('ƒ','é','æ'),"E",$s);
-		$s = str_replace(array('—','˜','™','›','¼'),"o",$s);
-		$s = str_replace(array('î','ñ','ï','Í'),"O",$s);
-		$s = str_replace(array('œ','',''),"u",$s);
-		$s = str_replace(array('ò','ô','ó'),"U",$s);
-		$s = str_replace("","c",$s);
-		$s = str_replace("‚","C",$s);
-		$s = str_replace("[–]","n",$s);
-		$s = str_replace("[„]","N",$s);
+		$s = str_replace(array('â€¡','Ë†','â€°','â€¹','Â»'),"a",$s);
+		$s = str_replace(array('Ã§','Ã‹','Ã¥','ÃŒ'),"A",$s);
+		$s = str_replace(array('Ãª','Ã­','Ã«'),"I",$s);
+		$s = str_replace(array('â€™','â€œ','â€'),"i",$s);
+		$s = str_replace(array('Å½','Â','Â'),"e",$s);
+		$s = str_replace(array('Æ’','Ã©','Ã¦'),"E",$s);
+		$s = str_replace(array('â€”','Ëœ','â„¢','â€º','Â¼'),"o",$s);
+		$s = str_replace(array('Ã®','Ã±','Ã¯','Ã'),"O",$s);
+		$s = str_replace(array('Å“','Â','Å¾'),"u",$s);
+		$s = str_replace(array('Ã²','Ã´','Ã³'),"U",$s);
+		$s = str_replace("Â","c",$s);
+		$s = str_replace("â€š","C",$s);
+		$s = str_replace("[â€“]","n",$s);
+		$s = str_replace("[â€]","N",$s);
 		return $s;
 	} 
 }
