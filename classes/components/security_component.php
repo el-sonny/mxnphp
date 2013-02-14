@@ -17,7 +17,7 @@ class security_component extends component{
 		$user = new $this->user_class();	
 		$user->debug = $this->debug;
 		$user->search_clause = "{$this->user_field} = '$user_name'";
-		$user->debug = $this->debug;
+		$user->debug = $this->debug = false;
 		$users = $user->read("id,{$this->pass_field}");
 		if($users){
 			$user = $users[0];
