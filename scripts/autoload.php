@@ -31,6 +31,8 @@ function __autoload($class_name){
 	}while(!file_exists($file) && $i<$size);
 	if(file_exists($file)){
 		include_once $file;
+	}else{
+	var_dump($file);
 	}
 	
 }

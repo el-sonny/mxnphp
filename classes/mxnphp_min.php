@@ -13,18 +13,18 @@ class mxnphp_min{
 		$this->cache_file = $this->name_base.".".$this->ext.".gz";
 		//Variables obtained through functions
 		$this->scripts = $scripts ? $scripts : $this->get_all_scripts();
-		//Check if cache file exists
-		if(!file_exists($this->file_root.$this->cache_file)){
-			$this->combine_and_compress($scripts);			
-		//Check if There are updates newer than the cached file
-		}else if($this->check_for_updates()){
-			$this->combine_and_compress($scripts);			
-		}else{
-			//No updates so no compression is necesary
-		}
+		
 	}
 	//Print the cached files corresponding HTML tag, if dev_mode is enabled in config file print the tags for each of the scripts instead
 	public function tag($type = "js"){
+		//Check if cache file exists
+		if(!file_exists($this->file_root.$this->cache_file)){
+			$this->combine_and_compress($this->scripts);			
+		//Check if There are updates newer than the cached file
+		}else if($this->check_for_updates()){
+			$this->combine_and_compress($this->scripts);			
+		}
+		
 		$scripts = $this->config->dev_mode ? $this->scripts : array($this->cache_file);		
 		foreach($scripts as $script){
 			if($type == 'js'){
@@ -57,9 +57,7 @@ class mxnphp_min{
 			$contents .= file_exists($this->file_root.$script) ? file_get_contents($this->file_root.$script) : "";
 		}
 		$output = gzencode($contents,9);
-		$type = $this->ext == "js" ? "application/javascript" : "text/css";
-	
-		
+		$type = $this->ext == "js" ? "application/javascript" : "text/css";		
 		file_put_contents($this->file_root.$this->cache_file,$output);
 	}
 	//Get all of the scripts in the file_root

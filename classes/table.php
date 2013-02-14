@@ -107,10 +107,12 @@ abstract class table{
 			$i = 0;
 			foreach($fields as $field){
 				$this->{$field} = substr($values[$i++],1,-1);
+				
 			}
 		}
-		if($this->insert_id)
-			$this->id = mysql_insert_id();
+		if($this->insert_id){
+			$this->fields[$this->key] = $this->id = mysql_insert_id();
+		}
 		return $result;
 	}
 	/**
@@ -171,9 +173,10 @@ abstract class table{
 							if(isset($this->objects[$result[1][0]])){
 								$obj = $this->objects[$result[1][0]];
 								if(!isset($result_array[$j]->$obj)){
-									$result_array[$j]->$obj = new $obj(0);
+									$result_array[$j]->$obj = new $obj();
 								}
 								$result_array[$j]->$obj->$result[2][0] = $row[$i];
+								
 							}
 						}else if(isset($this->objects[$fields[$i]])){
 							$result_array[$j]->{$fields[$i]} = new $this->objects[$fields[$i]]($row[$i]);
@@ -320,7 +323,7 @@ abstract class table{
 	public function search_clause($field,$value,$comparator = '=',$wildcards = false){
 		$value = mysql_real_escape_string($value);
 		$w = $wildcards ? "%" : "";
-		return $this->search_clause = "$field $comparator '$w$value$w'";		
+		return $this->search_clause .= "$field $comparator '$w$value$w'";		
 	}
 	
 	protected function execute_sql($sql){

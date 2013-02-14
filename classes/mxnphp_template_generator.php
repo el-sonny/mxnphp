@@ -335,7 +335,7 @@ EOD;
 				$selector = "";
 			}
 			$options = explode(";",$attrs[3]);
-			$options_array = '';
+			$options_array = '$options = null;';
 			foreach($options as $option){
 				$options_values = explode("|",$option);
 				if(isset($options_values[1])){
