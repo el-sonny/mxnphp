@@ -32,7 +32,7 @@ function __autoload($class_name){
 	if(file_exists($file)){
 		include_once $file;
 	}else{
-	var_dump($file);
+		//var_dump($file);
 	}
 	
 }
