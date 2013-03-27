@@ -64,11 +64,13 @@ class mxnphp{
 	public function load_controler(){
 		global $__mxnphp_classes_loaded__ ;
 		$controler_name = isset($_GET['controler']) ? $_GET['controler'] : $this->config->default_controler;
+		$this->config->controler = $controler_name;
 		$action = isset($_GET['action']) ? $_GET['action'] : $this->config->default_action;
 		$controler_name = str_replace("-","_",$controler_name);
-		$action = str_replace("-","_",$action);		
-		if(class_exists($controler_name)){						
+		$action = str_replace("-","_",$action);
+		if(class_exists($controler_name)){
 			$security = isset($this->config->secured) && $this->config->secured ? new $this->config->security_controler($this->config):false;
+
 			$controler = new $controler_name($this->config,$security);
 			$controller_loaded = isset($__mxnphp_classes_loaded__[$controler_name]) && $__mxnphp_classes_loaded__[$controler_name]=="controller"?true:false;
 			if($controller_loaded){
