@@ -68,14 +68,16 @@ class pagination{
 		$this->object2->limit = $this->limit;
 		return $this->object2->read($fields);
 	}
-	public function echo_paginate($base_link,$variable="p",$show_pages = false,$class = false){
+	public function echo_paginate($base_link,$variable="p",$show_pages = false,$class = false,$labels = false){
 		$start = 1;
 		$end = $this->document_pages;
+		$hash = isset($labels->hash) ? $labels->hash : '';
 		//$class_p = $class ? "class='$class'" : "";
 		if($show_pages && $show_pages < $this->document_pages){
 			$offset = floor($show_pages/2);
 			$start = $this->current_page - $offset;
 			$end = $this->current_page + $offset;
+
 			if($start <= 0){
 				$end += 1 - $start;
 				$start = 1;
@@ -83,8 +85,11 @@ class pagination{
 				$previous = $this->current_page - $show_pages;
 				if($previous <= 0)
 					$previous = 1;
-				echo "<a href='$base_link$variable=1' class='$class first_page'>&lt;&lt;</a> ";
-				echo "<a href='$base_link$variable=$previous' class='$class prev_page'>&lt;</a> ";
+				$prev_label = isset($labels->prev) ? $labels->prev : '&lt;&lt;';
+				$prev_page_label = isset($labels->prev_page) ? $labels->prev_page : '&lt';
+				
+				echo "<a href='$base_link$variable=1$hash' class='$class first_page'>$prev_page_label</a> ";
+				echo "<a href='$base_link$variable=$previous$hash' class='$class prev_page'>$prev_label</a> ";
 			}
 			if($end > $this->document_pages){
 				$start -= $end - $this->document_pages;
@@ -94,21 +99,23 @@ class pagination{
 				$next = $this->current_page + $show_pages;
 				if($next > $this->document_pages)
 					$next = $this->document_pages;
-				$end_print = "<a href='$base_link$variable=$next' class='$class next_page' >&gt;</a> <a href='$base_link$variable={$this->document_pages}' class='$class last_page'>&gt;&gt;</a> ";
+				$next_label = isset($labels->next) ? $labels->next : '&gt;';
+				$next_page_label = isset($labels->next_page) ? $labels->next_page : '&gt;&gt;';
+				$end_print = "<a href='$base_link$variable=$next$hash' class='$class next_page' >$next_label</a> <a href='$base_link$variable={$this->document_pages}$hash' class='$class last_page'>$next_page_label</a> ";
 			}
 		}
 		if($this->document_pages > 1){
 			for($i = $start;$i<=$end;$i++){
 				$on = $i == $this->current_page ? " on" : "";
 				$classy = $class ? "class='$class$on'" : "class='$on'";
-				echo "<a href='$base_link$variable=$i' $classy >$i</a> ";
+				echo "<a href='$base_link$variable=$i$hash' $classy >$i</a> ";
 			}
 		}
 		if($show_pages && $show_pages < $this->document_pages){
 			echo $end_print;
 		}
 	}
-        protected function exec_query($query){
+    protected function exec_query($query){
 		$result = mysql_query($query);
                 $i = 0;
                 $records = array();
