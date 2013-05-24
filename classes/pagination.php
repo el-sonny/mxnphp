@@ -49,12 +49,14 @@ class pagination{
 			$this->document_pages = ceil(($count) / $this->per_page);	
 			$this->current_page = (isset($_REQUEST[$this->page_variable])) ? $_REQUEST[$this->page_variable] : 1;
 			$this->limit = ($count > $this->per_page) ? "$start, $end" : false; 
+			$this->count = $count;
 		}else{
 			$start = 0;
 			$end = 1;
 			$this->document_pages = 1;	
 			$this->current_page = 1;
 			$this->limit = false;
+			$this->count = 0;
 		}		
 	}
 	public function read($fields){
