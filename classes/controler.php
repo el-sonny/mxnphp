@@ -433,7 +433,7 @@ abstract class controler extends event_dispatcher{
 	
 	//Component Related Functions
 	public function add_component($component,$params=false){
-		$this->components[$component] = new $component($this,$params);		
+		$this->components[$component] = new $component($this,$params);
 	}
 	public function escape($var){
 		//Zend Code
