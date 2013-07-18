@@ -29,7 +29,7 @@ class mxnphp{
 
 	protected $__mxnphp_classes_loaded__;
 
-	public function mxnphp($config = false){
+	public function __construct($config = false){
 		if(!$config)
 			$this->config = new default_config();
 		else
@@ -68,6 +68,8 @@ class mxnphp{
 		$action = isset($_GET['action']) ? $_GET['action'] : $this->config->default_action;
 		$controler_name = str_replace("-","_",$controler_name);
 		$action = str_replace("-","_",$action);
+		mxnphp_registry::set('__mxnphp_config__',$this->config);
+		mxnphp_registry::set('__mxnphp_security__',$this->security);
 		if(class_exists($controler_name)){
 			$security = isset($this->config->secured) && $this->config->secured ? new $this->config->security_controler($this->config):false;
 			$controler = new $controler_name($this->config,$security);

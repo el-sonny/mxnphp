@@ -384,8 +384,9 @@ abstract class controler extends event_dispatcher{
 		curl_close($ch);
 		return $feed;
 	}
-	protected function load_languages($folder = "languages"){
-		$controler = mxnphp_request::get_controller();
+	protected function load_languages($controler = false,$folder = "languages"){
+		if(!$controler)
+			$controler = mxnphp_request::get_controller();
 		$file1 = $this->config->document_root."{$folder}/".$controler.".xml";
 		if(file_exists($file1)){
 			$this->LanXML->content = simplexml_load_file($file1);
