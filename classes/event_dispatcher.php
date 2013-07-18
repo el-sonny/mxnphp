@@ -8,8 +8,6 @@ abstract class event_dispatcher{
 	public function dispatch_event($event,$event_object){
 		if(isset($this->listeners[$event])){
 			foreach($this->listeners[$event] as $listener){
-				//print_r($listener);
-				//exit($event);
 				$listener->$event($event_object);
 			}
 		}
