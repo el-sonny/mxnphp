@@ -113,7 +113,7 @@ abstract class controler extends event_dispatcher{
 	 */	
 	public function verify_login($start_session = true){
 		if(isset($this->config->security_variable) && $this->config->security_variable == "cookie"){
-			if(isset($_COOKIE[$this->config->session_name])){	
+			if(isset($_COOKIE[$this->config->session_name])){
 				$this->session_id = $_COOKIE[$this->config->session_name];
 				return true;
 			}else 
@@ -149,11 +149,11 @@ abstract class controler extends event_dispatcher{
 		return mysql_real_escape_string(trim($input));
 	}
 	protected function get($variable){
-		return isset($_GET[$variable]) ? $this->clean_input($_GET[$variable]) : false;
+		return mxnphp_request::get($variable);
 		
 	}
 	protected function post($variable){
-		return isset($_POST[$variable]) ? $this->clean_input($_POST[$variable]) : false;
+		return mxnphp_request::post($variable);
 	}
 	protected function session($variable){
 		return isset($_SESSION[$variable]) ? $_SESSION[$variable] : false;
@@ -162,14 +162,7 @@ abstract class controler extends event_dispatcher{
 		return isset($_COOKIE[$variable]) ? $this->clean_input($_COOKIE[$variable]) : false;
 	}
 	protected function request($variable){
-		if($this->get($variable)){
-			$val = $this->get($variable);
-		}else if($this->post($variable)){
-			$val = $this->post($variable);
-		}else{
-			$val = false;
-		}
-		return $val;
+		return mxnphp_request::get_request($variable);
 	}
 	protected function destroy_record($record_id,$object_name){
 		if($this->dbConnect()){
@@ -391,8 +384,10 @@ abstract class controler extends event_dispatcher{
 		curl_close($ch);
 		return $feed;
 	}
-	protected function load_languages($folder = "languages"){
-		$file1 = $this->config->document_root."{$folder}/".$this->config->controler.".xml";
+	protected function load_languages($controler = false,$folder = "languages"){
+		if(!$controler)
+			$controler = mxnphp_request::get_controller();
+		$file1 = $this->config->document_root."{$folder}/".$controler.".xml";
 		if(file_exists($file1)){
 			$this->LanXML->content = simplexml_load_file($file1);
 		}
@@ -433,7 +428,7 @@ abstract class controler extends event_dispatcher{
 	
 	//Component Related Functions
 	public function add_component($component,$params=false){
-		$this->components[$component] = new $component($this,$params);		
+		$this->components[$component] = new $component($this,$params);
 	}
 	public function escape($var){
 		//Zend Code

@@ -29,11 +29,13 @@ class mxnphp{
 
 	protected $__mxnphp_classes_loaded__;
 
-	public function mxnphp($config = false){
+	public function __construct($config = false){
 		if(!$config)
 			$this->config = new default_config();
 		else
 			$this->config = $config;
+		mxnphp_registry::set('__mxnphp_config__',$this->config);
+		mxnphp_registry::set('__mxnphp_security__',$this->security);
 	}
 	/**
 	* Funcin load_model
@@ -70,7 +72,6 @@ class mxnphp{
 		$action = str_replace("-","_",$action);
 		if(class_exists($controler_name)){
 			$security = isset($this->config->secured) && $this->config->secured ? new $this->config->security_controler($this->config):false;
-
 			$controler = new $controler_name($this->config,$security);
 			$controller_loaded = isset($__mxnphp_classes_loaded__[$controler_name]) && $__mxnphp_classes_loaded__[$controler_name]=="controller"?true:false;
 			if($controller_loaded){
@@ -80,6 +81,7 @@ class mxnphp{
 					$controler->$action();
 				}else{
 					//echo "template not found";
+					// $controler->config->document_root = $this->config->document_root."public/";
 					$controler->default_action($action);
 				}
 			}else{
