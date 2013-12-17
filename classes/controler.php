@@ -291,7 +291,7 @@ abstract class controler extends event_dispatcher{
 			include $file;
 		}else{
 			header("Status: 404 Not Found");
-			echo $file.' does not exist';
+			if($this->debug) echo $file.' does not exist';
 		}
 	}
 	/**
