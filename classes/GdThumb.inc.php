@@ -617,7 +617,7 @@ class GdThumb extends ThumbBase
 		return $data;
 	}
 	
-	/**
+	/*
 	 * Saves an image
 	 * 
 	 * This function will make sure the target directory is writeable, and then save the image.

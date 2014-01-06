@@ -227,15 +227,28 @@ abstract class controler extends event_dispatcher{
 		$location = $dir.$filename;
 		return move_uploaded_file($file['tmp_name'], $location) ? $filename : false;
 	}
-	protected function send_email($to,$subject,$message,$from,$from_name){
-		$subject = utf8_decode($subject);
-		$headers = "MIME-Version: 1.0" . "\r\n";
-		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-		$headers .= "From: ".utf8_decode($from_name)." <".$from.">\r\n";
-		$headers .= 'To: <'.$to.'>'."\r\n";
-		$mailit = mail($to,$subject,$message,$headers);
-		return $mailit;
-	}
+    //TODO falta implementar la interfaz para enviar varios attachments y a varios destinatarios
+    protected function send_email($to,$subject,$message,$from,$from_name,$attachment_path = false,$attachment_name = false){
+        require_once 'class.phpmailer.php';
+        $email = new PHPMailer();
+        $email->From      = $from;
+        $email->FromName  = $from_name;
+        $email->Subject   = $subject;
+        $email->Body      = $message;
+        $email->AddAddress( $to );
+
+        if ($attachment_path) {
+            $file_to_attach = $attachment_path;
+            if (!$attachment_name) {
+                $attachment_name = end(explode("/",$attachment_path));
+            }
+            $email->AddAttachment( $file_to_attach , $attachment_name );
+        }
+
+
+        return $email->Send();
+    }
+
 	protected function start_measure_time(){
 		$time = microtime();
 		$time = explode(' ', $time);
@@ -459,6 +472,23 @@ abstract class controler extends event_dispatcher{
 		$s = str_replace("[–]","n",$s);
 		$s = str_replace("[„]","N",$s);
 		return $s;
-	} 
+	}
+
+    //quita acentos , espacios y caracteres no permitidos en una string de url , ejemplo : getUrlString('méxico distrito federal' = mexico-distrito-federal)
+    public function getUrlString($string)
+    {
+        $result = trim($string);
+        $result = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $result);
+        $result = str_replace("/","",$result);
+        $result = str_replace(",","",$result);
+        $result = str_replace("\"","",$result);
+        $result = str_replace(".","",$result);
+        $result = str_replace("'","",$result);
+        $result = str_replace("`","",$result);
+        $result = str_replace("  "," ",$result);
+        $result = str_replace(" ","-",$result);
+        return $result;
+    }
+
 }
 ?>
