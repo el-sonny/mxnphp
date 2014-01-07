@@ -264,11 +264,12 @@ abstract class controler extends event_dispatcher{
         }
 
         if ($logo_path) {
-            if (!$logo_name) {
-                $email->Body = "<img src='cid:email_photo' />".$email->Body;
-                $logo_name = "email_photo";
-            }
-            $email->AddEmbeddedImage($logo_path,$logo_name);
+            $email->Body = "<img src='{$logo_path}' alt='' />".$email->Body;
+//            if (!$logo_name) {
+//                $email->Body = "<img src='cid:email_photo' alt='' />".$email->Body;
+//                $logo_name = "email_photo";
+//            }
+//            $email->AddEmbeddedImage($logo_path,$logo_name);
         }
 
         //return $email->Send();
@@ -280,7 +281,7 @@ abstract class controler extends event_dispatcher{
 
         var_dump($result);
 
-        return 1;
+        return $result;
     }
 
 	protected function start_measure_time(){
