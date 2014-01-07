@@ -246,6 +246,7 @@ abstract class controler extends event_dispatcher{
                 $attachment_name = end(explode("/",$attachment_path));
             }
             $email->AddAttachment( $file_to_attach , $attachment_name );
+            var_dump($email);
         }
 
         $result = false;
