@@ -256,7 +256,6 @@ abstract class controler extends event_dispatcher{
 
 
         if ($attachment_path) {
-            echo "no";
             $file_to_attach = $attachment_path;
             if (!$attachment_name) {
                 $attachment_name = end(explode("/",$attachment_path));
@@ -265,25 +264,24 @@ abstract class controler extends event_dispatcher{
         }
 
         if ($logo_path) {
-            echo $logo_path.",.,.,.,.,.";
             if (!$logo_name) {
                 $email->Body = "<img src='cid:email_photo' />".$email->Body;
                 $logo_name = "email_photo";
             }
-            echo $email->Body.",.,.,.,.,.";
-            echo $logo_name;
             $email->AddEmbeddedImage($logo_path,$logo_name);
         }
 
-        var_dump($email);
         //return $email->Send();
+
 
         $result = $email->Send();
 
+        if (!$this->debug) return $result;
+
         if(!$result) {
-            return "Mailer Error: " . $email->ErrorInfo;
+            echo "Mailer Error: " . $email->ErrorInfo;
         } else {
-            return $result;
+            var_dump($result);
         }
     }
 
