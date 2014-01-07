@@ -253,7 +253,6 @@ abstract class controler extends event_dispatcher{
             $result = $email->Send();
         } catch(Exception $ex) {
             var_dump($ex);
-            //return "excepcion".$ex;
         }
         var_dump($result);
         return $result;
