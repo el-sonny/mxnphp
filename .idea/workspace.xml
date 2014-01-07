@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/controler.php" afterPath="$PROJECT_DIR$/classes/controler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mxnphp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -14,14 +15,14 @@
     <file path="$PROJECT_DIR$/../mymbum/models/model.general.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389054888774" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbu/models/model.general.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1388817220381" ignored="false" />
     <file path="/model.general.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389053621867" ignored="false" />
-    <file path="$PROJECT_DIR$/../mymbum/controlers/controler.offers.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389054921783" ignored="false" />
-    <file path="/controler.offers.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389054849254" ignored="false" />
+    <file path="$PROJECT_DIR$/../mymbum/controlers/controler.offers.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389059737079" ignored="false" />
+    <file path="/controler.offers.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389059735507" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbum/models/model.mform.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1383178526738" ignored="false" />
     <file path="/model.mform.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1383178487153" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbum/templates/mymbu-mobile/js/form.js" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384298823806" ignored="false" />
     <file path="/form.js" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384298753334" ignored="false" />
     <file path="/form.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384300391235" ignored="false" />
-    <file path="/controler.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389056667854" ignored="false" />
+    <file path="/controler.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389059661643" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbu/controlers/controler.form.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384361444622" ignored="false" />
     <file path="/controler.form.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384359946612" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbu/templates/mymbu-admin/form/data.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384361475747" ignored="false" />
@@ -101,7 +102,7 @@
       <file leaf-file-name="controler.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/classes/controler.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="248" column="29" selection-start="7156" selection-end="7156" vertical-scroll-proportion="0.48243558">
+            <state line="233" column="5" selection-start="6458" selection-end="6458" vertical-scroll-proportion="0.38059703">
               <folding />
             </state>
           </provider>
@@ -493,7 +494,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/controler.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="248" column="29" selection-start="7156" selection-end="7156" vertical-scroll-proportion="0.48243558">
+        <state line="233" column="5" selection-start="6458" selection-end="6458" vertical-scroll-proportion="0.38059703">
           <folding />
         </state>
       </provider>

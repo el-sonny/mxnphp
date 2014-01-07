@@ -228,35 +228,53 @@ abstract class controler extends event_dispatcher{
 		return move_uploaded_file($file['tmp_name'], $location) ? $filename : false;
 	}
 
+
+    protected function send_email_with_image($to,$subject,$message,$from,$from_name,$logo_path,$logo_name = false) {
+        return $this->send_email($to,$subject,$message,$from,$from_name,false,false,$logo_path,$logo_name,true);
+    }
+
     //TODO falta implementar la interfaz para enviar varios attachments y a varios destinatarios
-    //$attachment_path : recibe la url de donde sacara la foto.
+    //$attachment_path : recibe la url de donde sacara el archivo.
     //$attachment_name : recibe el nombre del archivo adjunto sin la extension
-    protected function send_email($to,$subject,$message,$from,$from_name,$attachment_path = false,$attachment_name = false){
+    //$logo_path : recibe url de donde se sacara la foto si queremos que se mande una foto embebida en el texto.
+    //$logo_name : recibe el nombre de la imagen , es importante que el message contenga una <img src='cid:$logo_name\' />
+    protected function send_email($to,$subject,$message,$from,$from_name,$attachment_path = false,$attachment_name = false,$logo_path = false,$logo_name = false,$isHtml = true){
         require_once 'class.phpmailer.php';
         $email = new PHPMailer();
         $email->From      = $from;
         $email->FromName  = $from_name;
         $email->Subject   = $subject;
         $email->Body      = $message;
+        $email->AltBody = $message;
         $email->AddAddress( $to );
+        $email->IsHTML($isHtml);
 
         if ($attachment_path) {
+            echo "no";
             $file_to_attach = $attachment_path;
             if (!$attachment_name) {
                 $attachment_name = end(explode("/",$attachment_path));
             }
-            $email->AddAttachment( $file_to_attach , $attachment_name );
-            var_dump($email);
+            $email->AddStringAttachment( $file_to_attach , $attachment_name ,$encoding = 'base64', $type = 'application/octet-stream');
         }
 
-        $result = false;
-        try {
-            $result = $email->Send();
-        } catch(Exception $ex) {
-            var_dump($ex);
+        if ($logo_path) {
+            if (!$logo_name) {
+                $email->Body = "<img src='cid:email_photo' />".$email->Body;
+                $logo_name = "email_photo";
+            }
+            $email->AddEmbeddedImage($logo_path,$logo_name);
         }
-        var_dump($result);
-        return $result;
+
+        //return $email->Send();
+
+        $result = $email->Send();
+
+        if(!$result) {
+            return "Mailer Error: " . $email->ErrorInfo;
+        } else {
+            return $result;
+        }
     }
 
 	protected function start_measure_time(){
