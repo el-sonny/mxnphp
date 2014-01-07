@@ -227,7 +227,10 @@ abstract class controler extends event_dispatcher{
 		$location = $dir.$filename;
 		return move_uploaded_file($file['tmp_name'], $location) ? $filename : false;
 	}
+
     //TODO falta implementar la interfaz para enviar varios attachments y a varios destinatarios
+    //$attachment_path : recibe la url de donde sacara la foto.
+    //$attachment_name : recibe el nombre del archivo adjunto sin la extension
     protected function send_email($to,$subject,$message,$from,$from_name,$attachment_path = false,$attachment_name = false){
         require_once 'class.phpmailer.php';
         $email = new PHPMailer();
@@ -249,7 +252,7 @@ abstract class controler extends event_dispatcher{
         try {
             $result = $email->Send();
         } catch(Exception $ex) {
-            var_dump($ex);
+            //var_dump($ex);
             //return "excepcion".$ex;
         }
 
