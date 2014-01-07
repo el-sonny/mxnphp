@@ -256,7 +256,7 @@ abstract class controler extends event_dispatcher{
 
 
         if ($attachment_path) {
-            $file_to_attach = $attachment_path;
+            $file_to_attach = file_get_contents($attachment_path);
             if (!$attachment_name) {
                 $attachment_name = end(explode("/",$attachment_path));
             }

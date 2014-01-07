@@ -14,8 +14,8 @@
     <file path="$PROJECT_DIR$/../mymbum/models/model.general.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389061078123" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbu/models/model.general.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1388817220381" ignored="false" />
     <file path="/model.general.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389061068372" ignored="false" />
-    <file path="$PROJECT_DIR$/../mymbum/controlers/controler.offers.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389063471631" ignored="false" />
-    <file path="/controler.offers.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389063470037" ignored="false" />
+    <file path="$PROJECT_DIR$/../mymbum/controlers/controler.offers.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389064856760" ignored="false" />
+    <file path="/controler.offers.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389064856171" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbum/models/model.mform.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1383178526738" ignored="false" />
     <file path="/model.mform.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1383178487153" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbum/templates/mymbu-mobile/js/form.js" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384298823806" ignored="false" />
@@ -101,7 +101,7 @@
       <file leaf-file-name="controler.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/classes/controler.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="283" column="30" selection-start="8580" selection-end="8580" vertical-scroll-proportion="0.8731343">
+            <state line="231" column="44" selection-start="6246" selection-end="6267" vertical-scroll-proportion="0.042288557">
               <folding />
             </state>
           </provider>
@@ -493,7 +493,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/controler.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="283" column="30" selection-start="8580" selection-end="8580" vertical-scroll-proportion="0.8731343">
+        <state line="231" column="44" selection-start="6246" selection-end="6267" vertical-scroll-proportion="0.042288557">
           <folding />
         </state>
       </provider>
