@@ -233,6 +233,10 @@ abstract class controler extends event_dispatcher{
         return $this->send_email($to,$subject,$message,$from,$from_name,false,false,$logo_path,$logo_name,true);
     }
 
+    protected function send_email_with_attachment($to,$subject,$message,$from,$from_name,$attachment_path,$attachment_name,$isHtml = true){
+        return $this->send_email($to,$subject,$message,$from,$from_name,$attachment_path,$attachment_name,false,false,$isHtml);
+    }
+
     //TODO falta implementar la interfaz para enviar varios attachments y a varios destinatarios
     //$attachment_path : recibe la url de donde sacara el archivo.
     //$attachment_name : recibe el nombre del archivo adjunto sin la extension
@@ -248,6 +252,8 @@ abstract class controler extends event_dispatcher{
         $email->AltBody = $message;
         $email->AddAddress( $to );
         $email->IsHTML($isHtml);
+
+
 
         if ($attachment_path) {
             echo "no";
@@ -269,6 +275,7 @@ abstract class controler extends event_dispatcher{
             $email->AddEmbeddedImage($logo_path,$logo_name);
         }
 
+        var_dump($email);
         //return $email->Send();
 
         $result = $email->Send();
