@@ -373,8 +373,10 @@ abstract class table{
 					$child_table_name = $child_table->table_name;
 					$child_table_key = $child_table->key;
 					$fieldsr[$i] = $child_table_name.".".$child_field;
-					$this->clause = $this->clause." AND $child_table_name.$child_table_key = ".$this->table_name.".".$mother_field;
-					$this->tables[$result[1][0]] = $child_table_name;
+					if(!isset($this->tables[$result[1][0]])){
+						$this->clause = $this->clause." AND $child_table_name.$child_table_key = ".$this->table_name.".".$mother_field;
+						$this->tables[$result[1][0]] = $child_table_name;
+					}
 				}else
 					$i--;	
 			}else{
