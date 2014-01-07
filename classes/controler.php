@@ -278,11 +278,9 @@ abstract class controler extends event_dispatcher{
 
         if (!$this->debug) return $result;
 
-        if(!$result) {
-            echo "Mailer Error: " . $email->ErrorInfo;
-        } else {
-            var_dump($result);
-        }
+        var_dump($result);
+
+        return 1;
     }
 
 	protected function start_measure_time(){
