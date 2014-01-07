@@ -259,10 +259,13 @@ abstract class controler extends event_dispatcher{
         }
 
         if ($logo_path) {
+            echo $logo_path.",.,.,.,.,.";
             if (!$logo_name) {
                 $email->Body = "<img src='cid:email_photo' />".$email->Body;
                 $logo_name = "email_photo";
             }
+            echo $email->Body.",.,.,.,.,.";
+            echo $logo_name;
             $email->AddEmbeddedImage($logo_path,$logo_name);
         }
 
