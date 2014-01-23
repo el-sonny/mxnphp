@@ -3,11 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/controler.php" afterPath="$PROJECT_DIR$/classes/controler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mxnphp.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389052608879" ignored="false" />
-    <file path="/*.regexp" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389054293489" ignored="false" />
+    <file path="/Dummy.txt" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1390448316596" ignored="false" />
+    <file path="/*.regexp" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1390448355213" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbum/templates/mymbu-mobile/offers/form.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384300393147" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbum/templates/mymbu-mobile/offers/detail.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1383172111687" ignored="false" />
     <file path="/detail.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1383172021970" ignored="false" />
@@ -21,13 +22,13 @@
     <file path="$PROJECT_DIR$/../mymbum/templates/mymbu-mobile/js/form.js" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384298823806" ignored="false" />
     <file path="/form.js" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384298753334" ignored="false" />
     <file path="/form.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384300391235" ignored="false" />
-    <file path="/controler.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389066057018" ignored="false" />
+    <file path="/controler.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1390448400507" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbu/controlers/controler.form.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384361444622" ignored="false" />
     <file path="/controler.form.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384359946612" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbu/templates/mymbu-admin/form/data.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384361475747" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbu/templates/mymbu-admin/js/business-admin.js" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1388801860074" ignored="false" />
     <file path="/data.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384361193100" ignored="false" />
-    <file path="$PROJECT_DIR$/../mymbu/controlers/controler.main.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384362980822" ignored="false" />
+    <file path="$PROJECT_DIR$/../mymbu/controlers/controler.main.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389220301802" ignored="false" />
     <file path="/business-admin.js" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384364710121" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbu/config/config.jafet_config.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1388705437461" ignored="false" />
     <file path="$PROJECT_DIR$/../tripxit/components/location_component.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384455963545" ignored="false" />
@@ -70,6 +71,18 @@
     <file path="$PROJECT_DIR$/../mymbu/controlers/controler.accounts.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1388816828329" ignored="false" />
     <file path="/controler.accounts.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1388816828004" ignored="false" />
     <file path="/jquery.dataTables.css" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1388817878180" ignored="false" />
+    <file path="$PROJECT_DIR$/../mymbum/templates/mymbu-mobile/themes/v1.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389228867624" ignored="false" />
+    <file path="/v1.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389212923074" ignored="false" />
+    <file path="/a.dummy" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389220384405" ignored="false" />
+    <file path="$PROJECT_DIR$/../mymbu/components/freesmsgateway_component.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389233255461" ignored="false" />
+    <file path="/freesmsgateaway_component.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389220614175" ignored="false" />
+    <file path="$PROJECT_DIR$/../mymbum/templates/mymbu-mobile/global/footer.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389232538728" ignored="false" />
+    <file path="/footer.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389232521723" ignored="false" />
+    <file path="/freesmsgateway_component.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389233216394" ignored="false" />
+    <file path="$PROJECT_DIR$/../comparatuescuela/config/config.jafet_config.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389641648541" ignored="false" />
+    <file path="/config.jafet_config.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389641329716" ignored="false" />
+    <file path="$PROJECT_DIR$/../directorios/controlers/controler.main.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389642378100" ignored="false" />
+    <file path="/controler.main.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1389642378100" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +114,16 @@
       <file leaf-file-name="controler.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/classes/controler.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="283" column="22" selection-start="8618" selection-end="8618" vertical-scroll-proportion="0.8308458">
+            <state line="377" column="66" selection-start="12279" selection-end="12279" vertical-scroll-proportion="0.80841124">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="autoload.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/autoload.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="19" selection-start="501" selection-end="501" vertical-scroll-proportion="-11.115385">
               <folding />
             </state>
           </provider>
@@ -128,7 +150,7 @@
       <file leaf-file-name="table.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classes/table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="301" column="17" selection-start="8071" selection-end="8072" vertical-scroll-proportion="-4.2352943">
+            <state line="301" column="17" selection-start="8071" selection-end="8072" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -272,20 +294,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxnphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxnphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -293,6 +301,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager">
@@ -320,10 +329,10 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.325887" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32457292" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34491634" sideWeight="0.67411304" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36422136" sideWeight="0.6754271" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -465,11 +474,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/autoload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="48" selection-start="487" selection-end="487" vertical-scroll-proportion="0.39534885" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/GdThumb.inc.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="663" column="9" selection-start="17208" selection-end="17208" vertical-scroll-proportion="0.0">
@@ -486,14 +490,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="301" column="17" selection-start="8071" selection-end="8072" vertical-scroll-proportion="-4.2352943">
+        <state line="301" column="17" selection-start="8071" selection-end="8072" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/autoload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="19" selection-start="501" selection-end="501" vertical-scroll-proportion="-11.115385">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/controler.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="283" column="22" selection-start="8618" selection-end="8618" vertical-scroll-proportion="0.8308458">
+        <state line="377" column="66" selection-start="12279" selection-end="12279" vertical-scroll-proportion="0.80841124">
           <folding />
         </state>
       </provider>

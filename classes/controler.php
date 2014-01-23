@@ -352,10 +352,11 @@ abstract class controler extends event_dispatcher{
 	 * @param string $folder carpeta donde se encuentra el archivo css 
 	 * por default tomara el nombre de "css"
 	 *
+     * @param int $version numero de version del archivo , los navegadores guardan los archivos en cache
 	 */	
 	
-	public function print_css_tag($file="main",$folder="css"){
-		$css = $this->config->http_address.$this->template_folder($folder).$file.".css";
+	public function print_css_tag($file="main",$folder="css",$version=1){
+		$css = $this->config->http_address.$this->template_folder($folder).$file.".css?v=".$version;
 		echo "<link href='$css' rel='stylesheet' type='text/css' />";
 	}
 	/**
@@ -367,10 +368,13 @@ abstract class controler extends event_dispatcher{
 	 *
 	 * @param string $folder carpeta donde se encuentra el archivo javascript
 	 * por default tomara el nombre de "js"
+     *
+     * @param int $version numero de version del archivo , los navegadores guardan los archivos en cache
+     *
 	 */	
 	
-	public function print_js_tag($file="interactions",$folder="js"){
-		$js = $this->config->http_address.$this->template_folder($folder).$file.".js";
+	public function print_js_tag($file="interactions",$folder="js",$version=1){
+		$js = $this->config->http_address.$this->template_folder($folder).$file.".js?v=".$version;
 		echo "<script src='$js' type='text/javascript'></script>";
 	}
 	/**
