@@ -227,15 +227,63 @@ abstract class controler extends event_dispatcher{
 		$location = $dir.$filename;
 		return move_uploaded_file($file['tmp_name'], $location) ? $filename : false;
 	}
-	protected function send_email($to,$subject,$message,$from,$from_name){
-		$subject = utf8_decode($subject);
-		$headers = "MIME-Version: 1.0" . "\r\n";
-		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-		$headers .= "From: ".utf8_decode($from_name)." <".$from.">\r\n";
-		$headers .= 'To: <'.$to.'>'."\r\n";
-		$mailit = mail($to,$subject,$message,$headers);
-		return $mailit;
-	}
+
+
+    protected function send_email_with_image($to,$subject,$message,$from,$from_name,$logo_path,$logo_name = false) {
+        return $this->send_email($to,$subject,$message,$from,$from_name,false,false,$logo_path,$logo_name,true);
+    }
+
+    protected function send_email_with_attachment($to,$subject,$message,$from,$from_name,$attachment_path,$attachment_name,$isHtml = true){
+        return $this->send_email($to,$subject,$message,$from,$from_name,$attachment_path,$attachment_name,false,false,$isHtml);
+    }
+
+    //TODO falta implementar la interfaz para enviar varios attachments y a varios destinatarios
+    //$attachment_path : recibe la url de donde sacara el archivo.
+    //$attachment_name : recibe el nombre del archivo adjunto sin la extension
+    //$logo_path : recibe url de donde se sacara la foto si queremos que se mande una foto embebida en el texto.
+    //$logo_name : recibe el nombre de la imagen , es importante que el message contenga una <img src='cid:$logo_name\' />
+    protected function send_email($to,$subject,$message,$from,$from_name,$attachment_path = false,$attachment_name = false,$logo_path = false,$logo_name = false,$isHtml = true){
+        require_once 'class.phpmailer.php';
+        $email = new PHPMailer();
+        $email->From      = $from;
+        $email->FromName  = $from_name;
+        $email->Subject   = $subject;
+        $email->Body      = $message;
+        $email->AltBody = $message;
+        $email->AddAddress( $to );
+        $email->IsHTML($isHtml);
+
+
+
+        if ($attachment_path) {
+            $file_to_attach = file_get_contents($attachment_path);
+            if (!$attachment_name) {
+                $attachment_name = end(explode("/",$attachment_path));
+            }
+            $email->AddStringAttachment( $file_to_attach , $attachment_name ,$encoding = 'base64', $type = 'application/octet-stream');
+        }
+
+        if ($logo_path) {
+            $email->Body = "<img src='{$logo_path}' alt='' />".$email->Body;
+//            if (!$logo_name) {
+//                $email->Body = "<img src='cid:email_photo' alt='' />".$email->Body;
+//                $logo_name = "email_photo";
+//            }
+//            $email->AddEmbeddedImage($logo_path,$logo_name);
+        }
+
+        //return $email->Send();
+
+
+        $result = $email->Send();
+
+        if (!$this->debug) return $result;
+
+        var_dump($result);
+
+        return $result;
+    }
+
 	protected function start_measure_time(){
 		$time = microtime();
 		$time = explode(' ', $time);
@@ -304,10 +352,11 @@ abstract class controler extends event_dispatcher{
 	 * @param string $folder carpeta donde se encuentra el archivo css 
 	 * por default tomara el nombre de "css"
 	 *
+     * @param int $version numero de version del archivo , los navegadores guardan los archivos en cache
 	 */	
 	
-	public function print_css_tag($file="main",$folder="css"){
-		$css = $this->config->http_address.$this->template_folder($folder).$file.".css";
+	public function print_css_tag($file="main",$folder="css",$version=1){
+		$css = $this->config->http_address.$this->template_folder($folder).$file.".css?v=".$version;
 		echo "<link href='$css' rel='stylesheet' type='text/css' />";
 	}
 	/**
@@ -319,10 +368,13 @@ abstract class controler extends event_dispatcher{
 	 *
 	 * @param string $folder carpeta donde se encuentra el archivo javascript
 	 * por default tomara el nombre de "js"
+     *
+     * @param int $version numero de version del archivo , los navegadores guardan los archivos en cache
+     *
 	 */	
 	
-	public function print_js_tag($file="interactions",$folder="js"){
-		$js = $this->config->http_address.$this->template_folder($folder).$file.".js";
+	public function print_js_tag($file="interactions",$folder="js",$version=1){
+		$js = $this->config->http_address.$this->template_folder($folder).$file.".js?v=".$version;
 		echo "<script src='$js' type='text/javascript'></script>";
 	}
 	/**
@@ -459,6 +511,23 @@ abstract class controler extends event_dispatcher{
 		$s = str_replace("[–]","n",$s);
 		$s = str_replace("[„]","N",$s);
 		return $s;
-	} 
+	}
+
+    //quita acentos , espacios y caracteres no permitidos en una string de url , ejemplo : getUrlString('méxico distrito federal' = mexico-distrito-federal)
+    public function getUrlString($string)
+    {
+        $result = trim($string);
+        $result = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $result);
+        $result = str_replace("/","",$result);
+        $result = str_replace(",","",$result);
+        $result = str_replace("\"","",$result);
+        $result = str_replace(".","",$result);
+        $result = str_replace("'","",$result);
+        $result = str_replace("`","",$result);
+        $result = str_replace("  "," ",$result);
+        $result = str_replace(" ","-",$result);
+        return $result;
+    }
+
 }
 ?>
