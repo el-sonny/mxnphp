@@ -81,7 +81,7 @@ abstract class table{
 		if(!$values){
 			$i = 0;
 			foreach($fields as $field){
-				$values[$i++] = $_POST[$field."_input"];
+				$values[$i++] = $_POST[trim($field)."_input"];
 			}
 		}
 		$values = $this->format_input($fields,$values);
@@ -89,7 +89,7 @@ abstract class table{
 		
 		$sql ="INSERT INTO ".$this->table_name." (";
 		for($i=0;$i<count($fields);$i++){
-			$sql = $sql."`".$fields[$i]."`, ";
+			$sql = $sql."`".trim($fields[$i])."`, ";
 		}
 		$sql = substr($sql,0,-2).") VALUES (";
 		for($i=0;$i<count($values);$i++){
@@ -270,6 +270,7 @@ abstract class table{
 	*
 	*@param boolean $values si values es falso crea un vector 
 	* con los valores si es true limpia la variable.
+    *
 	*/
 	
 	public function update($fields,$values=false){
@@ -277,7 +278,7 @@ abstract class table{
 		if(!$values){
 			$i = 0;
 			foreach($fields as $field){
-				$values[$i++] = $_POST[$field."_input"];
+				$values[$i++] = $_POST[trim($field)."_input"];
 			}
 		}
 		$values = $this->clean($values);
