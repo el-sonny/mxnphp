@@ -40,7 +40,9 @@ class mxnphp_min{
 	private function check_for_updates(){
 		$dir = opendir($this->file_root);
 		$i = 0;
+		$scripts_date = array();
 		foreach($this->scripts as $script){
+			//var_dump($this->file_root.$script);
 			if(file_exists($this->file_root.$script)){
 				$scripts[$i] = $script;
 				$scripts_date[$i++] =  filemtime($this->file_root.$script);

@@ -17,13 +17,13 @@ class mxnphp_request{
 	protected function clean_input($input){
 		return mysql_real_escape_string(trim($input));
 	}
-	public function get($variable){
+	static function get($variable){
 		return isset($_GET[$variable]) ? mysql_real_escape_string(trim($_GET[$variable])) : false;
 	}
-	public function post($variable){
+	static function post($variable){
 		return isset($_POST[$variable]) ? mysql_real_escape_string(trim($_POST[$variable])) : false;
 	}
-	public function get_request($variable){
+	static function get_request($variable){
 		if(self::get($variable)){
 			$val = self::get($variable);
 		}else if(self::post($variable)){

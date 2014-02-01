@@ -22,6 +22,7 @@ abstract class table{
 	public $md5;
 	public $limit;
 	public $distinct = false;
+	public $execute = true;
 	
 	/**
 	* Funcion table
@@ -158,11 +159,15 @@ abstract class table{
 			$limit = " LIMIT 1";
 		}
 		$sql = $sql." FROM ".$this->table_name." ".$tables." WHERE ".$clause.$this->clause.$limit;
-		if(count($fields2)){
+		$this->sql = $sql;
+		//var_dump($this->execute);
+		if(count($fields2) && $this->execute){
+
 			if($this->debug)
 				echo $sql."<br/>";	
 			$result_sql = mysql_query($sql);
 			$multiple_results = $result_sql && mysql_num_rows($result_sql) >= 1 && isset($this->search_clause);
+
 			if($multiple_results){
 				$j =0;
 				while($row = mysql_fetch_row($result_sql)){
@@ -326,7 +331,7 @@ abstract class table{
 		$w = $wildcards ? "%" : "";
 		return $this->search_clause .= "$field $comparator '$w$value$w'";		
 	}
-	
+	  
 	protected function execute_sql($sql){
 		$result = mysql_query($sql);
 		if($this->get_id)

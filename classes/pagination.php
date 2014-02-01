@@ -8,6 +8,7 @@ class pagination{
 	protected $page_variable;
 	private $name_class  = false;
 	private $clause_table = "";
+	public $total_results = 0;
 	public function pagination($class,$per_page=10,$clause = false,$page_variable = "p"){
 		$this->page_variable = $page_variable;
 		$this->per_page = $per_page;
@@ -44,6 +45,7 @@ class pagination{
 	protected function calc_pages($result){
 		if($result){
 			$count = $result?$result[0]->total:0;
+			$this->total_results = $count;
 			$start = $this->calc_beginLimit();
 			$end = $this->per_page;
 			$this->document_pages = ceil(($count) / $this->per_page);	

@@ -210,7 +210,7 @@ abstract class controler extends event_dispatcher{
 	protected function make_thumb($image,$target,$width,$height,$type='adaptive'){
 		require_once 'ThumbLib.inc.php';
 		try{$thumb = PhpThumbFactory::create($image);}
-		catch(Exception $e){echo $image." does not exist";}
+		catch(Exception $e){if($this->debug) echo $image." does not exist";}
 		switch($type){
 			case "best fit":
 				$thumb->resize($width,$height);
@@ -339,7 +339,7 @@ abstract class controler extends event_dispatcher{
 			include $file;
 		}else{
 			header("Status: 404 Not Found");
-			echo $file.' does not exist';
+			if($this->debug) echo $file.' does not exist';
 		}
 	}
 	/**
