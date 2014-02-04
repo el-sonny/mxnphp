@@ -290,9 +290,9 @@ abstract class table{
 		$sql = "UPDATE ".$this->table_name." SET ";
 		for($i=0;$i<count($fields);$i++){
 			if(isset($this->md5[$fields[$i]])){
-				$sql .= "`".$fields[$i]."` = MD5( ".$values[$i]." ), ";
+				$sql .= "`".trim($fields[$i])."` = MD5( ".$values[$i]." ), ";
 			}else{
-				$sql .= "`".$fields[$i]."` = ".$values[$i].", ";
+				$sql .= "`".trim($fields[$i])."` = ".$values[$i].", ";
 			}
 		}
 		$sql = substr($sql,0,-2);

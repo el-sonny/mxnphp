@@ -3,12 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/table.php" afterPath="$PROJECT_DIR$/classes/table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mxnphp.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391150993677" ignored="false" />
-    <file path="/*.regexp" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391155416611" ignored="false" />
+    <file path="/Dummy.txt" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391556045433" ignored="false" />
+    <file path="/*.regexp" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391547442160" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbum/templates/mymbu-mobile/offers/form.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1384300393147" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbum/templates/mymbu-mobile/offers/detail.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1383172111687" ignored="false" />
     <file path="/detail.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1383172021970" ignored="false" />
@@ -65,7 +64,7 @@
     <file path="$PROJECT_DIR$/../mymbu/templates/mymbu-admin/accounts/account_listing.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1388817598805" ignored="false" />
     <file path="/account_listing.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1388816692517" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbu/templates/mymbu-admin/css/jquery.dataTables.css" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1388817909898" ignored="false" />
-    <file path="/interactions.js" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391152993079" ignored="false" />
+    <file path="/interactions.js" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391555194254" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbu/templates/mymbu-admin/css/mymbu-admin.css" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1388817806239" ignored="false" />
     <file path="/mymbu-admin.css" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1388815499512" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbu/controlers/controler.accounts.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1388816828329" ignored="false" />
@@ -85,15 +84,16 @@
     <file path="/controler.main.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391152118196" ignored="false" />
     <file path="$PROJECT_DIR$/../mymbu/components/sms_component.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1390449637717" ignored="false" />
     <file path="/sms_component.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1390449567002" ignored="false" />
-    <file path="/table.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391135845735" ignored="false" />
-    <file path="$PROJECT_DIR$/../directorios/controlers/controler.events.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391152287873" ignored="false" />
-    <file path="/new_event_form.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391136592334" ignored="false" />
-    <file path="$PROJECT_DIR$/../directorios/templates/admin/events/new_event_form.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391136655109" ignored="false" />
-    <file path="$PROJECT_DIR$/../directorios/templates/admin/js/interactions.js" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391153067293" ignored="false" />
-    <file path="$PROJECT_DIR$/../directorios/templates/admin/events/edit_event.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391155025150" ignored="false" />
-    <file path="/edit_event.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391154169810" ignored="false" />
-    <file path="$PROJECT_DIR$/../directorios/models/model.eEvent.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391155376126" ignored="false" />
-    <file path="/model.eEvent.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391155344297" ignored="false" />
+    <file path="/table.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391541196161" ignored="false" />
+    <file path="$PROJECT_DIR$/../directorios/controlers/controler.events.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391549923577" ignored="false" />
+    <file path="/new_event_form.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391555746118" ignored="false" />
+    <file path="$PROJECT_DIR$/../directorios/templates/admin/events/new_event_form.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391555810421" ignored="false" />
+    <file path="$PROJECT_DIR$/../directorios/templates/admin/js/interactions.js" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391555201643" ignored="false" />
+    <file path="$PROJECT_DIR$/../directorios/templates/admin/events/edit_event.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391555376009" ignored="false" />
+    <file path="/edit_event.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391554202461" ignored="false" />
+    <file path="$PROJECT_DIR$/../directorios/models/model.eEvent.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391552969338" ignored="false" />
+    <file path="/model.eEvent.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391552560604" ignored="false" />
+    <file path="/controler.events.php" changelist="a8ee8838-1b49-402a-8ee4-4fb91521a1d7" time="1391549809493" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +116,7 @@
       <file leaf-file-name="controler.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classes/controler.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="138" column="30" selection-start="3640" selection-end="3646" vertical-scroll-proportion="-8.076923">
+            <state line="178" column="51" selection-start="4842" selection-end="4842" vertical-scroll-proportion="-8.076923">
               <folding />
             </state>
           </provider>
@@ -143,7 +143,7 @@
       <file leaf-file-name="pagination.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classes/pagination.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="35" selection-start="486" selection-end="486" vertical-scroll-proportion="0.0">
+            <state line="18" column="35" selection-start="514" selection-end="514" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -170,7 +170,7 @@
       <file leaf-file-name="table.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/classes/table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="100" column="9" selection-start="2090" selection-end="2090" vertical-scroll-proportion="0.5303738">
+            <state line="293" column="18" selection-start="7923" selection-end="7923" vertical-scroll-proportion="0.4906542">
               <folding />
             </state>
           </provider>
@@ -350,7 +350,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="916" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -358,7 +358,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32457292" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3848134" sideWeight="0.6754271" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3899614" sideWeight="0.6754271" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -493,7 +493,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/pagination.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="35" selection-start="486" selection-end="486" vertical-scroll-proportion="0.0">
+        <state line="18" column="35" selection-start="514" selection-end="514" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -521,14 +521,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/controler.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="30" selection-start="3640" selection-end="3646" vertical-scroll-proportion="-8.076923">
+        <state line="178" column="51" selection-start="4842" selection-end="4842" vertical-scroll-proportion="-8.076923">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="9" selection-start="2090" selection-end="2090" vertical-scroll-proportion="0.5303738">
+        <state line="293" column="18" selection-start="7923" selection-end="7923" vertical-scroll-proportion="0.4906542">
           <folding />
         </state>
       </provider>
