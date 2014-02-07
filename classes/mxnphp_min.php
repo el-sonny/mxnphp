@@ -42,7 +42,7 @@ class mxnphp_min{
 		$i = 0;
 		$scripts_date = array();
 		foreach($this->scripts as $script){
-			//var_dump($this->file_root.$script);
+			//	var_dump($this->file_root.$script);
 			if(file_exists($this->file_root.$script)){
 				$scripts[$i] = $script;
 				$scripts_date[$i++] =  filemtime($this->file_root.$script);
