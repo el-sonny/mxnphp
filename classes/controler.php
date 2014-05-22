@@ -299,6 +299,21 @@ abstract class controler extends event_dispatcher{
 	protected function verify_email($email) {
 		return preg_match('/\A(?:(?:[a-z0-9!#$%&\'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]))\Z/i', $email); 
 	}
+    protected function validate_phone($string) {
+        $isPhoneNum = false;
+        //eliminate every char except 0-9
+        $justNums = preg_replace("/[^0-9]/", '', $string);
+
+        //eliminate leading 1 if its there
+        if (strlen($justNums) > 11)
+            $justNums = preg_replace("/^1/", '',$justNums);
+
+        //10 o 12 digitos
+        if (strlen($justNums) == 10 || strlen($justNums) == 12)
+            $isPhoneNum = $justNums;
+
+        return $isPhoneNum;
+    }
 	protected function rand_str($length = 32, $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'){
 		$chars_length = (strlen($chars) - 1);
 		$string = $chars{rand(0, $chars_length)};
